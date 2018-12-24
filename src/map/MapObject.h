@@ -5,7 +5,9 @@ namespace Pathos {
 
 class MapObject {
 public:
-  enum class Char { Lantern };
+  // Used respectively to represent:
+  // Player, Hostile, Wall, Ground
+  enum class Char { At, Lantern, Bound, Empty };
 
   MapObject(Char c) : c{c} {}
   virtual ~MapObject() {}
