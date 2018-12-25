@@ -1,13 +1,11 @@
-#include "mob/hostile/Wolf.h"
+#include "mob/hostile/Chaos.h"
 #include "mob/player/Player.h"
 
 using namespace Pathos;
 
-void Wolf::beAttackedBy(Player &p) {
-  // TODO: special moves later.
-
+void Chaos::beAttackedBy(Player &p) {
   if (!Hostile::isDeceased() && p.getDamage() > Hostile::getHealth()) {
-    // Wolf killed.
+    // Chaos killed.
     Hostile::setDeceased(true);
   } else if (!Hostile::isDeceased()) {
     // Attack if not dead.
