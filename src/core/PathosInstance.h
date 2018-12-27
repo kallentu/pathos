@@ -4,6 +4,8 @@
 #include <memory>
 
 #include "abstract/Observable.h"
+#include "abstract/Observer.h"
+#include "event/Event.h"
 #include "request/ViewRequest.h"
 
 namespace Pathos {
@@ -11,7 +13,7 @@ namespace Pathos {
 class View;
 class NcursesInstance;
 
-class PathosInstance : public Observable<ViewRequest> {
+class PathosInstance : public Observable<ViewRequest>, Observer<Event> {
   std::unique_ptr<NcursesInstance> curses;
   std::unique_ptr<View> view;
 

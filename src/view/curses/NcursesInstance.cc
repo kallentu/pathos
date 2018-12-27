@@ -13,6 +13,8 @@ NcursesInstance::NcursesInstance() {
 
 NcursesInstance::~NcursesInstance() { endwin(); }
 
+int NcursesInstance::getChar() { return getch(); }
+
 void NcursesInstance::move(size_t y, size_t x) { wmove(stdscr, y, x); }
 
 void NcursesInstance::movePrint(size_t y, size_t x, std::string s) {

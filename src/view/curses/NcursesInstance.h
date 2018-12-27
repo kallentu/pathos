@@ -16,6 +16,9 @@ public:
   size_t getHeight() { return height; }
   size_t getWidth() { return width; }
 
+  // Input
+  int getChar();
+
   // Printing methods
   void move(size_t y, size_t x);
   void movePrint(size_t y, size_t x, std::string s);
