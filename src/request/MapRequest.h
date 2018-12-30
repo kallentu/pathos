@@ -10,15 +10,12 @@ namespace Pathos {
 class Map;
 
 struct MapRequest : public ViewRequest {
-  std::vector<std::vector<char>> map;
+  Map *map;
 
   MapRequest(Map *m);
   ~MapRequest();
 
   void beDrawnBy(View &view) const override;
-
-private:
-  void convertMap(Map *m);
 };
 
 } // namespace Pathos

@@ -1,9 +1,9 @@
 #ifndef PATHOS_MAP_VIEW
 #define PATHOS_MAP_VIEW
 
-#include <vector>
-
+#include "map/Map.h"
 #include "view/curses/NcursesView.h"
+#include <memory>
 
 namespace Pathos {
 
@@ -12,13 +12,19 @@ class NotificationRequest;
 class NcursesInstance;
 
 class MapView : public NcursesView {
-  std::vector<std::vector<char>> map;
+  // TODO: Make the MapManager own the map instead of the MapView
+  std::unique_ptr<Map> map;
   size_t height, width;
 
 public:
   MapView(NcursesInstance *curses);
 
+  Map *getMap() const;
+
+  // Prints the Map from the MapRequest using ncurses.
   void draw(const MapRequest &req) override;
+
+  // Does not print anything for NotificationRequest.
   void draw(const NotificationRequest &req) override;
 };
 

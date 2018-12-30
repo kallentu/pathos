@@ -12,6 +12,8 @@ public:
   MapObject(Char c) : c{c} {}
   virtual ~MapObject() {}
 
+  Char &getCharType() { return c; }
+
 private:
   // Object's symbol in the view.
   Char c;

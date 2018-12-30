@@ -8,9 +8,9 @@
 
 using namespace Pathos;
 
-Map::Map(MapView *v) {
-  size_t y = v->getHeight();
-  size_t x = v->getWidth();
+Map::Map(MapView &v) {
+  size_t y = v.getHeight();
+  size_t x = v.getWidth();
 
   // Walls added for the corners of the map
   // Initial fill with default MapObjects (ground)
@@ -21,17 +21,25 @@ Map::Map(MapView *v) {
       // Top or bottom row
       // Start or end of row
       if (i == 0 || i == y - 1 || j == 0 || j == x - 1) {
-        row[j] = std::make_unique<Wall>();
+        row.push_back(std::make_unique<Wall>());
       } else {
-        row[j] = std::make_unique<Ground>();
+        row.push_back(std::make_unique<Ground>());
       }
     }
 
-    map[i] = std::move(row);
+    map.push_back(std::move(row));
   }
 }
 
-void Map::addObjectToPosition(std::unique_ptr<MapObject> m, size_t y,
-                              size_t x) {}
+MapObject *Map::get(size_t y, size_t x) { return map[y][x].get(); }
 
-void Map::removeObjectFromPosition(size_t y, size_t x) {}
+void Map::addObjectToPosition(std::unique_ptr<MapObject> m, size_t y,
+                              size_t x) {
+  map[y][x].reset();
+  map[y][x] = std::move(m);
+}
+
+void Map::removeObjectFromPosition(size_t y, size_t x) {
+  map[y][x].reset();
+  map[y][x] = std::make_unique<Ground>();
+}

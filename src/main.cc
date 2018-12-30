@@ -1,3 +1,6 @@
 #include "core/PathosInstance.h"
 
-int main() { return 0; }
+int main() {
+  Pathos::PathosInstance inst{};
+  inst.run();
+}

@@ -16,8 +16,10 @@ class Map {
 
 public:
   // Initial map with Walls on all edges, Ground on other spaces.
-  Map(MapView *v);
+  Map(MapView &v);
   virtual ~Map() {}
+
+  MapObject *get(size_t y, size_t x);
 
   void addObjectToPosition(std::unique_ptr<MapObject> m, size_t y, size_t x);
   void removeObjectFromPosition(size_t y, size_t x);

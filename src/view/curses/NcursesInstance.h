@@ -22,6 +22,8 @@ public:
   // Printing methods
   void move(size_t y, size_t x);
   void movePrint(size_t y, size_t x, std::string s);
+  void addChar(int c);
+  void moveAddChar(size_t y, size_t x, int c);
   void print(std::string s);
 
   // Display methods

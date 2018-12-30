@@ -10,8 +10,10 @@ namespace Pathos {
 class NcursesInstance;
 
 class NcursesView : public View {
-  NcursesInstance *curses;
   size_t height, width;
+
+protected:
+  NcursesInstance *curses;
 
 public:
   NcursesView(NcursesInstance *c);

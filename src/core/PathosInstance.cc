@@ -1,5 +1,6 @@
 #include "core/PathosInstance.h"
 #include "abstract/Observable.h"
+#include "request/MapRequest.h"
 #include "request/ViewRequest.h"
 #include "view/curses/MapView.h"
 #include "view/curses/NcursesInstance.h"
@@ -14,4 +15,13 @@ PathosInstance::PathosInstance()
 
 PathosInstance::~PathosInstance() {}
 
-void PathosInstance::run() {}
+void PathosInstance::process(Event *e) {}
+
+void PathosInstance::run() {
+  MapRequest req = MapRequest(view->getMap());
+  Observable<ViewRequest>::notify(&req);
+
+  // TODO: Remove getChar below. Replace with controller.
+  // Only there for testing purposes.
+  curses->getChar();
+}

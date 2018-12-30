@@ -21,6 +21,13 @@ void NcursesInstance::movePrint(size_t y, size_t x, std::string s) {
   mvprintw(y, x, "%s", s.c_str());
 }
 
+void NcursesInstance::addChar(int c) { addch(c); }
+
+void NcursesInstance::moveAddChar(size_t y, size_t x, int c) {
+  NcursesInstance::move(y, x);
+  addch(c);
+}
+
 void NcursesInstance::print(std::string s) { printw("%s", s.c_str()); }
 
 void NcursesInstance::refresh() { refresh(); }

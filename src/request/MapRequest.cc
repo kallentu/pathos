@@ -4,12 +4,8 @@
 
 using namespace Pathos;
 
-// TODO: Complete after Map
-
-MapRequest::MapRequest(Map *m) {}
+MapRequest::MapRequest(Map *m): map{m} {}
 
 MapRequest::~MapRequest() {}
 
 void MapRequest::beDrawnBy(View &view) const { view.draw(*this); }
-
-void MapRequest::convertMap(Map *m) {}
