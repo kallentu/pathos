@@ -16,7 +16,7 @@ class Map {
 
 public:
   // Initial map with Walls on all edges, Ground on other spaces.
-  Map(MapView &v);
+  Map(size_t y, size_t x);
   virtual ~Map() {}
 
   MapObject *get(size_t y, size_t x);

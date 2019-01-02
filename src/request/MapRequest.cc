@@ -4,8 +4,6 @@
 
 using namespace Pathos;
 
-MapRequest::MapRequest(Map *m): map{m} {}
-
-MapRequest::~MapRequest() {}
+MapRequest::MapRequest(Map *m) : map{m} {}
 
 void MapRequest::beDrawnBy(View &view) const { view.draw(*this); }

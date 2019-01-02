@@ -10,14 +10,13 @@ namespace Pathos {
 class NcursesInstance;
 
 class NcursesView : public View {
-  size_t height, width;
-
-protected:
   NcursesInstance *curses;
+  size_t height, width;
 
 public:
   NcursesView(NcursesInstance *c);
 
+  NcursesInstance *getInstance() const { return curses; }
   virtual size_t getHeight() const { return height; }
   virtual size_t getWidth() const { return width; }
 

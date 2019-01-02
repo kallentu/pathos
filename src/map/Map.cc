@@ -8,10 +8,7 @@
 
 using namespace Pathos;
 
-Map::Map(MapView &v) {
-  size_t y = v.getHeight();
-  size_t x = v.getWidth();
-
+Map::Map(size_t y, size_t x) {
   // Walls added for the corners of the map
   // Initial fill with default MapObjects (ground)
   for (size_t i = 0; i < y; i++) {

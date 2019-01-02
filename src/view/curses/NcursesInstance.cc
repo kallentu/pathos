@@ -9,6 +9,7 @@ NcursesInstance::NcursesInstance() {
   initscr();
   updateBounds();
   raw();
+  noecho();
 }
 
 NcursesInstance::~NcursesInstance() { endwin(); }

@@ -14,8 +14,6 @@ struct NotificationRequest : public ViewRequest {
   std::vector<std::string> notifications;
 
   NotificationRequest(std::vector<std::string> &n);
-  ~NotificationRequest();
-
   void beDrawnBy(View &view) const override;
 };
 

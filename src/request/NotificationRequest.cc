@@ -10,6 +10,4 @@ using namespace Pathos;
 NotificationRequest::NotificationRequest(std::vector<std::string> &n)
     : notifications{n} {}
 
-NotificationRequest::~NotificationRequest() {}
-
 void NotificationRequest::beDrawnBy(View &view) const { view.draw(*this); }

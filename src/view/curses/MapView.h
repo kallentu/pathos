@@ -8,24 +8,36 @@
 namespace Pathos {
 
 class MapRequest;
+class StatusRequest;
 class NotificationRequest;
 class NcursesInstance;
 
 class MapView : public NcursesView {
   // TODO: Make the MapManager own the map instead of the MapView
-  std::unique_ptr<Map> map;
   size_t height, width;
+  Map *map;
 
 public:
   MapView(NcursesInstance *curses);
 
-  Map *getMap() const;
+  Map *getMap() const { return map; }
+  size_t getHeight() const { return height; }
+  size_t getWidth() const { return width; }
+
+  void setHeight(size_t h) { height = h; }
+  void setWidth(size_t w) { width = w; }
 
   // Prints the Map from the MapRequest using ncurses.
   void draw(const MapRequest &req) override;
 
+  // Does not print anything for StatusRequest.
+  void draw(const StatusRequest &req) override;
+
   // Does not print anything for NotificationRequest.
   void draw(const NotificationRequest &req) override;
+
+private:
+  void redrawMap();
 };
 
 } // namespace Pathos

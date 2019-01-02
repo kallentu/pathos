@@ -13,8 +13,6 @@ struct MapRequest : public ViewRequest {
   Map *map;
 
   MapRequest(Map *m);
-  ~MapRequest();
-
   void beDrawnBy(View &view) const override;
 };
 

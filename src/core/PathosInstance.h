@@ -10,13 +10,15 @@
 
 namespace Pathos {
 
-class MapView;
 class NcursesInstance;
+class NcursesView;
+class Map;
 class Event;
 
 class PathosInstance : public Observable<ViewRequest>, Observer<Event> {
   std::unique_ptr<NcursesInstance> curses;
-  std::unique_ptr<MapView> view;
+  std::unique_ptr<NcursesView> view;
+  std::unique_ptr<Map> map;
 
 public:
   PathosInstance();

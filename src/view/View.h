@@ -7,6 +7,7 @@
 namespace Pathos {
 
 class MapRequest;
+class StatusRequest;
 class NotificationRequest;
 
 class View : public Observer<ViewRequest> {
@@ -16,6 +17,7 @@ public:
   void process(ViewRequest *req);
 
   virtual void draw(const MapRequest &req) = 0;
+  virtual void draw(const StatusRequest &req) = 0;
   virtual void draw(const NotificationRequest &req) = 0;
 };
 
