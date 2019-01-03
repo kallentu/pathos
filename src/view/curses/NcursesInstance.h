@@ -6,6 +6,7 @@
 
 namespace Pathos {
 
+// Handles all ncurses work.
 class NcursesInstance {
   size_t height, width;
 

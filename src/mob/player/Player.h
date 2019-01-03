@@ -9,6 +9,9 @@ namespace Pathos {
 
 class Hostile;
 
+// The main player.
+// Has customization options.
+// Can interact with Friendly, attack Hostile, and romance Romanceable.
 class Player final : MapObject {
   std::string name;
   size_t health;

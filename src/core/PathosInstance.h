@@ -15,6 +15,8 @@ class NcursesView;
 class Map;
 class Event;
 
+// An instance of the Pathos game.
+// Can have multiple instances (game saves)
 class PathosInstance : public Observable<ViewRequest>, Observer<Event> {
   std::unique_ptr<NcursesInstance> curses;
   std::unique_ptr<NcursesView> view;

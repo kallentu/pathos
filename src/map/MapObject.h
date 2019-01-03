@@ -3,6 +3,7 @@
 
 namespace Pathos {
 
+// A type of object that can be placed in a Map.
 class MapObject {
 public:
   // Used respectively to represent:

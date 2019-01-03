@@ -8,6 +8,8 @@ namespace Pathos {
 
 class Player;
 
+// Hostile mobs will attack the Player and other Friendly NPCs.
+// Will attack them within range of 1 square.
 class Hostile : MapObject {
   size_t health;
   size_t damage;

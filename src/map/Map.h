@@ -10,6 +10,8 @@ namespace Pathos {
 
 class MapView;
 
+// Maps will contain all the mob, structure and item objects that the user can
+// collide or interact with.
 class Map {
   // 2D grid of MapObjects.
   std::vector<std::vector<std::unique_ptr<MapObject>>> map;

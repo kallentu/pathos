@@ -10,6 +10,7 @@ namespace Pathos {
 
 class View;
 
+// A request to add a new notification on the screen.
 struct NotificationRequest : public ViewRequest {
   std::vector<std::string> notifications;
 

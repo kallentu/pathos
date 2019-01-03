@@ -9,6 +9,7 @@ namespace Pathos {
 
 class Map;
 
+// A request to change the current map.
 struct MapRequest : public ViewRequest {
   Map *map;
 

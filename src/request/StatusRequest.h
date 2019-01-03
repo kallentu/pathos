@@ -7,6 +7,7 @@ namespace Pathos {
 
 class Status;
 
+// A request to update the player status.
 struct StatusRequest : public ViewRequest {
   Status *status;
 
