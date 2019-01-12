@@ -2,10 +2,9 @@
 #define PATHOS_CHICKEN
 
 #include "item/consume/Consumable.h"
+#include "mob/Mob.h"
 
 namespace Pathos {
-
-class Mob;
 
 // A small bird that can be consumed for health.
 class Chicken : public Consumable {

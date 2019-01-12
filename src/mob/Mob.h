@@ -5,6 +5,9 @@ namespace Pathos {
 
 class Chicken;
 class SmallPotion;
+class Bow;
+class Greatsword;
+class Staff;
 
 class Mob {
 public:
@@ -15,7 +18,9 @@ public:
   virtual void consume(SmallPotion &sp) = 0;
 
   // Interactable items
-  // virtual void interactWith(Interactable &) = 0;
+  virtual void interactWith(Bow &b) = 0;
+  virtual void interactWith(Greatsword &gs) = 0;
+  virtual void interactWith(Staff &s) = 0;
 };
 
 } // namespace Pathos

@@ -13,7 +13,7 @@ class Interactable : public Item {
 public:
   Interactable(size_t sellPrice, size_t buyPrice) : Item(sellPrice, buyPrice) {}
 
-  virtual void beInteractedBy(Mob *m) { m->interactWith(*this); }
+  virtual void beInteractedBy(Mob *m) = 0;
 };
 
 } // namespace Pathos

@@ -3,6 +3,9 @@
 
 #include "item/consume/Chicken.h"
 #include "item/consume/SmallPotion.h"
+#include "item/interact/bow/Bow.h"
+#include "item/interact/greatsword/Greatsword.h"
+#include "item/interact/staff/Staff.h"
 #include "map/MapObject.h"
 #include "mob/Mob.h"
 #include <cstddef>
@@ -42,8 +45,13 @@ public:
   void setDamage(size_t d) { damage = d; }
 
   void attack(Hostile *h) { h->beAttackedBy(*this); }
-  void consume(Chicken &c) { health += c.getHealthChange(); }
-  void consume(SmallPotion &sp) { health += sp.getHealthChange(); }
+
+  void consume(Chicken &c) override { health += c.getHealthChange(); }
+  void consume(SmallPotion &sp) override { health += sp.getHealthChange(); }
+
+  void interactWith(Bow &b) override { damage += b.getDamage(); }
+  void interactWith(Greatsword &gs) override { damage += gs.getDamage(); }
+  void interactWith(Staff &s) override { damage += s.getDamage(); }
 };
 
 } // namespace Pathos

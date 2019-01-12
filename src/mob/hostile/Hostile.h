@@ -3,6 +3,9 @@
 
 #include "item/consume/Chicken.h"
 #include "item/consume/SmallPotion.h"
+#include "item/interact/bow/Bow.h"
+#include "item/interact/greatsword/Greatsword.h"
+#include "item/interact/staff/Staff.h"
 #include "map/MapObject.h"
 #include "mob/Mob.h"
 #include <cstddef>
@@ -37,6 +40,13 @@ public:
   virtual void consume(SmallPotion &sp) override {
     health += sp.getHealthChange();
   }
+
+  virtual void interactWith(Bow &b) override { damage += b.getDamage(); }
+  virtual void interactWith(Greatsword &gs) override {
+    damage += gs.getDamage();
+  }
+  virtual void interactWith(Staff &s) override { damage += s.getDamage(); }
+
   virtual void beAttackedBy(Player &p) = 0;
 };
 
