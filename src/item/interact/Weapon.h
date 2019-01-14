@@ -7,6 +7,7 @@ namespace Pathos {
 
 // Used to attack other mobs, interacts with mobs to help them gain strength and
 // damage.
+// TODO: make weapons have item requirements to craft and build.
 class Weapon : public Interactable {
   size_t damage;
 
