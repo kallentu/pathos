@@ -1,6 +1,7 @@
 #ifndef PATHOS_HOSTILE
 #define PATHOS_HOSTILE
 
+#include "event/EventManager.h"
 #include "item/consume/Chicken.h"
 #include "item/consume/SmallPotion.h"
 #include "item/interact/bow/Bow.h"
@@ -9,10 +10,13 @@
 #include "map/MapObject.h"
 #include "mob/Mob.h"
 #include <cstddef>
+#include <memory>
+#include <vector>
 
 namespace Pathos {
 
 class Player;
+class Event;
 
 // Hostile mobs will attack the Player and other Friendly NPCs.
 // Will attack them within range of 1 square.
@@ -35,6 +39,11 @@ public:
 
   bool isDeceased() const { return deceased; }
   void setDeceased(bool d) { deceased = d; }
+
+  virtual std::vector<std::unique_ptr<Event>>
+  callEventManagerForEventList(EventManager *em) override {
+    return em->getEventList(*this);
+  }
 
   virtual void consume(Chicken &c) override { health += c.getHealthChange(); }
   virtual void consume(SmallPotion &sp) override {

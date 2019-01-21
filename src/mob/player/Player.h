@@ -1,6 +1,7 @@
 #ifndef PATHOS_PLAYER
 #define PATHOS_PLAYER
 
+#include "event/EventManager.h"
 #include "item/consume/Chicken.h"
 #include "item/consume/SmallPotion.h"
 #include "item/interact/bow/Bow.h"
@@ -9,11 +10,14 @@
 #include "map/MapObject.h"
 #include "mob/Mob.h"
 #include <cstddef>
+#include <memory>
 #include <string>
+#include <vector>
 
 namespace Pathos {
 
 class Hostile;
+class Event;
 
 // The main player.
 // Has customization options.
@@ -45,6 +49,11 @@ public:
   void setDamage(size_t d) { damage = d; }
 
   void attack(Hostile *h) { h->beAttackedBy(*this); }
+
+  std::vector<std::unique_ptr<Event>>
+  callEventManagerForEventList(EventManager *em) override {
+    return em->getEventList(*this);
+  }
 
   void consume(Chicken &c) override { health += c.getHealthChange(); }
   void consume(SmallPotion &sp) override { health += sp.getHealthChange(); }

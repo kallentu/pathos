@@ -1,7 +1,13 @@
 #ifndef PATHOS_MAP_OBJECT
 #define PATHOS_MAP_OBJECT
 
+#include "event/Event.h"
+#include <memory>
+#include <vector>
+
 namespace Pathos {
+
+class EventManager;
 
 // A type of object that can be placed in a Map.
 class MapObject {
@@ -14,6 +20,9 @@ public:
   virtual ~MapObject() {}
 
   Char &getCharType() { return c; }
+
+  virtual std::vector<std::unique_ptr<Event>>
+  callEventManagerForEventList(EventManager *em) = 0;
 
 private:
   // Object's symbol in the view.

@@ -14,7 +14,8 @@ PathosInstance::PathosInstance()
     : curses{std::make_unique<NcursesInstance>()},
       view{std::make_unique<StatusView>(
           std::make_unique<MapView>(curses.get()))},
-      map{std::make_unique<Map>(curses->getHeight(), curses->getWidth())} {
+      map{std::make_unique<Map>(curses->getHeight(), curses->getWidth())},
+      activeMapObject{nullptr} {
   Observable<ViewRequest>::addObserver(view.get());
 }
 
