@@ -18,9 +18,9 @@ public:
   virtual void consume(SmallPotion &sp) = 0;
 
   // Interactable items
-  virtual void interactWith(Bow &b) = 0;
-  virtual void interactWith(Greatsword &gs) = 0;
-  virtual void interactWith(Staff &s) = 0;
+  virtual void equip(Bow &b) = 0;
+  virtual void equip(Greatsword &gs) = 0;
+  virtual void equip(Staff &s) = 0;
 };
 
 } // namespace Pathos

@@ -4,9 +4,9 @@
 #include "event/EventManager.h"
 #include "item/consume/Chicken.h"
 #include "item/consume/SmallPotion.h"
-#include "item/interact/bow/Bow.h"
-#include "item/interact/greatsword/Greatsword.h"
-#include "item/interact/staff/Staff.h"
+#include "item/equip/bow/Bow.h"
+#include "item/equip/greatsword/Greatsword.h"
+#include "item/equip/staff/Staff.h"
 #include "map/MapObject.h"
 #include "mob/Mob.h"
 #include <cstddef>
@@ -21,7 +21,7 @@ class Event;
 
 // The main player.
 // Has customization options.
-// Can interact with Friendly, attack Hostile, and romance Romanceable.
+// Can speak to Friendly, attack Hostile, and romance Romanceable.
 class Player final : MapObject, public Mob {
   std::string name;
   size_t health;
@@ -58,9 +58,9 @@ public:
   void consume(Chicken &c) override { health += c.getHealthChange(); }
   void consume(SmallPotion &sp) override { health += sp.getHealthChange(); }
 
-  void interactWith(Bow &b) override { damage += b.getDamage(); }
-  void interactWith(Greatsword &gs) override { damage += gs.getDamage(); }
-  void interactWith(Staff &s) override { damage += s.getDamage(); }
+  void equip(Bow &b) override { damage += b.getDamage(); }
+  void equip(Greatsword &gs) override { damage += gs.getDamage(); }
+  void equip(Staff &s) override { damage += s.getDamage(); }
 };
 
 } // namespace Pathos

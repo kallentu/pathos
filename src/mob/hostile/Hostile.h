@@ -4,9 +4,9 @@
 #include "event/EventManager.h"
 #include "item/consume/Chicken.h"
 #include "item/consume/SmallPotion.h"
-#include "item/interact/bow/Bow.h"
-#include "item/interact/greatsword/Greatsword.h"
-#include "item/interact/staff/Staff.h"
+#include "item/equip/bow/Bow.h"
+#include "item/equip/greatsword/Greatsword.h"
+#include "item/equip/staff/Staff.h"
 #include "map/MapObject.h"
 #include "mob/Mob.h"
 #include <cstddef>
@@ -50,11 +50,11 @@ public:
     health += sp.getHealthChange();
   }
 
-  virtual void interactWith(Bow &b) override { damage += b.getDamage(); }
-  virtual void interactWith(Greatsword &gs) override {
+  virtual void equip(Bow &b) override { damage += b.getDamage(); }
+  virtual void equip(Greatsword &gs) override {
     damage += gs.getDamage();
   }
-  virtual void interactWith(Staff &s) override { damage += s.getDamage(); }
+  virtual void equip(Staff &s) override { damage += s.getDamage(); }
 
   virtual void beAttackedBy(Player &p) = 0;
 };
