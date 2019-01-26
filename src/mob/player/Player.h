@@ -9,6 +9,7 @@
 #include "item/equip/staff/Staff.h"
 #include "map/MapObject.h"
 #include "mob/Mob.h"
+#include "mob/hostile/Hostile.h"
 #include <cstddef>
 #include <memory>
 #include <string>
@@ -16,7 +17,6 @@
 
 namespace Pathos {
 
-class Hostile;
 class Event;
 
 // The main player.

@@ -1,5 +1,6 @@
 #include "core/PathosInstance.h"
 #include "abstract/Observable.h"
+#include "mob/player/Player.h"
 #include "request/MapRequest.h"
 #include "request/StatusRequest.h"
 #include "request/ViewRequest.h"
@@ -15,7 +16,7 @@ PathosInstance::PathosInstance()
       view{std::make_unique<StatusView>(
           std::make_unique<MapView>(curses.get()))},
       map{std::make_unique<Map>(curses->getHeight(), curses->getWidth())},
-      activeMapObject{nullptr} {
+      player{std::make_unique<Player>()}, activeMapObject{nullptr} {
   Observable<ViewRequest>::addObserver(view.get());
 }
 
