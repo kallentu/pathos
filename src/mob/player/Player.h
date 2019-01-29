@@ -2,6 +2,7 @@
 #define PATHOS_PLAYER
 
 #include "event/EventManager.h"
+#include "item/Item.h"
 #include "item/consume/Chicken.h"
 #include "item/consume/SmallPotion.h"
 #include "item/equip/bow/Bow.h"
@@ -10,6 +11,7 @@
 #include "map/MapObject.h"
 #include "mob/Mob.h"
 #include "mob/hostile/Hostile.h"
+#include <algorithm>
 #include <cstddef>
 #include <memory>
 #include <string>
@@ -28,10 +30,22 @@ class Player final : MapObject, public Mob {
   size_t level;
   size_t experience;
   size_t damage;
+  size_t drachma;
+  std::vector<std::unique_ptr<Item>> inventory;
 
 public:
   Player() : MapObject(MapObject::Char::At) {}
   ~Player() {}
+
+  // TODO: confirm this finder works.
+  // May need to make custom finder
+  bool hasItem(Item *it) {
+    return std::find(inventory.begin(), inventory.end(), it) != inventory.end();
+  }
+
+  void addItemToInventory(std::unique_ptr<Item> it) {
+    inventory.push_back(std::move(it));
+  }
 
   size_t getHealth() const { return health; }
   void setHealth(size_t h) { health = h; }
@@ -47,6 +61,9 @@ public:
 
   size_t getDamage() const { return damage; }
   void setDamage(size_t d) { damage = d; }
+
+  size_t getDrachma() const { return drachma; }
+  void setDrachma(size_t d) { drachma = d; }
 
   void attack(Hostile *h) { h->beAttackedBy(*this); }
 

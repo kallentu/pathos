@@ -13,8 +13,8 @@ class EventManager;
 class MapObject {
 public:
   // Used respectively to represent:
-  // Player, Hostile, Wall, Ground
-  enum class Char { At, Lantern, Bound, Empty };
+  // Player, Hostile, Friendly, Wall, Ground
+  enum class Char { At, Lantern, Sterling, Bound, Empty };
 
   MapObject(Char c) : c{c} {}
   virtual ~MapObject() {}

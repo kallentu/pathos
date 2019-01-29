@@ -41,8 +41,12 @@ void MapView::redrawMap() {
         NcursesView::getInstance()->movePrint(i, j, "@");
         break;
       case MapObject::Char::Lantern:
-        // Hostile0
+        // Hostile
         NcursesView::getInstance()->moveAddChar(i, j, ACS_LANTERN);
+        break;
+      case MapObject::Char::Sterling:
+        // Friendly
+        NcursesView::getInstance()->moveAddChar(i, j, ACS_STERLING);
         break;
       case MapObject::Char::Bound:
         // Wall
