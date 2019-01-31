@@ -2,13 +2,14 @@
 #define PATHOS_SCYLLA_GREATSWORD
 
 #include "item/equip/greatsword/Greatsword.h"
+#include <string>
 
 namespace Pathos {
 
 // Greatsword made from Scylla materials.
 class ScyllaGreatsword : public Greatsword {
 public:
-  ScyllaGreatsword() : Greatsword(900, 3000, 6000) {}
+  ScyllaGreatsword() : Greatsword("scylla", 900, 3000, 6000) {}
 };
 
 } // namespace Pathos

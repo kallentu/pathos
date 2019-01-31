@@ -11,7 +11,7 @@ class Mob;
 class SmallPotion : public Consumable {
 public:
   // Restores 200 health, sell for 50, buy for 100.
-  SmallPotion() : Consumable(200, 50, 100) {}
+  SmallPotion() : Consumable("small_potion", 200, 50, 100) {}
 
   void beConsumedBy(Mob *m) { m->consume(*this); }
 };

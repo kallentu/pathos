@@ -10,7 +10,7 @@ namespace Pathos {
 class Chicken : public Consumable {
 public:
   // Restores 2000 health, sell for 500, buy for 1000.
-  Chicken() : Consumable(2000, 500, 1000) {}
+  Chicken() : Consumable("chicken", 2000, 500, 1000) {}
 
   void beConsumedBy(Mob *m) { m->consume(*this); }
 };

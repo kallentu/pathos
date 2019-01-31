@@ -2,13 +2,14 @@
 #define PATHOS_SCYLLA_BOW
 
 #include "item/equip/bow/Bow.h"
+#include <string>
 
 namespace Pathos {
 
 // Bow made by Scylla materials.
 class ScyllaBow : public Bow {
 public:
-  ScyllaBow() : Bow(300, 3000, 6000) {}
+  ScyllaBow() : Bow("scylla", 300, 3000, 6000) {}
 };
 
 } // namespace Pathos

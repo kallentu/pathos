@@ -2,13 +2,14 @@
 #define PATHOS_CHIMERA_STAFF
 
 #include "item/equip/staff/Staff.h"
+#include <string>
 
 namespace Pathos {
 
 // Staff made by Chimera materials.
 class ChimeraStaff : public Staff {
 public:
-  ChimeraStaff() : Staff(3000, 10000, 20000) {}
+  ChimeraStaff() : Staff("chimera", 3000, 10000, 20000) {}
 };
 
 } // namespace Pathos

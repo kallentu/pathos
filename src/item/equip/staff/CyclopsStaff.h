@@ -2,13 +2,14 @@
 #define PATHOS_CYCLOPS_STAFF
 
 #include "item/equip/staff/Staff.h"
+#include <string>
 
 namespace Pathos {
 
 // Staff made by Vengeful Cyclops materials.
 class CyclopsStaff : public Staff {
 public:
-  CyclopsStaff() : Staff(125000, 150000, 300000) {}
+  CyclopsStaff() : Staff("cyclops", 125000, 150000, 300000) {}
 };
 
 } // namespace Pathos

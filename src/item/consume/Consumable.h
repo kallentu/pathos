@@ -2,6 +2,7 @@
 #define PATHOS_CONSUMABLE
 
 #include "item/Item.h"
+#include <string>
 
 namespace Pathos {
 
@@ -15,8 +16,10 @@ class Consumable : public Item {
   size_t healthChange;
 
 public:
-  Consumable(size_t healthChange, size_t sellPrice, size_t buyPrice)
-      : Item(sellPrice, buyPrice), healthChange{healthChange} {}
+  Consumable(std::string namePostfix, size_t healthChange, size_t sellPrice,
+             size_t buyPrice)
+      : Item("consume_" + namePostfix, sellPrice, buyPrice),
+        healthChange{healthChange} {}
 
   size_t getHealthChange() const { return healthChange; }
   void setHealthChange(size_t h) { healthChange = h; }

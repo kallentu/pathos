@@ -23,6 +23,9 @@ public:
 
 private:
   virtual void initializeStock() = 0;
+
+  // Checks merchant has item in stock.
+  bool hasItem(Item *it) const;
 };
 
 } // namespace Pathos

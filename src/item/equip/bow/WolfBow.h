@@ -2,13 +2,14 @@
 #define PATHOS_WOLF_BOW
 
 #include "item/equip/bow/Bow.h"
+#include <string>
 
 namespace Pathos {
 
 // Bow made by Wolf materials.
 class WolfBow : public Bow {
 public:
-  WolfBow() : Bow(15, 100, 200) {}
+  WolfBow() : Bow("wolf", 15, 100, 200) {}
 };
 
 } // namespace Pathos

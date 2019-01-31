@@ -37,10 +37,12 @@ public:
   Player() : MapObject(MapObject::Char::At) {}
   ~Player() {}
 
-  // TODO: confirm this finder works.
-  // May need to make custom finder
-  bool hasItem(Item *it) {
-    return std::find(inventory.begin(), inventory.end(), it) != inventory.end();
+  bool hasItem(Item *otherItem) const {
+    for (auto &item : inventory) {
+      if (otherItem->equals(*item))
+        return true;
+    }
+    return false;
   }
 
   void addItemToInventory(std::unique_ptr<Item> it) {

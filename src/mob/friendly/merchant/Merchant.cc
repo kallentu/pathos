@@ -38,3 +38,11 @@ void Merchant::sell(Item *it, Player *p) {
   p->addItemToInventory(std::move(item));
   inventory.erase(item);
 }
+
+bool Merchant::hasItem(Item *otherItem) const {
+  for (auto &item : inventory) {
+    if (otherItem->equals(*item))
+      return true;
+  }
+  return false;
+}

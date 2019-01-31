@@ -2,13 +2,14 @@
 #define PATHOS_PETRIFIED_BOW
 
 #include "item/equip/bow/Bow.h"
+#include <string>
 
 namespace Pathos {
 
 // Bow made by Petrified God materials.
 class PetrifiedBow : public Bow {
 public:
-  PetrifiedBow() : Bow(45000, 175000, 350000) {}
+  PetrifiedBow() : Bow("petrified", 45000, 175000, 350000) {}
 };
 
 } // namespace Pathos

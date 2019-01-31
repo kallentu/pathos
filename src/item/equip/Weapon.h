@@ -2,6 +2,7 @@
 #define PATHOS_WEAPON
 
 #include "item/equip/Equipable.h"
+#include <string>
 
 namespace Pathos {
 
@@ -12,8 +13,10 @@ class Weapon : public Equipable {
   size_t damage;
 
 public:
-  Weapon(size_t damage, size_t sellPrice, size_t buyPrice)
-      : Equipable(sellPrice, buyPrice), damage{damage} {}
+  Weapon(std::string namePostfix, size_t damage, size_t sellPrice,
+         size_t buyPrice)
+      : Equipable("weapon_" + namePostfix, sellPrice, buyPrice), damage{
+                                                                     damage} {}
 
   size_t getDamage() { return damage; }
   void setDamage(size_t d) { damage = d; }
