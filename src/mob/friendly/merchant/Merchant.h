@@ -2,30 +2,19 @@
 #define PATHOS_MERCHANT
 
 #include "mob/friendly/Friendly.h"
-#include <memory>
-#include <vector>
+#include "mob/friendly/merchant/Trader.h"
 
 namespace Pathos {
 
 class Item;
-class Player;
 
-class Merchant : public Friendly {
-protected:
-  size_t drachma;
-  std::vector<std::unique_ptr<Item>> inventory;
-
+class Merchant : public Friendly, public Trader {
 public:
-  Merchant() : Friendly(), drachma{500} {}
-
-  void buy(Item *it, Player *p);
-  void sell(Item *it, Player *p);
+  Merchant() : Friendly(), Trader() {}
 
 private:
+  // Used when constructing Merchant.
   virtual void initializeStock() = 0;
-
-  // Checks merchant has item in stock.
-  bool hasItem(Item *it) const;
 };
 
 } // namespace Pathos

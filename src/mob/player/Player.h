@@ -10,6 +10,7 @@
 #include "item/equip/staff/Staff.h"
 #include "map/MapObject.h"
 #include "mob/Mob.h"
+#include "mob/friendly/merchant/Trader.h"
 #include "mob/hostile/Hostile.h"
 #include <algorithm>
 #include <cstddef>
@@ -24,30 +25,16 @@ class Event;
 // The main player.
 // Has customization options.
 // Can speak to Friendly, attack Hostile, and romance Romanceable.
-class Player final : MapObject, public Mob {
+class Player final : MapObject, public Mob, public Trader {
   std::string name;
   size_t health;
   size_t level;
   size_t experience;
   size_t damage;
-  size_t drachma;
-  std::vector<std::unique_ptr<Item>> inventory;
 
 public:
-  Player() : MapObject(MapObject::Char::At) {}
+  Player() : MapObject(MapObject::Char::At), Trader() {}
   ~Player() {}
-
-  bool hasItem(Item *otherItem) const {
-    for (auto &item : inventory) {
-      if (otherItem->equals(*item))
-        return true;
-    }
-    return false;
-  }
-
-  void addItemToInventory(std::unique_ptr<Item> it) {
-    inventory.push_back(std::move(it));
-  }
 
   size_t getHealth() const { return health; }
   void setHealth(size_t h) { health = h; }
@@ -63,9 +50,6 @@ public:
 
   size_t getDamage() const { return damage; }
   void setDamage(size_t d) { damage = d; }
-
-  size_t getDrachma() const { return drachma; }
-  void setDrachma(size_t d) { drachma = d; }
 
   void attack(Hostile *h) { h->beAttackedBy(*this); }
 
