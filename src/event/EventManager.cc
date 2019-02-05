@@ -3,6 +3,9 @@
 #include "event/PlayerAttackHostileEvent.h"
 #include "map/Ground.h"
 #include "map/Wall.h"
+#include "mob/friendly/Friendly.h"
+#include "mob/friendly/merchant/Merchant.h"
+#include "mob/friendly/romance/Romanceable.h"
 #include "mob/hostile/Hostile.h"
 #include "mob/player/Player.h"
 #include <memory>
@@ -27,6 +30,36 @@ std::vector<std::unique_ptr<Event>> EventManager::getEventList(Hostile &h) {
 
   std::vector<std::unique_ptr<Event>> events;
   events.push_back(std::make_unique<PlayerAttackHostileEvent>());
+  return events;
+}
+
+// TODO: Friendly talk events
+std::vector<std::unique_ptr<Event>> EventManager::getEventList(Friendly &f) {
+
+  // Friendly not used in defining events to return
+  (void)f;
+
+  std::vector<std::unique_ptr<Event>> events;
+  return events;
+}
+
+// TODO: Romance events
+std::vector<std::unique_ptr<Event>> EventManager::getEventList(Romanceable &r) {
+
+  // Romanceable not used in defining events to return
+  (void)r;
+
+  std::vector<std::unique_ptr<Event>> events;
+  return events;
+}
+
+// TODO: Merchant events
+std::vector<std::unique_ptr<Event>> EventManager::getEventList(Merchant &m) {
+
+  // Merchant not used in defining events to return
+  (void)m;
+
+  std::vector<std::unique_ptr<Event>> events;
   return events;
 }
 

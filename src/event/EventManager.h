@@ -10,6 +10,8 @@ namespace Pathos {
 class Player;
 class Hostile;
 class Friendly;
+class Romanceable;
+class Merchant;
 class Wall;
 class Ground;
 
@@ -22,6 +24,8 @@ public:
   std::vector<std::unique_ptr<Event>> getEventList(Player &p);
   std::vector<std::unique_ptr<Event>> getEventList(Hostile &h);
   std::vector<std::unique_ptr<Event>> getEventList(Friendly &f);
+  std::vector<std::unique_ptr<Event>> getEventList(Romanceable &r);
+  std::vector<std::unique_ptr<Event>> getEventList(Merchant &m);
   std::vector<std::unique_ptr<Event>> getEventList(Wall &w);
   std::vector<std::unique_ptr<Event>> getEventList(Ground &g);
 };
