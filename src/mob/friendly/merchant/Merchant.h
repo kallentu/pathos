@@ -17,7 +17,7 @@ public:
 
   std::vector<std::unique_ptr<Event>>
   callEventManagerForEventList(EventManager *em) override {
-    em->getEventList(*this);
+    return em->getEventList(*this);
   }
 
 private:

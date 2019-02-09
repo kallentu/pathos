@@ -2,12 +2,13 @@
 #define PATHOS_APHRODITE
 
 #include "mob/friendly/romance/Romanceable.h"
+#include "mob/friendly/quest/QuestGiver.h"
 
 namespace Pathos {
 
-class Aphrodite : public Romanceable {
+class Aphrodite : public Romanceable, public QuestGiver {
 public:
-  Aphrodite() : Romanceable() {}
+  Aphrodite() : Romanceable(), QuestGiver() {}
 
   // TODO: Override when view is ready.
   void talkedToBy(Player &p) {}

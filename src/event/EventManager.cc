@@ -5,6 +5,7 @@
 #include "map/Wall.h"
 #include "mob/friendly/Friendly.h"
 #include "mob/friendly/merchant/Merchant.h"
+#include "mob/friendly/quest/QuestGiver.h"
 #include "mob/friendly/romance/Romanceable.h"
 #include "mob/hostile/Hostile.h"
 #include "mob/player/Player.h"
@@ -48,6 +49,16 @@ std::vector<std::unique_ptr<Event>> EventManager::getEventList(Romanceable &r) {
 
   // Romanceable not used in defining events to return
   (void)r;
+
+  std::vector<std::unique_ptr<Event>> events;
+  return events;
+}
+
+// TODO: QuestGiver events
+std::vector<std::unique_ptr<Event>> EventManager::getEventList(QuestGiver &qg) {
+
+  // QuestGiver not used in defining events to return
+  (void)qg;
 
   std::vector<std::unique_ptr<Event>> events;
   return events;

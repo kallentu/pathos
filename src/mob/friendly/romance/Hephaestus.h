@@ -2,12 +2,13 @@
 #define PATHOS_HEPHAESTUS
 
 #include "mob/friendly/romance/Romanceable.h"
+#include "mob/friendly/quest/QuestGiver.h"
 
 namespace Pathos {
 
-class Hephaestus : public Romanceable {
+class Hephaestus : public Romanceable, public QuestGiver {
 public:
-  Hephaestus() : Romanceable() {}
+  Hephaestus() : Romanceable(), QuestGiver() {}
 
   // TODO: Override when view is ready.
   void talkedToBy(Player &p) {}

@@ -2,12 +2,13 @@
 #define PATHOS_TYCHE
 
 #include "mob/friendly/romance/Romanceable.h"
+#include "mob/friendly/quest/QuestGiver.h"
 
 namespace Pathos {
 
-class Tyche : public Romanceable {
+class Tyche : public Romanceable, public QuestGiver {
 public:
-  Tyche() : Romanceable() {}
+  Tyche() : Romanceable(), QuestGiver() {}
 
   // TODO: Override when view is ready.
   void talkedToBy(Player &p) {}
