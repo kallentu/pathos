@@ -9,3 +9,39 @@ Leveling up will grant you new skills that can eventually be used to defeat the 
 
 ## Download
 Link
+
+# Guide/Wiki Information
+Extra information to help players.
+
+**WARNING: SPOILERS.**
+
+## NPCs
+NPCs have their specific roles and you can meet them during the game.
+Below are a list of NPCs and what roles they have. Some may have multiple roles in the game.
+
+#### Romanceable
+These NPCs can be courted, gifted and if you're at a certain romantic stage with them, married.
+You can gift NPCs once every level with gift points, up to level 50. Gift points are stored as you level up.
+- Apollo
+- Ares
+- Dionysus
+- Hephaestus
+- Hermes
+- Aphrodite
+- Artemis
+- Athena
+- Tyche
+
+#### Quest Givers
+These NPCs give out quests for you to take on. They are the ones who reward you after a quest is completed.
+- Apollo
+- Ares
+- Dionysus
+- Hephaestus
+- Hermes
+- Aphrodite
+- Artemis
+- Athena
+- Tyche
+- Ariadne
+- Gaia

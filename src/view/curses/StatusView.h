@@ -9,6 +9,7 @@ namespace Pathos {
 class NcursesView;
 class MapRequest;
 class StatusRequest;
+class TalkRequest;
 class NotificationRequest;
 
 class StatusView : public NcursesViewDecorator {
@@ -43,6 +44,9 @@ public:
   // Does not print anything for NotificationRequest.
   // Transfers drawing to its window.
   void draw(const NotificationRequest &req) override;
+
+  // Print TalkRequest underneath the StatusRequest.
+  void draw(const TalkRequest &req) override;
 };
 
 } // namespace Pathos

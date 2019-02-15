@@ -10,6 +10,7 @@ namespace Pathos {
 class MapRequest;
 class StatusRequest;
 class NotificationRequest;
+class TalkRequest;
 class NcursesInstance;
 
 class MapView : public NcursesView {
@@ -35,6 +36,9 @@ public:
 
   // Does not print anything for NotificationRequest.
   void draw(const NotificationRequest &req) override;
+
+  // Does not print anything for TalkRequest.
+  void draw(const TalkRequest &req) override;
 
 private:
   void redrawMap();

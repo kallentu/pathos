@@ -29,6 +29,11 @@ void MapView::draw(const NotificationRequest &req) {
   redrawMap();
 }
 
+void MapView::draw(const TalkRequest &req) {
+  (void)req;
+  redrawMap();
+}
+
 void MapView::redrawMap() {
   for (size_t i = 0; i < height; i++) {
     for (size_t j = 0; j < width; j++) {
