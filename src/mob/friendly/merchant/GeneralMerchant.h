@@ -2,8 +2,12 @@
 #define PATHOS_GENERAL_MERCHANT
 
 #include "mob/friendly/merchant/Merchant.h"
+#include <memory>
 
 namespace Pathos {
+
+class Player;
+class TalkRequest;
 
 // Merchant who sells/buys consumables.
 class GeneralMerchant : public Merchant {
@@ -13,6 +17,8 @@ public:
 private:
   // TODO: Once there are defined item creation
   void initializeStock() override {}
+
+  std::unique_ptr<TalkRequest> beTalkedToBy(Player &p) override;
 };
 
 } // namespace Pathos

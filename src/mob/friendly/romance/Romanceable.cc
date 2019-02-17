@@ -1,5 +1,7 @@
 #include "mob/friendly/romance/Romanceable.h"
 #include "mob/player/Player.h"
+#include "request/TalkRequest.h"
+#include <memory>
 
 using namespace Pathos;
 
@@ -10,7 +12,7 @@ void Romanceable::beMarriedBy(Player &p) {}
 // Since no inventory from friendly, gift released.
 void Romanceable::beGiftedBy(std::unique_ptr<Item> it, Player &p) {}
 
-void Romanceable::beTalkedToBy(Player &p) {
+std::unique_ptr<TalkRequest> Romanceable::beTalkedToBy(Player &p) {
   romanceExp++;
-  talkedToBy(p);
+  return talkedToBy(p);
 }

@@ -17,6 +17,7 @@ namespace Pathos {
 
 class Player;
 class Event;
+class TalkRequest;
 
 // Friendly mobs can interact with players.
 // Can interact within range of 1 square
@@ -48,7 +49,8 @@ public:
   virtual void equip(Greatsword &gs) override { damage += gs.getDamage(); }
   virtual void equip(Staff &s) override { damage += s.getDamage(); }
 
-  virtual void beTalkedToBy(Player &p) = 0;
+  // Must be overrided by concrete subclasses.
+  virtual std::unique_ptr<TalkRequest> beTalkedToBy(Player &p) = 0;
 };
 
 } // namespace Pathos

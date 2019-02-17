@@ -2,15 +2,18 @@
 #define PATHOS_ARIADNE
 
 #include "mob/friendly/quest/QuestGiver.h"
+#include <memory>
 
 namespace Pathos {
+
+class Player;
+class TalkRequest;
 
 class Ariadne : public QuestGiver {
 public:
   Ariadne() : QuestGiver() {}
 
-  // TODO: override
-  void beTalkedToBy(Player &p) override {}
+  std::unique_ptr<TalkRequest> beTalkedToBy(Player &p) override;
 };
 
 } // namespace Pathos

@@ -1,17 +1,20 @@
 #ifndef PATHOS_APHRODITE
 #define PATHOS_APHRODITE
 
-#include "mob/friendly/romance/Romanceable.h"
 #include "mob/friendly/quest/QuestGiver.h"
+#include "mob/friendly/romance/Romanceable.h"
+#include <memory>
 
 namespace Pathos {
+
+class Player;
+class TalkRequest;
 
 class Aphrodite : public Romanceable, public QuestGiver {
 public:
   Aphrodite() : Romanceable(), QuestGiver() {}
 
-  // TODO: Override when view is ready.
-  void talkedToBy(Player &p) {}
+  std::unique_ptr<TalkRequest> talkedToBy(Player &p) override;
 };
 
 } // namespace Pathos

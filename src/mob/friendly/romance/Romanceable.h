@@ -10,6 +10,7 @@ namespace Pathos {
 
 class Player;
 class Item;
+class TalkRequest;
 
 // Romanceable NPCs that the Player can be in a relation with.
 class Romanceable : virtual Friendly {
@@ -27,14 +28,14 @@ public:
   void beGiftedBy(std::unique_ptr<Item> it, Player &p);
 
   // Increase romance points when talked to
-  void beTalkedToBy(Player &p) override;
+  std::unique_ptr<TalkRequest> beTalkedToBy(Player &p) override;
 
   // Subclass override for custom speech options.
-  virtual void talkedToBy(Player &p) = 0;
+  virtual std::unique_ptr<TalkRequest> talkedToBy(Player &p) = 0;
 
   std::vector<std::unique_ptr<Event>>
   callEventManagerForEventList(EventManager *em) override {
-     return em->getEventList(*this);
+    return em->getEventList(*this);
   }
 };
 
