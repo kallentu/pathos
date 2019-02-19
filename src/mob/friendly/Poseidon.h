@@ -8,6 +8,7 @@ namespace Pathos {
 class Player;
 class TalkRequest;
 
+// God of the sea, earthquakes and horses
 class Poseidon : public Friendly {
 public:
   Poseidon() : Friendly() {}

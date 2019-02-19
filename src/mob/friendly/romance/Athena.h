@@ -1,8 +1,7 @@
 #ifndef PATHOS_ATHENA
 #define PATHOS_ATHENA
 
-#include "mob/friendly/quest/QuestGiver.h"
-#include "mob/friendly/romance/Romanceable.h"
+#include "mob/friendly/romance/QuestGiverRomanceable.h"
 #include <memory>
 
 namespace Pathos {
@@ -10,9 +9,10 @@ namespace Pathos {
 class Player;
 class TalkRequest;
 
-class Athena : public Romanceable, public QuestGiver {
+// Goddess of intelligence and handicraft
+class Athena : public QuestGiverRomanceable {
 public:
-  Athena() : Romanceable(), QuestGiver() {}
+  Athena() : QuestGiverRomanceable() {}
 
   std::unique_ptr<TalkRequest> talkedToBy(Player &p) override;
 };

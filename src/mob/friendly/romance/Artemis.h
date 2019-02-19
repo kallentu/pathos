@@ -1,8 +1,7 @@
 #ifndef PATHOS_ARTEMIS
 #define PATHOS_ARTEMIS
 
-#include "mob/friendly/quest/QuestGiver.h"
-#include "mob/friendly/romance/Romanceable.h"
+#include "mob/friendly/romance/QuestGiverRomanceable.h"
 #include <memory>
 
 namespace Pathos {
@@ -10,9 +9,10 @@ namespace Pathos {
 class Player;
 class TalkRequest;
 
-class Artemis : public Romanceable, public QuestGiver {
+// Goddess of the hunt and chastity
+class Artemis : public QuestGiverRomanceable {
 public:
-  Artemis() : Romanceable(), QuestGiver() {}
+  Artemis() : QuestGiverRomanceable() {}
 
   std::unique_ptr<TalkRequest> talkedToBy(Player &p) override;
 };

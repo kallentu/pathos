@@ -8,6 +8,7 @@ namespace Pathos {
 class Player;
 class TalkRequest;
 
+// Goddess of agriculture and harvest
 class Demeter : public Friendly {
 public:
   Demeter() : Friendly() {}

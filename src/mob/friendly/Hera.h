@@ -8,6 +8,7 @@ namespace Pathos {
 class Player;
 class TalkRequest;
 
+// Queen of Gods, goddess of marriage and birth
 class Hera : public Friendly {
 public:
   Hera() : Friendly() {}

@@ -9,6 +9,7 @@ namespace Pathos {
 class Player;
 class TalkRequest;
 
+// Cretian princess, known for her involvement with the Labyrinth
 class Ariadne : public QuestGiver {
 public:
   Ariadne() : QuestGiver() {}

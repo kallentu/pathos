@@ -1,8 +1,7 @@
 #ifndef PATHOS_ARES
 #define PATHOS_ARES
 
-#include "mob/friendly/quest/QuestGiver.h"
-#include "mob/friendly/romance/Romanceable.h"
+#include "mob/friendly/romance/QuestGiverRomanceable.h"
 #include <memory>
 
 namespace Pathos {
@@ -10,9 +9,10 @@ namespace Pathos {
 class Player;
 class TalkRequest;
 
-class Ares : public Romanceable, public QuestGiver {
+// God of war
+class Ares : public QuestGiverRomanceable {
 public:
-  Ares() : Romanceable(), QuestGiver() {}
+  Ares() : QuestGiverRomanceable() {}
 
   std::unique_ptr<TalkRequest> talkedToBy(Player &p) override;
 };

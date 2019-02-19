@@ -1,8 +1,7 @@
 #ifndef PATHOS_HERMES
 #define PATHOS_HERMES
 
-#include "mob/friendly/quest/QuestGiver.h"
-#include "mob/friendly/romance/Romanceable.h"
+#include "mob/friendly/romance/QuestGiverRomanceable.h"
 #include <memory>
 
 namespace Pathos {
@@ -10,9 +9,10 @@ namespace Pathos {
 class Player;
 class TalkRequest;
 
-class Hermes : public Romanceable, public QuestGiver {
+// Messenger of the gods, trickster
+class Hermes : public QuestGiverRomanceable {
 public:
-  Hermes() : Romanceable(), QuestGiver() {}
+  Hermes() : QuestGiverRomanceable() {}
 
   std::unique_ptr<TalkRequest> talkedToBy(Player &p) override;
 };

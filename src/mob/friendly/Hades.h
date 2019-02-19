@@ -8,6 +8,7 @@ namespace Pathos {
 class Player;
 class TalkRequest;
 
+// God of the underworld and the undead.
 class Hades : public Friendly {
 public:
   Hades() : Friendly() {}

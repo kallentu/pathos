@@ -8,6 +8,7 @@ namespace Pathos {
 class Player;
 class TalkRequest;
 
+// King of Gods, god of the sky
 class Zeus : public Friendly {
 public:
   Zeus() : Friendly() {}

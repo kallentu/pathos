@@ -8,6 +8,7 @@ namespace Pathos {
 class Player;
 class TalkRequest;
 
+// Goddess of family
 class Hestia : public Friendly {
 public:
   Hestia() : Friendly() {}

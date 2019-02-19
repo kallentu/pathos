@@ -9,6 +9,7 @@ namespace Pathos {
 class Player;
 class TalkRequest;
 
+// Mother of all life and Earth itself
 class Gaia : public QuestGiver {
 public:
   Gaia() : QuestGiver() {}
