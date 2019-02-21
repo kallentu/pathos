@@ -10,8 +10,10 @@
 #include "item/equip/staff/Staff.h"
 #include "map/MapObject.h"
 #include "mob/Mob.h"
+#include "mob/friendly/Friendly.h"
 #include "mob/friendly/merchant/Trader.h"
 #include "mob/hostile/Hostile.h"
+#include "request/TalkRequest.h"
 #include <algorithm>
 #include <cstddef>
 #include <memory>
@@ -52,6 +54,9 @@ public:
   void setDamage(size_t d) { damage = d; }
 
   void attack(Hostile *h) { h->beAttackedBy(*this); }
+  std::unique_ptr<TalkRequest> talkTo(Friendly *f) {
+    return f->beTalkedToBy(*this);
+  }
 
   std::vector<std::unique_ptr<Event>>
   callEventManagerForEventList(EventManager *em) override {

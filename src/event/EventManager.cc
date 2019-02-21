@@ -1,6 +1,7 @@
 #include "event/EventManager.h"
 #include "event/Event.h"
 #include "event/PlayerAttackHostileEvent.h"
+#include "event/PlayerTalkToFriendlyEvent.h"
 #include "map/Ground.h"
 #include "map/Wall.h"
 #include "mob/friendly/Friendly.h"
@@ -41,6 +42,7 @@ std::vector<std::unique_ptr<Event>> EventManager::getEventList(Friendly &f) {
   (void)f;
 
   std::vector<std::unique_ptr<Event>> events;
+  events.push_back(std::make_unique<PlayerTalkToFriendlyEvent>(&f));
   return events;
 }
 
@@ -51,6 +53,7 @@ std::vector<std::unique_ptr<Event>> EventManager::getEventList(Romanceable &r) {
   (void)r;
 
   std::vector<std::unique_ptr<Event>> events;
+  events.push_back(std::make_unique<PlayerTalkToFriendlyEvent>(&r));
   return events;
 }
 
@@ -61,6 +64,7 @@ std::vector<std::unique_ptr<Event>> EventManager::getEventList(QuestGiver &qg) {
   (void)qg;
 
   std::vector<std::unique_ptr<Event>> events;
+  events.push_back(std::make_unique<PlayerTalkToFriendlyEvent>(&qg));
   return events;
 }
 
@@ -71,6 +75,7 @@ std::vector<std::unique_ptr<Event>> EventManager::getEventList(Merchant &m) {
   (void)m;
 
   std::vector<std::unique_ptr<Event>> events;
+  events.push_back(std::make_unique<PlayerTalkToFriendlyEvent>(&m));
   return events;
 }
 

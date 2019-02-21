@@ -7,7 +7,7 @@ class PathosInstance;
 
 class PlayerAttackHostileEvent : public Event {
 public:
-  PlayerAttackHostileEvent() {}
+  PlayerAttackHostileEvent() : Event() {}
 
   // TODO: Once Player is added to PathosInstance, complete this.
   void begin(PathosInstance *inst) override {} //{ p->attack(h); }

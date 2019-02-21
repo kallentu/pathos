@@ -13,7 +13,7 @@ class Item;
 class TalkRequest;
 
 // Romanceable NPCs that the Player can be in a relation with.
-class Romanceable : virtual Friendly {
+class Romanceable : public virtual Friendly {
   size_t romanceExp;
 
 public:

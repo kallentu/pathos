@@ -22,6 +22,10 @@ PathosInstance::PathosInstance()
 
 PathosInstance::~PathosInstance() {}
 
+Player *PathosInstance::getPlayer() const { return player.get(); }
+
+NcursesView *PathosInstance::getView() const { return view.get(); }
+
 void PathosInstance::process(Event *e) {}
 
 void PathosInstance::run() {

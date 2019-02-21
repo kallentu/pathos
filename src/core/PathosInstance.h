@@ -32,6 +32,9 @@ public:
   PathosInstance();
   ~PathosInstance();
 
+  Player *getPlayer() const;
+  NcursesView *getView() const;
+
   void process(Event *e) override;
   void run();
 };
