@@ -54,6 +54,7 @@ public:
   virtual void equip(Staff &s) override { damage += s.getDamage(); }
 
   virtual void beAttackedBy(Player &p) = 0;
+  virtual void beKilledBy(Player &p) = 0;
 };
 
 } // namespace Pathos

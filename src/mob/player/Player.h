@@ -49,6 +49,7 @@ public:
 
   size_t getExperience() const { return experience; }
   void setExperience(size_t ex) { experience = ex; }
+  void addExperience(size_t ex) { experience += ex; }
 
   size_t getDamage() const { return damage; }
   void setDamage(size_t d) { damage = d; }

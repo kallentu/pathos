@@ -5,13 +5,15 @@
 
 namespace Pathos {
 
+class Player;
+
 // Mob for level 46-48 area
 class PetrifiedGod : public Hostile {
 public:
   PetrifiedGod() : Hostile(1250000, 20000) {}
-  ~PetrifiedGod() {}
 
-  void beAttackedBy(Player &p);
+  void beAttackedBy(Player &p) override;
+  void beKilledBy(Player &p) override;
 };
 
 } // namespace Pathos

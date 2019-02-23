@@ -5,13 +5,15 @@
 
 namespace Pathos {
 
+class Player;
+
 // Mob for level 15-25 area
 class Scylla : public Hostile {
 public:
   Scylla() : Hostile(5000, 400) {}
-  ~Scylla() {}
 
-  void beAttackedBy(Player &p);
+  void beAttackedBy(Player &p) override;
+  void beKilledBy(Player &p) override;
 };
 
 } // namespace Pathos

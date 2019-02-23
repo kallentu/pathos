@@ -5,13 +5,15 @@
 
 namespace Pathos {
 
+class Player;
+
 // Mob for level 10-25 area
 class Centaur : public Hostile {
 public:
   Centaur() : Hostile(1200, 100) {}
-  ~Centaur() {}
 
-  void beAttackedBy(Player &p);
+  void beAttackedBy(Player &p) override;
+  void beKilledBy(Player &p) override;
 };
 
 } // namespace Pathos

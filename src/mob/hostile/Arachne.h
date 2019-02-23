@@ -5,13 +5,15 @@
 
 namespace Pathos {
 
+class Player;
+
 // Boss mob for level 51
 class Arachne : public Hostile {
 public:
   Arachne() : Hostile(7000000, 75000) {}
-  ~Arachne() {}
 
-  void beAttackedBy(Player &p);
+  void beAttackedBy(Player &p) override;
+  void beKilledBy(Player &p) override;
 };
 
 } // namespace Pathos

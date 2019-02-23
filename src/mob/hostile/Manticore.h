@@ -5,13 +5,15 @@
 
 namespace Pathos {
 
+class Player;
+
 // Mob for level 53-55 area
 class Manticore : public Hostile {
 public:
   Manticore() : Hostile(6000000, 60000) {}
-  ~Manticore() {}
 
-  void beAttackedBy(Player &p);
+  void beAttackedBy(Player &p) override;
+  void beKilledBy(Player &p) override;
 };
 
 } // namespace Pathos

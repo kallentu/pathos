@@ -5,13 +5,15 @@
 
 namespace Pathos {
 
+class Player;
+
 // Mob for level 49-53 area
 class Harpy : public Hostile {
 public:
   Harpy() : Hostile(2000000, 40000) {}
-  ~Harpy() {}
 
-  void beAttackedBy(Player &p);
+  void beAttackedBy(Player &p) override;
+  void beKilledBy(Player &p) override;
 };
 
 } // namespace Pathos

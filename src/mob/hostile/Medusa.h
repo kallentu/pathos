@@ -5,13 +5,15 @@
 
 namespace Pathos {
 
+class Player;
+
 // Boss mob for level 53
 class Medusa : public Hostile {
 public:
   Medusa() : Hostile(10000000, 100000) {}
-  ~Medusa() {}
 
-  void beAttackedBy(Player &p);
+  void beAttackedBy(Player &p) override;
+  void beKilledBy(Player &p) override;
 };
 
 } // namespace Pathos

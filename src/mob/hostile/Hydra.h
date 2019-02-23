@@ -5,13 +5,15 @@
 
 namespace Pathos {
 
+class Player;
+
 // Mob for level 25-35 area
 class Hydra : public Hostile {
 public:
   Hydra() : Hostile(10000, 800) {}
-  ~Hydra() {}
 
-  void beAttackedBy(Player &p);
+  void beAttackedBy(Player &p) override;
+  void beKilledBy(Player &p) override;
 };
 
 } // namespace Pathos

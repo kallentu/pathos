@@ -5,13 +5,15 @@
 
 namespace Pathos {
 
+class Player;
+
 // Boss mob for level 55
 class Chaos : public Hostile {
 public:
   Chaos() : Hostile(20000000, 1000000) {}
-  ~Chaos() {}
 
-  void beAttackedBy(Player &p);
+  void beAttackedBy(Player &p) override;
+  void beKilledBy(Player &p) override;
 };
 
 } // namespace Pathos

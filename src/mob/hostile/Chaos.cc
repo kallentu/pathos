@@ -7,8 +7,15 @@ void Chaos::beAttackedBy(Player &p) {
   if (!Hostile::isDeceased() && p.getDamage() > Hostile::getHealth()) {
     // Chaos killed.
     Hostile::setDeceased(true);
+    beKilledBy(p);
   } else if (!Hostile::isDeceased()) {
     // Attack if not dead.
     Hostile::setHealth(Hostile::getHealth() - p.getDamage());
   }
+}
+
+void Chaos::beKilledBy(Player &p) {
+  // TODO: Send KillRequest
+  p.addExperience(5000000);
+  p.addDrachma(250000);
 }

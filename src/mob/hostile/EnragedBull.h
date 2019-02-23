@@ -5,13 +5,15 @@
 
 namespace Pathos {
 
+class Player;
+
 // Mob for level 35-40 area
 class EnragedBull : public Hostile {
 public:
   EnragedBull() : Hostile(30000, 2000) {}
-  ~EnragedBull() {}
 
-  void beAttackedBy(Player &p);
+  void beAttackedBy(Player &p) override;
+  void beKilledBy(Player &p) override;
 };
 
 } // namespace Pathos

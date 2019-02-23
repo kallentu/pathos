@@ -5,13 +5,15 @@
 
 namespace Pathos {
 
+class Player;
+
 // Boss mob for level 25
 class Chimera : public Hostile {
 public:
   Chimera() : Hostile(25000, 800) {}
-  ~Chimera() {}
 
-  void beAttackedBy(Player &p);
+  void beAttackedBy(Player &p) override;
+  void beKilledBy(Player &p) override;
 };
 
 } // namespace Pathos

@@ -5,13 +5,15 @@
 
 namespace Pathos {
 
+class Player;
+
 // Boss mob for level 44
 class Hekatonkheires : public Hostile {
 public:
   Hekatonkheires() : Hostile(1000000, 15000) {}
-  ~Hekatonkheires() {}
 
-  void beAttackedBy(Player &p);
+  void beAttackedBy(Player &p) override;
+  void beKilledBy(Player &p) override;
 };
 
 } // namespace Pathos
