@@ -5,7 +5,7 @@
 
 namespace Pathos {
 
-class InputHandler;
+class ModeInputHandler;
 class Event;
 
 class Char : public Input {
@@ -17,7 +17,7 @@ public:
 
   int numValue() const { return val; }
   char charValue() const { return static_cast<char>(val); }
-  std::unique_ptr<Event> beHandledBy(InputHandler *h) {
+  std::unique_ptr<Event> beHandledBy(ModeInputHandler *h) {
     return h->handle(*this);
   }
 };
