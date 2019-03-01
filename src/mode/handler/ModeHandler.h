@@ -1,5 +1,5 @@
-#ifndef PATHOS_MODE_INPUT_HANDLER
-#define PATHOS_MODE_INPUT_HANDLER
+#ifndef PATHOS_MODE_HANDLER
+#define PATHOS_MODE_HANDLER
 
 #include <memory>
 
@@ -9,10 +9,10 @@ class Input;
 class Event;
 class Char;
 
-class ModeInputHandler {
+class ModeHandler {
 public:
-  ModeInputHandler() {}
-  virtual ~ModeInputHandler() {}
+  ModeHandler() {}
+  virtual ~ModeHandler() {}
 
   std::unique_ptr<Event> handle(std::unique_ptr<Input> input);
 
@@ -22,4 +22,4 @@ public:
 
 } // namespace Pathos
 
-#endif // PATHOS_MODE_INPUT_HANDLER
+#endif // PATHOS_MODE_HANDLER

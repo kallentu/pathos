@@ -1,6 +1,8 @@
 #ifndef PATHOS_PLAYER_ATTACK_HOSTILE_EVENT
 #define PATHOS_PLAYER_ATTACK_HOSTILE_EVENT
 
+#include "event/Event.h"
+
 namespace Pathos {
 
 class PathosInstance;

@@ -6,12 +6,12 @@
 namespace Pathos {
 
 class Event;
-class ModeInputHandler;
+class ModeHandler;
 
 class Input {
 public:
   virtual ~Input() {}
-  virtual std::unique_ptr<Event> beHandledBy(ModeInputHandler *h) = 0;
+  virtual std::unique_ptr<Event> beHandledBy(ModeHandler *h) = 0;
 };
 
 } // namespace Pathos

@@ -7,6 +7,7 @@ using namespace Pathos;
 
 NcursesInstance::NcursesInstance() {
   initscr();
+  keypad(stdscr, TRUE);
   updateBounds();
   raw();
   noecho();
