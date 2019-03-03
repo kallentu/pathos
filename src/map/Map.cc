@@ -28,7 +28,15 @@ Map::Map(size_t y, size_t x) {
   }
 }
 
-MapObject *Map::get(size_t y, size_t x) { return map[y][x].get(); }
+MapObject *Map::get(size_t y, size_t x) {
+  MapObject *obj;
+
+  if (y < map.size() && x < map[0].size()) {
+    obj = map[y][x].get();
+  }
+
+  return obj;
+}
 
 void Map::addObjectToPosition(std::unique_ptr<MapObject> m, size_t y,
                               size_t x) {

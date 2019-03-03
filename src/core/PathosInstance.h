@@ -5,6 +5,7 @@
 
 #include "abstract/Observable.h"
 #include "abstract/Observer.h"
+#include "core/Position.h"
 #include "event/Event.h"
 #include "request/ViewRequest.h"
 
@@ -24,9 +25,7 @@ class PathosInstance : public Observable<ViewRequest>, Observer<Event> {
   std::unique_ptr<NcursesView> view;
   std::unique_ptr<Map> map;
   std::unique_ptr<Player> player;
-
-  // Current object that the player is actively looking at
-  MapObject *activeMapObject;
+  std::unique_ptr<Position> playerPos;
 
 public:
   PathosInstance();
@@ -34,6 +33,10 @@ public:
 
   Player *getPlayer() const;
   NcursesView *getView() const;
+  Position *getPosition() const;
+  void setPosition(std::unique_ptr<Position> newPos);
+  void setPosition(size_t y, size_t x);
+  Map *getMap() const;
 
   void process(Event *e) override;
   void run();

@@ -1,5 +1,7 @@
 #include "core/PathosInstance.h"
 #include "abstract/Observable.h"
+#include "core/Position.h"
+#include "map/Map.h"
 #include "mob/player/Player.h"
 #include "request/MapRequest.h"
 #include "request/StatusRequest.h"
@@ -16,7 +18,8 @@ PathosInstance::PathosInstance()
       view{std::make_unique<StatusView>(
           std::make_unique<MapView>(curses.get()))},
       map{std::make_unique<Map>(curses->getHeight(), curses->getWidth())},
-      player{std::make_unique<Player>()}, activeMapObject{nullptr} {
+      player{std::make_unique<Player>()}, playerPos{std::make_unique<Position>(
+                                              0, 0)} {
   Observable<ViewRequest>::addObserver(view.get());
 }
 
@@ -25,6 +28,18 @@ PathosInstance::~PathosInstance() {}
 Player *PathosInstance::getPlayer() const { return player.get(); }
 
 NcursesView *PathosInstance::getView() const { return view.get(); }
+
+Position *PathosInstance::getPosition() const { return playerPos.get(); }
+
+void PathosInstance::setPosition(std::unique_ptr<Position> newPos) {
+  playerPos = std::move(newPos);
+}
+
+void PathosInstance::setPosition(size_t y, size_t x) {
+  playerPos = std::make_unique<Position>(y, x);
+}
+
+Map *PathosInstance::getMap() const { return map.get(); }
 
 void PathosInstance::process(Event *e) {}
 
