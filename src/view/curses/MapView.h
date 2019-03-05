@@ -1,6 +1,7 @@
 #ifndef PATHOS_MAP_VIEW
 #define PATHOS_MAP_VIEW
 
+#include "core/Position.h"
 #include "map/Map.h"
 #include "view/curses/NcursesView.h"
 #include <memory>
@@ -18,10 +19,14 @@ class MapView : public NcursesView {
   size_t height, width;
   Map *map;
 
+  // Location on the map that the player is located.
+  Position *playerPos;
+
 public:
   MapView(NcursesInstance *curses);
 
   Map *getMap() const { return map; }
+  Position *getPlayerPosition() const { return playerPos; }
   size_t getHeight() const { return height; }
   size_t getWidth() const { return width; }
 
@@ -41,7 +46,10 @@ public:
   void draw(const TalkRequest &req) override;
 
 private:
-  void redrawMap();
+  void drawMap();
+
+  // Draws Player and used only after drawMap()
+  void drawPlayer();
 };
 
 } // namespace Pathos

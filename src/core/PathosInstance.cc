@@ -18,8 +18,8 @@ PathosInstance::PathosInstance()
       view{std::make_unique<StatusView>(
           std::make_unique<MapView>(curses.get()))},
       map{std::make_unique<Map>(curses->getHeight(), curses->getWidth())},
-      player{std::make_unique<Player>()}, playerPos{std::make_unique<Position>(
-                                              0, 0)} {
+      player{std::make_unique<Player>()}, 
+      playerPos{std::make_unique<Position>(1, 1)} {
   Observable<ViewRequest>::addObserver(view.get());
 }
 
@@ -44,7 +44,7 @@ Map *PathosInstance::getMap() const { return map.get(); }
 void PathosInstance::process(Event *e) {}
 
 void PathosInstance::run() {
-  MapRequest mreq = MapRequest(map.get());
+  MapRequest mreq = MapRequest(map.get(), getPosition());
   Observable<ViewRequest>::notify(&mreq);
 
   // TODO: Remove getChar below. Replace with controller.

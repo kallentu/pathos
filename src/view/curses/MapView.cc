@@ -16,35 +16,32 @@ MapView::MapView(NcursesInstance *curses)
 // TODO: Set the map to a certain size.and move it accordingly.
 void MapView::draw(const MapRequest &req) {
   map = req.map;
-  redrawMap();
+  playerPos = req.playerPos;
+  drawMap();
 }
 
 void MapView::draw(const StatusRequest &req) {
   (void)req;
-  redrawMap();
+  drawMap();
 }
 
 void MapView::draw(const NotificationRequest &req) {
   (void)req;
-  redrawMap();
+  drawMap();
 }
 
 void MapView::draw(const TalkRequest &req) {
   (void)req;
-  redrawMap();
+  drawMap();
 }
 
-void MapView::redrawMap() {
+void MapView::drawMap() {
   for (size_t i = 0; i < height; i++) {
     for (size_t j = 0; j < width; j++) {
       MapObject *m = map->get(i, j);
 
       // Convert Char to correctly printed symbol
       switch (m->getCharType()) {
-      case MapObject::Char::At:
-        // Player
-        NcursesView::getInstance()->movePrint(i, j, "@");
-        break;
       case MapObject::Char::Lantern:
         // Hostile
         NcursesView::getInstance()->moveAddChar(i, j, ACS_LANTERN);
@@ -85,4 +82,13 @@ void MapView::redrawMap() {
       }
     }
   }
+
+  // Player drawn on top of the already drawn map.
+  drawPlayer();
+
+  // TODO: Move cursor at an appropriate place.
+}
+
+void MapView::drawPlayer() {
+  NcursesView::getInstance()->movePrint(playerPos->y, playerPos->x, "@");
 }
