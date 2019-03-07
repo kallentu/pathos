@@ -21,6 +21,8 @@ public:
     Right = KEY_RIGHT
   };
 
+  enum Ctrl { C = 0x03 };
+  
   Char(int val) : val{val} {}
 
   int numValue() const { return val; }

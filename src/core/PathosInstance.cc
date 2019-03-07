@@ -1,8 +1,12 @@
 #include "core/PathosInstance.h"
 #include "abstract/Observable.h"
+#include "controller/NcursesController.h"
 #include "core/Position.h"
+#include "event/Event.h"
 #include "map/Map.h"
 #include "mob/player/Player.h"
+#include "mode/MovementMode.h"
+#include "mode/handler/MovementModeHandler.h"
 #include "request/MapRequest.h"
 #include "request/StatusRequest.h"
 #include "request/ViewRequest.h"
@@ -17,9 +21,10 @@ PathosInstance::PathosInstance()
     : curses{std::make_unique<NcursesInstance>()},
       view{std::make_unique<StatusView>(
           std::make_unique<MapView>(curses.get()))},
+      controller{std::make_unique<NcursesController>(curses.get())},
       map{std::make_unique<Map>(curses->getHeight(), curses->getWidth())},
-      player{std::make_unique<Player>()}, 
-      playerPos{std::make_unique<Position>(1, 1)} {
+      player{std::make_unique<Player>()},
+      playerPos{std::make_unique<Position>(1, 1)}, continueGame{true} {
   Observable<ViewRequest>::addObserver(view.get());
 }
 
@@ -41,19 +46,33 @@ void PathosInstance::setPosition(size_t y, size_t x) {
 
 Map *PathosInstance::getMap() const { return map.get(); }
 
-void PathosInstance::process(Event *e) {}
+void PathosInstance::process(Event *e) { e->begin(this); }
 
 void PathosInstance::run() {
-  MapRequest mreq = MapRequest(map.get(), getPosition());
-  Observable<ViewRequest>::notify(&mreq);
+  std::unique_ptr<Event> event;
+
+  while (continueGame) {
+    MapRequest mreq = MapRequest(map.get(), getPosition());
+    Observable<ViewRequest>::notify(&mreq);
+
+    // TODO: FIX THIS
+    // Temporary one session only
+    std::unique_ptr<MovementMode> mode = std::make_unique<MovementMode>(this);
+    event = mode->getHandler()->handle(controller->getInput());
+
+    if (event)
+      process(event.get());
+  }
 
   // TODO: Remove getChar below. Replace with controller.
   // Only there for testing purposes.
-  curses->getChar();
+  // curses->getChar();
 
-  std::unique_ptr<Status> status = std::make_unique<Status>(Status{20, 10});
-  StatusRequest sreq = StatusRequest(status.get());
-  Observable<ViewRequest>::notify(&sreq);
+  // std::unique_ptr<Status> status = std::make_unique<Status>(Status{20, 10});
+  // StatusRequest sreq = StatusRequest(status.get());
+  // Observable<ViewRequest>::notify(&sreq);
 
-  curses->getChar();
+  // curses->getChar();
 }
+
+void PathosInstance::stop() { continueGame = false; }

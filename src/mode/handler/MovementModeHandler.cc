@@ -5,6 +5,7 @@
 #include "event/PlayerMoveLeftEvent.h"
 #include "event/PlayerMoveRightEvent.h"
 #include "event/PlayerMoveUpEvent.h"
+#include "event/QuitEvent.h"
 
 using namespace Pathos;
 
@@ -23,6 +24,9 @@ std::unique_ptr<Event> MovementModeHandler::handle(const Char &c) {
     break;
   case Char::Arrow::Right:
     event = std::make_unique<PlayerMoveRightEvent>();
+    break;
+  case Char::Ctrl::C:
+    event = std::make_unique<QuitEvent>();
     break;
   }
 

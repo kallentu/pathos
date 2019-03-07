@@ -13,6 +13,7 @@ namespace Pathos {
 
 class NcursesInstance;
 class NcursesView;
+class NcursesController;
 class Map;
 class Event;
 class MapObject;
@@ -23,9 +24,13 @@ class Player;
 class PathosInstance : public Observable<ViewRequest>, Observer<Event> {
   std::unique_ptr<NcursesInstance> curses;
   std::unique_ptr<NcursesView> view;
+  std::unique_ptr<NcursesController> controller;
   std::unique_ptr<Map> map;
   std::unique_ptr<Player> player;
   std::unique_ptr<Position> playerPos;
+
+  // Flag to continue or halt game.
+  bool continueGame;
 
 public:
   PathosInstance();
@@ -40,6 +45,9 @@ public:
 
   void process(Event *e) override;
   void run();
+
+  // Stop game entirely and immediately.
+  void stop();
 };
 
 } // namespace Pathos
