@@ -10,7 +10,7 @@ class Player;
 // Mob for level 44-48 area
 class VengefulCyclops : public Hostile {
 public:
-  VengefulCyclops() : Hostile(750000, 11500) {}
+  VengefulCyclops() : Hostile("Vengeful Cyclops", 750000, 5000, 6500) {}
 
   void beAttackedBy(Player &p) override;
   void beKilledBy(Player &p) override;

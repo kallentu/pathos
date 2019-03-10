@@ -11,7 +11,7 @@ class TalkRequest;
 // Goddess of family
 class Hestia : public Friendly {
 public:
-  Hestia() : Friendly() {}
+  Hestia() : Friendly("Hestia") {}
   std::unique_ptr<TalkRequest> beTalkedToBy(Player &p) override;
 };
 

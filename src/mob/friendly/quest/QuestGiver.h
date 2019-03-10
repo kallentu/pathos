@@ -2,8 +2,8 @@
 #define PATHOS_QUEST_GIVER
 
 #include "event/EventManager.h"
-#include "mob/friendly/Friendly.h"
 #include <memory>
+#include <string>
 #include <vector>
 
 namespace Pathos {
@@ -11,12 +11,12 @@ namespace Pathos {
 // An NPC that gives a quest/is reported back to when quest finished.
 // Quest logic is not processes here, but will be in the Quest itself.
 // Subclasses will need an override on beTalkedToBy(Player &p).
-class QuestGiver : public virtual Friendly {
+class QuestGiver {
 public:
-  QuestGiver() : Friendly() {}
+  QuestGiver() {}
 
   std::vector<std::unique_ptr<Event>>
-  callEventManagerForEventList(EventManager *em) override {
+  callEventManagerForEventList(EventManager *em) {
     return em->getEventList(*this);
   }
 };

@@ -28,21 +28,13 @@ class Event;
 // Has customization options.
 // Can speak to Friendly, attack Hostile, and romance Romanceable.
 class Player final : MapObject, public Mob, public Trader {
-  std::string name;
-  size_t health;
   size_t level;
   size_t experience;
-  size_t damage;
 
 public:
-  Player() : MapObject(MapObject::Char::At), Trader() {}
+  Player()
+      : MapObject(MapObject::Char::At), Mob("Periphas", 5, 5, 5), Trader() {}
   ~Player() {}
-
-  size_t getHealth() const { return health; }
-  void setHealth(size_t h) { health = h; }
-
-  std::string getName() const { return name; }
-  void setName(std::string n) { name = n; }
 
   size_t getLevel() const { return level; }
   void setLevel(size_t l) { level = l; }
@@ -50,9 +42,6 @@ public:
   size_t getExperience() const { return experience; }
   void setExperience(size_t ex) { experience = ex; }
   void addExperience(size_t ex) { experience += ex; }
-
-  size_t getDamage() const { return damage; }
-  void setDamage(size_t d) { damage = d; }
 
   void attack(Hostile *h) { h->beAttackedBy(*this); }
   std::unique_ptr<TalkRequest> talkTo(Friendly *f) {
@@ -67,9 +56,12 @@ public:
   void consume(Chicken &c) override { health += c.getHealthChange(); }
   void consume(SmallPotion &sp) override { health += sp.getHealthChange(); }
 
-  void equip(Bow &b) override { damage += b.getDamage(); }
-  void equip(Greatsword &gs) override { damage += gs.getDamage(); }
-  void equip(Staff &s) override { damage += s.getDamage(); }
+  void equip(Bow &b) override {
+    magicDamage = b.getDamage() / 10;
+    physicalDamage = b.getDamage() * 9 / 10;
+  }
+  void equip(Greatsword &gs) override { physicalDamage = gs.getDamage(); }
+  void equip(Staff &s) override { magicDamage = s.getDamage(); }
 };
 
 } // namespace Pathos

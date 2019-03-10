@@ -12,7 +12,7 @@ class TalkRequest;
 // Goddess of intelligence and handicraft
 class Athena : public QuestGiverRomanceable {
 public:
-  Athena() : QuestGiverRomanceable() {}
+  Athena() : QuestGiverRomanceable("Athena") {}
 
   std::unique_ptr<TalkRequest> talkedToBy(Player &p) override;
 };

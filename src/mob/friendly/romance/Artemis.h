@@ -12,7 +12,7 @@ class TalkRequest;
 // Goddess of the hunt and chastity
 class Artemis : public QuestGiverRomanceable {
 public:
-  Artemis() : QuestGiverRomanceable() {}
+  Artemis() : QuestGiverRomanceable("Artemis") {}
 
   std::unique_ptr<TalkRequest> talkedToBy(Player &p) override;
 };

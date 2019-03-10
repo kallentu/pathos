@@ -11,7 +11,7 @@ class TalkRequest;
 // God of the sea, earthquakes and horses
 class Poseidon : public Friendly {
 public:
-  Poseidon() : Friendly() {}
+  Poseidon() : Friendly("Poseidon") {}
   std::unique_ptr<TalkRequest> beTalkedToBy(Player &p) override;
 };
 

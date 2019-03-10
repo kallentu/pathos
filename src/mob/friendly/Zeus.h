@@ -11,7 +11,7 @@ class TalkRequest;
 // King of Gods, god of the sky
 class Zeus : public Friendly {
 public:
-  Zeus() : Friendly() {}
+  Zeus() : Friendly("Zeus") {}
   std::unique_ptr<TalkRequest> beTalkedToBy(Player &p) override;
 };
 

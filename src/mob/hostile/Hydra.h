@@ -10,7 +10,7 @@ class Player;
 // Mob for level 25-35 area
 class Hydra : public Hostile {
 public:
-  Hydra() : Hostile(10000, 800) {}
+  Hydra() : Hostile("Hydra", 10000, 800, 0) {}
 
   void beAttackedBy(Player &p) override;
   void beKilledBy(Player &p) override;

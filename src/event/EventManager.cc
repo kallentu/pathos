@@ -64,7 +64,6 @@ std::vector<std::unique_ptr<Event>> EventManager::getEventList(QuestGiver &qg) {
   (void)qg;
 
   std::vector<std::unique_ptr<Event>> events;
-  events.push_back(std::make_unique<PlayerTalkToFriendlyEvent>(&qg));
   return events;
 }
 

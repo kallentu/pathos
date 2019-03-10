@@ -12,7 +12,7 @@ class TalkRequest;
 // God of the forge, blacksmiths
 class Hephaestus : public QuestGiverRomanceable {
 public:
-  Hephaestus() : QuestGiverRomanceable() {}
+  Hephaestus() : QuestGiverRomanceable("Hephaestus") {}
 
   std::unique_ptr<TalkRequest> talkedToBy(Player &p) override;
 };

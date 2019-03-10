@@ -10,7 +10,7 @@ class Player;
 // Boss mob for level 53
 class Medusa : public Hostile {
 public:
-  Medusa() : Hostile(10000000, 100000) {}
+  Medusa() : Hostile("Medusa", 10000000, 90000, 10000) {}
 
   void beAttackedBy(Player &p) override;
   void beKilledBy(Player &p) override;

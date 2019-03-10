@@ -12,7 +12,7 @@ class TalkRequest;
 // Merchant who sells/buys consumables.
 class GeneralMerchant : public Merchant {
 public:
-  GeneralMerchant() : Merchant() { initializeStock(); }
+  GeneralMerchant() : Merchant("General Merchant") { initializeStock(); }
 
 private:
   // TODO: Once there are defined item creation

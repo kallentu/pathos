@@ -6,6 +6,7 @@
 #include "mob/friendly/romance/Romanceable.h"
 #include <iterator>
 #include <memory>
+#include <string>
 #include <vector>
 
 namespace Pathos {
@@ -13,7 +14,7 @@ namespace Pathos {
 // Type of Friendly NPC that both can be romanced and give/take quests.
 class QuestGiverRomanceable : public QuestGiver, public Romanceable {
 public:
-  QuestGiverRomanceable() : QuestGiver(), Romanceable() {}
+  QuestGiverRomanceable(std::string name) : QuestGiver(), Romanceable(name) {}
 
   // Combines the two event lists
   std::vector<std::unique_ptr<Event>>

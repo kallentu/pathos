@@ -10,7 +10,7 @@ class Player;
 // Boss mob for level 51
 class Arachne : public Hostile {
 public:
-  Arachne() : Hostile(7000000, 75000) {}
+  Arachne() : Hostile("Arachne", 7000000, 70000, 5000) {}
 
   void beAttackedBy(Player &p) override;
   void beKilledBy(Player &p) override;

@@ -4,13 +4,15 @@
 using namespace Pathos;
 
 void Hekatonkheires::beAttackedBy(Player &p) {
-  if (!Hostile::isDeceased() && p.getDamage() > Hostile::getHealth()) {
+  if (!Hostile::isDeceased() &&
+      p.getMagicDamage() + p.getPhysicalDamage() > Hostile::getHealth()) {
     // Hekatonkheires killed.
     Hostile::setDeceased(true);
     beKilledBy(p);
   } else if (!Hostile::isDeceased()) {
     // Attack if not dead.
-    Hostile::setHealth(Hostile::getHealth() - p.getDamage());
+    Hostile::setHealth(Hostile::getHealth() - p.getMagicDamage() -
+                       p.getPhysicalDamage());
   }
 }
 

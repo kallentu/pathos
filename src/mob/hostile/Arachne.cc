@@ -4,13 +4,16 @@
 using namespace Pathos;
 
 void Arachne::beAttackedBy(Player &p) {
-  if (!Hostile::isDeceased() && p.getDamage() > Hostile::getHealth()) {
+  if (!Hostile::isDeceased() &&
+      (p.getMagicDamage() / 10) + p.getPhysicalDamage() >
+          Hostile::getHealth()) {
     // Arachne killed.
     Hostile::setDeceased(true);
     beKilledBy(p);
   } else if (!Hostile::isDeceased()) {
     // Attack if not dead.
-    Hostile::setHealth(Hostile::getHealth() - p.getDamage());
+    Hostile::setHealth(Hostile::getHealth() - p.getPhysicalDamage() -
+                       (p.getMagicDamage() / 10));
   }
 }
 

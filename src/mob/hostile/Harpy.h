@@ -10,7 +10,7 @@ class Player;
 // Mob for level 49-53 area
 class Harpy : public Hostile {
 public:
-  Harpy() : Hostile(2000000, 40000) {}
+  Harpy() : Hostile("Harpy", 2000000, 5000, 35000) {}
 
   void beAttackedBy(Player &p) override;
   void beKilledBy(Player &p) override;

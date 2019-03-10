@@ -12,7 +12,7 @@ class TalkRequest;
 // God of war
 class Ares : public QuestGiverRomanceable {
 public:
-  Ares() : QuestGiverRomanceable() {}
+  Ares() : QuestGiverRomanceable("Ares") {}
 
   std::unique_ptr<TalkRequest> talkedToBy(Player &p) override;
 };

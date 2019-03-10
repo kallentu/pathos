@@ -10,7 +10,7 @@ class Player;
 // Boss mob for level 35
 class Cerberus : public Hostile {
 public:
-  Cerberus() : Hostile(250000, 1500) {}
+  Cerberus() : Hostile("Cerberus", 250000, 1250, 250) {}
 
   void beAttackedBy(Player &p) override;
   void beKilledBy(Player &p) override;

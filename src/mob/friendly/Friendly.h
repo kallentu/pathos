@@ -11,6 +11,7 @@
 #include "mob/Mob.h"
 #include <cstddef>
 #include <memory>
+#include <string>
 #include <vector>
 
 namespace Pathos {
@@ -22,18 +23,9 @@ class TalkRequest;
 // Friendly mobs can interact with players.
 // Can interact within range of 1 square
 class Friendly : MapObject, public Mob {
-  size_t health;
-  size_t damage;
-
 public:
-  Friendly()
-      : MapObject(MapObject::Char::Sterling), Mob(), health{500}, damage{500} {}
-
-  size_t getHealth() const { return health; }
-  void setHealth(size_t h) { health = h; }
-
-  size_t getDamage() const { return damage; }
-  void setDamage(size_t d) { damage = d; }
+  Friendly(std::string name)
+      : MapObject(MapObject::Char::Sterling), Mob(name, 500, 500, 500) {}
 
   virtual std::vector<std::unique_ptr<Event>>
   callEventManagerForEventList(EventManager *em) override {
@@ -45,9 +37,14 @@ public:
     health += sp.getHealthChange();
   }
 
-  virtual void equip(Bow &b) override { damage += b.getDamage(); }
-  virtual void equip(Greatsword &gs) override { damage += gs.getDamage(); }
-  virtual void equip(Staff &s) override { damage += s.getDamage(); }
+  virtual void equip(Bow &b) override {
+    magicDamage = b.getDamage() / 10;
+    physicalDamage = b.getDamage() * 9 / 10;
+  }
+  virtual void equip(Greatsword &gs) override {
+    physicalDamage = gs.getDamage();
+  }
+  virtual void equip(Staff &s) override { magicDamage = s.getDamage(); }
 
   // Must be overrided by concrete subclasses.
   virtual std::unique_ptr<TalkRequest> beTalkedToBy(Player &p) = 0;

@@ -12,7 +12,7 @@ class TalkRequest;
 // God of music, poetry, truth and prophecy
 class Apollo : public QuestGiverRomanceable {
 public:
-  Apollo() : QuestGiverRomanceable() {}
+  Apollo() : QuestGiverRomanceable("Apollo") {}
 
   std::unique_ptr<TalkRequest> talkedToBy(Player &p) override;
 };

@@ -12,7 +12,7 @@ class TalkRequest;
 // Messenger of the gods, trickster
 class Hermes : public QuestGiverRomanceable {
 public:
-  Hermes() : QuestGiverRomanceable() {}
+  Hermes() : QuestGiverRomanceable("Hermes") {}
 
   std::unique_ptr<TalkRequest> talkedToBy(Player &p) override;
 };

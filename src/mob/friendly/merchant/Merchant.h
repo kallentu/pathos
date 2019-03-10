@@ -5,6 +5,7 @@
 #include "mob/friendly/Friendly.h"
 #include "mob/friendly/merchant/Trader.h"
 #include <memory>
+#include <string>
 #include <vector>
 
 namespace Pathos {
@@ -13,7 +14,7 @@ class Item;
 
 class Merchant : public Friendly, public Trader {
 public:
-  Merchant() : Friendly(), Trader() {}
+  Merchant(std::string name) : Friendly(name), Trader() {}
 
   std::vector<std::unique_ptr<Event>>
   callEventManagerForEventList(EventManager *em) override {

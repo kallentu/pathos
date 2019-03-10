@@ -12,7 +12,7 @@ class TalkRequest;
 // Goddess of luck and fortune
 class Tyche : public QuestGiverRomanceable {
 public:
-  Tyche() : QuestGiverRomanceable() {}
+  Tyche() : QuestGiverRomanceable("Tyche") {}
 
   std::unique_ptr<TalkRequest> talkedToBy(Player &p) override;
 };

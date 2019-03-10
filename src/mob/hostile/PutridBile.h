@@ -10,7 +10,7 @@ class Player;
 // Mob for level 40-44 area
 class PutridBile : public Hostile {
 public:
-  PutridBile() : Hostile(150000, 7500) {}
+  PutridBile() : Hostile("Putrid Bile", 150000, 7000, 500) {}
 
   void beAttackedBy(Player &p) override;
   void beKilledBy(Player &p) override;

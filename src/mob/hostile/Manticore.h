@@ -10,7 +10,7 @@ class Player;
 // Mob for level 53-55 area
 class Manticore : public Hostile {
 public:
-  Manticore() : Hostile(6000000, 60000) {}
+  Manticore() : Hostile("Manticore", 6000000, 30000, 30000) {}
 
   void beAttackedBy(Player &p) override;
   void beKilledBy(Player &p) override;

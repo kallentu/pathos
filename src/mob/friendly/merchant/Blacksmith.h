@@ -12,7 +12,7 @@ class TalkRequest;
 // Merchant who sells/buys weapons.
 class Blacksmith : public Merchant {
 public:
-  Blacksmith() : Merchant() { initializeStock(); }
+  Blacksmith() : Merchant("Blacksmith") { initializeStock(); }
 
 private:
   // TODO: Once there are defined weapon creation

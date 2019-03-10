@@ -10,7 +10,7 @@ class Player;
 // Boss mob for level 44
 class Hekatonkheires : public Hostile {
 public:
-  Hekatonkheires() : Hostile(1000000, 15000) {}
+  Hekatonkheires() : Hostile("Hekatonkheires", 1000000, 15000, 0) {}
 
   void beAttackedBy(Player &p) override;
   void beKilledBy(Player &p) override;

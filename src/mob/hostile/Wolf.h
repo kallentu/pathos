@@ -10,7 +10,7 @@ class Player;
 // Mob for level 1 to 10 area
 class Wolf : public Hostile {
 public:
-  Wolf() : Hostile(100, 20) {}
+  Wolf() : Hostile("Wolf", 100, 0, 20) {}
 
   void beAttackedBy(Player &p) override;
   void beKilledBy(Player &p) override;

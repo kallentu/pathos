@@ -10,7 +10,7 @@ class Player;
 // Mob for level 46-48 area
 class PetrifiedGod : public Hostile {
 public:
-  PetrifiedGod() : Hostile(1250000, 20000) {}
+  PetrifiedGod() : Hostile("Petrified God", 1250000, 10000, 10000) {}
 
   void beAttackedBy(Player &p) override;
   void beKilledBy(Player &p) override;

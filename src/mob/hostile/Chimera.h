@@ -10,7 +10,7 @@ class Player;
 // Boss mob for level 25
 class Chimera : public Hostile {
 public:
-  Chimera() : Hostile(25000, 800) {}
+  Chimera() : Hostile("Chimera", 25000, 100, 700) {}
 
   void beAttackedBy(Player &p) override;
   void beKilledBy(Player &p) override;

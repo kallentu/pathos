@@ -11,7 +11,7 @@ class TalkRequest;
 // Goddess of agriculture and harvest
 class Demeter : public Friendly {
 public:
-  Demeter() : Friendly() {}
+  Demeter() : Friendly("Demeter") {}
   std::unique_ptr<TalkRequest> beTalkedToBy(Player &p) override;
 };
 

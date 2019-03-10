@@ -10,7 +10,7 @@ class Player;
 // Mob for level 15-25 area
 class Scylla : public Hostile {
 public:
-  Scylla() : Hostile(5000, 400) {}
+  Scylla() : Hostile("Scylla", 5000, 300, 100) {}
 
   void beAttackedBy(Player &p) override;
   void beKilledBy(Player &p) override;

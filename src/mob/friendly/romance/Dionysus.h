@@ -12,7 +12,7 @@ class TalkRequest;
 // God of wine and theatre
 class Dionysus : public QuestGiverRomanceable {
 public:
-  Dionysus() : QuestGiverRomanceable() {}
+  Dionysus() : QuestGiverRomanceable("Dionysus") {}
 
   std::unique_ptr<TalkRequest> talkedToBy(Player &p) override;
 };

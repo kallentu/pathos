@@ -12,7 +12,7 @@ class TalkRequest;
 // Merchant who sells/buys armor.
 class Leatherworker : public Merchant {
 public:
-  Leatherworker() : Merchant() { initializeStock(); }
+  Leatherworker() : Merchant("Leatherworker") { initializeStock(); }
 
 private:
   // TODO: Once there are defined armor creation

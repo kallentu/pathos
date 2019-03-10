@@ -11,7 +11,7 @@ class TalkRequest;
 // Queen of Gods, goddess of marriage and birth
 class Hera : public Friendly {
 public:
-  Hera() : Friendly() {}
+  Hera() : Friendly("Hera") {}
   std::unique_ptr<TalkRequest> beTalkedToBy(Player &p) override;
 };
 

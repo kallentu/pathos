@@ -4,6 +4,7 @@
 #include "event/EventManager.h"
 #include "mob/friendly/Friendly.h"
 #include <memory>
+#include <string>
 #include <vector>
 
 namespace Pathos {
@@ -13,11 +14,11 @@ class Item;
 class TalkRequest;
 
 // Romanceable NPCs that the Player can be in a relation with.
-class Romanceable : public virtual Friendly {
+class Romanceable : public Friendly {
   size_t romanceExp;
 
 public:
-  Romanceable() : Friendly(), romanceExp{0} {}
+  Romanceable(std::string name) : Friendly(name), romanceExp{0} {}
 
   size_t getRomanceExp() const { return romanceExp; }
   void setRomanceExp(size_t exp) { romanceExp = exp; }

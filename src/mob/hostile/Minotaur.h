@@ -10,7 +10,7 @@ class Player;
 // Boss mob for level 40
 class Minotaur : public Hostile {
 public:
-  Minotaur() : Hostile(100000, 5000) {}
+  Minotaur() : Hostile("Minotaur", 100000, 0, 5000) {}
 
   void beAttackedBy(Player &p) override;
   void beKilledBy(Player &p) override;

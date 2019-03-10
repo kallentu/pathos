@@ -12,7 +12,7 @@ class TalkRequest;
 // Goddess of love, beauty and passion
 class Aphrodite : public QuestGiverRomanceable {
 public:
-  Aphrodite() : QuestGiverRomanceable() {}
+  Aphrodite() : QuestGiverRomanceable("Aphrodite") {}
 
   std::unique_ptr<TalkRequest> talkedToBy(Player &p) override;
 };
