@@ -5,7 +5,7 @@ using namespace Pathos;
 
 void Chaos::beAttackedBy(Player &p) {
   if (!Hostile::isDeceased() &&
-      (p.getMagicDamage() / 2) + (p, getPhysicalDamage() / 2) >
+      (p.getMagicDamage() / 2) + (p.getPhysicalDamage() / 2) >
           Hostile::getHealth()) {
     // Chaos killed.
     Hostile::setDeceased(true);

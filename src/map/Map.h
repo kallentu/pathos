@@ -22,6 +22,8 @@ public:
   virtual ~Map() {}
 
   MapObject *get(size_t y, size_t x);
+  size_t getHeight() const;
+  size_t getWidth() const;
 
   void addObjectToPosition(std::unique_ptr<MapObject> m, size_t y, size_t x);
   void removeObjectFromPosition(size_t y, size_t x);

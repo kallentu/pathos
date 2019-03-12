@@ -11,11 +11,16 @@ class NcursesInstance {
   size_t height, width;
 
 public:
+  enum CursorMode { Invisible = 0, Visible = 1, VeryVisible = 2 };
+
   NcursesInstance();
   ~NcursesInstance();
 
   size_t getHeight() { return height; }
   size_t getWidth() { return width; }
+
+  // Cursor
+  void setCursor(CursorMode mode);
 
   // Input
   int getChar();

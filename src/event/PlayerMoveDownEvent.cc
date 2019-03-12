@@ -11,7 +11,7 @@ void PlayerMoveDownEvent::begin(PathosInstance *inst) {
   size_t x = inst->getPosition()->x;
 
   // Move down ONLY if the block below Player is Ground
-  if (dynamic_cast<Ground *>(inst->getMap()->get(y, x))) {
+  if (dynamic_cast<Ground *>(inst->getMap()->get(y + 1, x))) {
     inst->setPosition(y + 1, x);
   }
 }

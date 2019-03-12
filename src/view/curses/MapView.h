@@ -50,6 +50,11 @@ private:
 
   // Draws Player and used only after drawMap()
   void drawPlayer();
+  void drawPlayer(size_t mapYStart, size_t mapXStart);
+
+  // Map starting positions for printing. Scrolling in effect.
+  size_t getMapYStart() const;
+  size_t getMapXStart() const;
 };
 
 } // namespace Pathos

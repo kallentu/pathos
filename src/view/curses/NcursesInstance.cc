@@ -11,9 +11,12 @@ NcursesInstance::NcursesInstance() {
   updateBounds();
   raw();
   noecho();
+  setCursor(CursorMode::Invisible);
 }
 
 NcursesInstance::~NcursesInstance() { endwin(); }
+
+void NcursesInstance::setCursor(CursorMode mode) { curs_set(mode); }
 
 int NcursesInstance::getChar() { return getch(); }
 

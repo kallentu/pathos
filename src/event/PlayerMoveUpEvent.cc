@@ -11,7 +11,7 @@ void PlayerMoveUpEvent::begin(PathosInstance *inst) {
   size_t x = inst->getPosition()->x;
 
   // Move up ONLY if the block above Player is Ground
-  if (dynamic_cast<Ground *>(inst->getMap()->get(y, x))) {
+  if (dynamic_cast<Ground *>(inst->getMap()->get(y - 1, x))) {
     inst->setPosition(y - 1, x);
   }
 }

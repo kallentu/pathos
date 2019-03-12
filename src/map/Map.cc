@@ -38,6 +38,22 @@ MapObject *Map::get(size_t y, size_t x) {
   return obj;
 }
 
+size_t Map::getHeight() const {
+  if (!map.empty()) {
+    return map.size();
+  } else {
+    return 0;
+  }
+}
+
+size_t Map::getWidth() const {
+  if (!map.empty() || !map[0].empty()) {
+    return map[0].size();
+  } else {
+    return 0;
+  }
+}
+
 void Map::addObjectToPosition(std::unique_ptr<MapObject> m, size_t y,
                               size_t x) {
   map[y][x].reset();
