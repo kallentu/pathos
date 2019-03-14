@@ -12,6 +12,7 @@ class Hostile;
 class Friendly;
 class Romanceable;
 class QuestGiver;
+class QuestRecipient;
 class Merchant;
 class Wall;
 class Ground;
@@ -27,6 +28,7 @@ public:
   std::vector<std::unique_ptr<Event>> getEventList(Friendly &f);
   std::vector<std::unique_ptr<Event>> getEventList(Romanceable &r);
   std::vector<std::unique_ptr<Event>> getEventList(QuestGiver &qg);
+  std::vector<std::unique_ptr<Event>> getEventList(QuestRecipient &qr);
   std::vector<std::unique_ptr<Event>> getEventList(Merchant &m);
   std::vector<std::unique_ptr<Event>> getEventList(Wall &w);
   std::vector<std::unique_ptr<Event>> getEventList(Ground &g);

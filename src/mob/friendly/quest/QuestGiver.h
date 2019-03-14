@@ -13,8 +13,6 @@ namespace Pathos {
 // Subclasses will need an override on beTalkedToBy(Player &p).
 class QuestGiver {
 public:
-  QuestGiver() {}
-
   std::vector<std::unique_ptr<Event>>
   callEventManagerForEventList(EventManager *em) {
     return em->getEventList(*this);
