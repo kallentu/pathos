@@ -3,13 +3,19 @@
 
 #include "mob/friendly/quest/QuestGiver.h"
 #include "mob/friendly/quest/QuestRecipient.h"
+#include <map>
+#include <string>
+#include <vector>
 
 namespace Pathos {
 
 class Quest {
 public:
-  enum Status { NotStarted, InProgress, Completed, Failed };
+  enum Status { NotStarted, InProgress, Completed };
 
+  // QuestGivers are always mandatory for the player to return to, while
+  // QuestRecipients are an intermediate step in the quest that may not be
+  // needed.
   Quest(QuestGiver *questGiver)
       : status{NotStarted}, questGiver{questGiver}, questRecipient{nullptr} {}
   virtual ~Quest() {}
@@ -23,6 +29,21 @@ public:
   void setQuestRecipient(QuestRecipient *qp) { questRecipient == qp; }
   QuestRecipient *getQuestRecipient() const { return questRecipient; }
 
+  void addDialogue(Status status, std::string newDiag) {
+    dialogue[status].push_back(newDiag);
+  }
+  std::vector<std::string>> getDialogue(Status status) {
+    return dialogue[status];
+  }
+
+  // Updates Status if conditions changed the status of the quest.
+  void checkQuestStatus(Player *player) {
+    Status newStatus = checkConditions(player);
+    if (status != newStatus) {
+      setStatus(newStatus);
+    }
+  }
+
 private:
   Status status;
 
@@ -31,6 +52,15 @@ private:
 
   // Nullable, doesn't need a recipient.
   QuestRecipient *questRecipient;
+
+  // Dialogue based on the status of the quest and spoken by the QuestGiver.
+  // Loophole is to make players send an additional letter to QuestRecipients if
+  // needed.
+  std::map<Status, std::vector<std::string>> dialogue;
+
+  // Runs condition checker of quest (eg. update in certain mob kill count since
+  // last)
+  virtual Status checkConditions(Player *player) = 0;
 };
 
 } // namespace Pathos

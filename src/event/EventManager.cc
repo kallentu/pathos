@@ -59,6 +59,8 @@ std::vector<std::unique_ptr<Event>> EventManager::getEventList(Romanceable &r) {
 }
 
 // TODO: QuestGiver events
+// QuestGivers and QuestRecipients should have a single event that interacts
+// with QuestManager in order to check quest status and progress it.
 std::vector<std::unique_ptr<Event>> EventManager::getEventList(QuestGiver &qg) {
 
   // QuestGiver not used in defining events to return
