@@ -9,6 +9,7 @@
 
 namespace Pathos {
 
+// TODO: Have function to check progress of the quest.
 class Quest {
 public:
   enum Status { NotStarted, InProgress, Completed };
@@ -32,13 +33,13 @@ public:
   void addDialogue(Status status, std::string newDiag) {
     dialogue[status].push_back(newDiag);
   }
-  std::vector<std::string>> getDialogue(Status status) {
+  std::vector<std::string> getDialogue(Status status) {
     return dialogue[status];
   }
 
   // Updates Status if conditions changed the status of the quest.
-  void checkQuestStatus(Player *player) {
-    Status newStatus = checkConditions(player);
+  void updateQuestStatus(PathosInstance *inst) {
+    Status newStatus = checkConditions(inst);
     if (status != newStatus) {
       setStatus(newStatus);
     }
@@ -60,7 +61,7 @@ private:
 
   // Runs condition checker of quest (eg. update in certain mob kill count since
   // last)
-  virtual Status checkConditions(Player *player) = 0;
+  virtual Status checkConditions(PathosInstance *inst) = 0;
 };
 
 } // namespace Pathos

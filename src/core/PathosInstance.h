@@ -18,6 +18,7 @@ class Map;
 class Event;
 class MapObject;
 class Player;
+class Stats;
 
 // An instance of the Pathos game.
 // Can have multiple instances (game saves)
@@ -28,6 +29,7 @@ class PathosInstance : public Observable<ViewRequest>, Observer<Event> {
   std::unique_ptr<Map> map;
   std::unique_ptr<Player> player;
   std::unique_ptr<Position> playerPos;
+  std::unique_ptr<Stats> stats;
 
   // Flag to continue or halt game.
   bool continueGame;
@@ -42,6 +44,7 @@ public:
   void setPosition(std::unique_ptr<Position> newPos);
   void setPosition(size_t y, size_t x);
   Map *getMap() const;
+  Stats *getStats();
 
   void process(Event *e) override;
   void run();

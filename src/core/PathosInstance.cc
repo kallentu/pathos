@@ -10,6 +10,7 @@
 #include "request/MapRequest.h"
 #include "request/StatusRequest.h"
 #include "request/ViewRequest.h"
+#include "state/Stats.h"
 #include "state/Status.h"
 #include "view/curses/MapView.h"
 #include "view/curses/NcursesInstance.h"
@@ -23,8 +24,9 @@ PathosInstance::PathosInstance()
           std::make_unique<MapView>(curses.get()))},
       controller{std::make_unique<NcursesController>(curses.get())},
       map{std::make_unique<Map>(curses->getHeight(), curses->getWidth())},
-      player{std::make_unique<Player>()},
-      playerPos{std::make_unique<Position>(1, 1)}, continueGame{true} {
+      player{std::make_unique<Player>()}, playerPos{std::make_unique<Position>(
+                                              1, 1)},
+      stats{std::make_unique<Stats>()}, continueGame{true} {
   Observable<ViewRequest>::addObserver(view.get());
 }
 
@@ -45,6 +47,8 @@ void PathosInstance::setPosition(size_t y, size_t x) {
 }
 
 Map *PathosInstance::getMap() const { return map.get(); }
+
+Stats *PathosInstance::getStats() { return stats.get(); }
 
 void PathosInstance::process(Event *e) { e->begin(this); }
 
