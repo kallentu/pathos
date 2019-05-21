@@ -2,6 +2,7 @@
 #define PATHOS_PATHOS_INSTANCE
 
 #include <memory>
+#include <vector>
 
 #include "abstract/Observable.h"
 #include "abstract/Observer.h"
@@ -19,6 +20,7 @@ class Event;
 class MapObject;
 class Player;
 class Stats;
+class Quest;
 
 // An instance of the Pathos game.
 // Can have multiple instances (game saves)
@@ -30,6 +32,9 @@ class PathosInstance : public Observable<ViewRequest>, Observer<Event> {
   std::unique_ptr<Player> player;
   std::unique_ptr<Position> playerPos;
   std::unique_ptr<Stats> stats;
+
+  // List of all quests.
+  std::vector<std::unique_ptr<Quest>> quests;
 
   // Flag to continue or halt game.
   bool continueGame;
@@ -45,6 +50,9 @@ public:
   void setPosition(size_t y, size_t x);
   Map *getMap() const;
   Stats *getStats();
+
+  void addQuest(std::unique_ptr<Quest> quest);
+  Quest *getQuest(size_t index);
 
   void process(Event *e) override;
   void run();

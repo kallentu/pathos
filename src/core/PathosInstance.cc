@@ -7,6 +7,7 @@
 #include "mob/player/Player.h"
 #include "mode/MovementMode.h"
 #include "mode/handler/MovementModeHandler.h"
+#include "quest/Quest.h"
 #include "request/MapRequest.h"
 #include "request/StatusRequest.h"
 #include "request/ViewRequest.h"
@@ -49,6 +50,12 @@ void PathosInstance::setPosition(size_t y, size_t x) {
 Map *PathosInstance::getMap() const { return map.get(); }
 
 Stats *PathosInstance::getStats() { return stats.get(); }
+
+void PathosInstance::addQuest(std::unique_ptr<Quest> quest) {
+  quests.push_back(std::move(quest));
+}
+
+Quest *PathosInstance::getQuest(size_t index) { return quests[index].get(); }
 
 void PathosInstance::process(Event *e) { e->begin(this); }
 

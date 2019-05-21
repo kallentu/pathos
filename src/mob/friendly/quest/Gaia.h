@@ -9,11 +9,12 @@ namespace Pathos {
 
 class Player;
 class TalkRequest;
+class Quest;
 
 // Mother of all life and Earth itself
 class Gaia : public QuestGiver, public Friendly {
 public:
-  Gaia() : QuestGiver(), Friendly("Gaia") {}
+  Gaia(Quest *quest) : QuestGiver(quest), Friendly("Gaia") {}
 
   std::unique_ptr<TalkRequest> beTalkedToBy(Player &p) override;
 };
