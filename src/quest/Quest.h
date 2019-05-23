@@ -27,7 +27,7 @@ public:
   void setQuestGiver(QuestGiver *qg) { questGiver = qg; }
   QuestGiver *getQuestGiver() const { return questGiver; }
 
-  void setQuestRecipient(QuestRecipient *qp) { questRecipient == qp; }
+  void setQuestRecipient(QuestRecipient *qp) { questRecipient = qp; }
   QuestRecipient *getQuestRecipient() const { return questRecipient; }
 
   void addDialogue(Status status, std::string newDiag) {

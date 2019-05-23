@@ -13,12 +13,8 @@ namespace Pathos {
 // Quest logic is not processes here, but will be in the Quest itself.
 // Subclasses will need an override on beTalkedToBy(Player &p).
 class QuestGiver {
-  Quest *quest;
-
 public:
-  // TODO: remove the default when all quests made
-  QuestGiver() : quest{nullptr} {}
-  QuestGiver(Quest *quest) : quest{quest} {}
+  QuestGiver() {}
 
   std::vector<std::unique_ptr<Event>>
   callEventManagerForEventList(EventManager *em) {

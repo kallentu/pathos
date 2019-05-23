@@ -22,7 +22,7 @@ class TalkRequest;
 
 // Friendly mobs can interact with players.
 // Can interact within range of 1 square
-class Friendly : MapObject, public Mob {
+class Friendly : public  MapObject, public Mob {
 public:
   Friendly(std::string name)
       : MapObject(MapObject::Char::Sterling), Mob(name, 500, 500, 500) {}

@@ -6,6 +6,7 @@
 #include "view/curses/NcursesView.h"
 #include <memory>
 #include <ncurses.h>
+#include <algorithm>
 
 using namespace Pathos;
 
@@ -39,8 +40,11 @@ void MapView::drawMap() {
   size_t mapYStart = getMapYStart();
   size_t mapXStart = getMapXStart();
 
-  for (size_t i = 0; i < height; i++) {
-    for (size_t j = 0; j < width; j++) {
+  size_t screenHeight = std::min(map->getHeight(), height);
+  size_t screenWidth = std::min(map->getWidth(), width);
+
+  for (size_t i = 0; i < screenHeight; i++) {
+    for (size_t j = 0; j < screenWidth; j++) {
 
       // Current map object, different from position on screen.
       size_t mapY = mapYStart + i;
@@ -63,19 +67,19 @@ void MapView::drawMap() {
         if (i == 0 && j == 0) {
           // Upper left corner
           NcursesView::getInstance()->moveAddChar(i, j, ACS_ULCORNER);
-        } else if (i == height - 1 && j == 0) {
+        } else if (i == screenHeight - 1 && j == 0) {
           // Lower left corner
           NcursesView::getInstance()->moveAddChar(i, j, ACS_LLCORNER);
-        } else if (i == 0 && j == width - 1) {
+        } else if (i == 0 && j == screenWidth - 1) {
           // Upper right corner
           NcursesView::getInstance()->moveAddChar(i, j, ACS_URCORNER);
-        } else if (i == height - 1 && j == width - 1) {
+        } else if (i == screenHeight - 1 && j == screenWidth - 1) {
           // Lower right corner
           NcursesView::getInstance()->moveAddChar(i, j, ACS_LRCORNER);
-        } else if (i == 0 || i == height - 1) {
+        } else if (i == 0 || i == screenHeight - 1) {
           // Top/bottom bounds
           NcursesView::getInstance()->moveAddChar(i, j, ACS_HLINE);
-        } else if (j == 0 || j == width - 1) {
+        } else if (j == 0 || j == screenWidth - 1) {
           // Left/right bounds
           NcursesView::getInstance()->moveAddChar(i, j, ACS_VLINE);
         }
