@@ -3,7 +3,7 @@
 #include "controller/NcursesController.h"
 #include "core/Position.h"
 #include "event/Event.h"
-#include "map/Map.h"
+#include "map/AthensMap.h"
 #include "mob/player/Player.h"
 #include "mode/MovementMode.h"
 #include "mode/handler/MovementModeHandler.h"
@@ -24,7 +24,7 @@ PathosInstance::PathosInstance()
       view{std::make_unique<StatusView>(
           std::make_unique<MapView>(curses.get()))},
       controller{std::make_unique<NcursesController>(curses.get())},
-      map{std::make_unique<Map>(curses->getHeight(), curses->getWidth())},
+      map{std::make_unique<AthensMap>()},
       player{std::make_unique<Player>()}, playerPos{std::make_unique<Position>(
                                               1, 1)},
       stats{std::make_unique<Stats>()}, continueGame{true} {
