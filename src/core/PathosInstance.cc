@@ -24,9 +24,9 @@ PathosInstance::PathosInstance()
       view{std::make_unique<StatusView>(
           std::make_unique<MapView>(curses.get()))},
       controller{std::make_unique<NcursesController>(curses.get())},
-      map{std::make_unique<AthensMap>()},
-      player{std::make_unique<Player>()}, playerPos{std::make_unique<Position>(
-                                              1, 1)},
+      map{std::make_unique<AthensMap>()}, player{std::make_unique<Player>()},
+      playerPos{std::make_unique<Position>(1, 1)},
+      actionablePos{std::make_unique<Position>(2, 1)},
       stats{std::make_unique<Stats>()}, continueGame{true} {
   Observable<ViewRequest>::addObserver(view.get());
 }
@@ -45,6 +45,18 @@ void PathosInstance::setPosition(std::unique_ptr<Position> newPos) {
 
 void PathosInstance::setPosition(size_t y, size_t x) {
   playerPos = std::make_unique<Position>(y, x);
+}
+
+Position *PathosInstance::getActionablePosition() const {
+  return actionablePos.get();
+}
+
+void PathosInstance::setActionablePosition(std::unique_ptr<Position> newPos) {
+  actionablePos = std::move(newPos);
+}
+
+void PathosInstance::setActionablePosition(size_t y, size_t x) {
+  actionablePos = std::make_unique<Position>(y, x);
 }
 
 Map *PathosInstance::getMap() const { return map.get(); }

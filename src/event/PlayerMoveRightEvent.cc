@@ -14,4 +14,7 @@ void PlayerMoveRightEvent::begin(PathosInstance *inst) {
   if (dynamic_cast<Ground *>(inst->getMap()->get(y, x + 1))) {
     inst->setPosition(y, x + 1);
   }
+
+  // Change where Player is facing.
+  inst->setActionablePosition(y, inst->getPosition()->x + 1);
 }

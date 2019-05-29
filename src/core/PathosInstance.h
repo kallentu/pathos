@@ -30,7 +30,11 @@ class PathosInstance : public Observable<ViewRequest>, Observer<Event> {
   std::unique_ptr<NcursesController> controller;
   std::unique_ptr<Map> map;
   std::unique_ptr<Player> player;
+
+  // Keep track of actionable position to indicate where the player is facing
   std::unique_ptr<Position> playerPos;
+  std::unique_ptr<Position> actionablePos;
+
   std::unique_ptr<Stats> stats;
 
   // List of all quests.
@@ -45,9 +49,15 @@ public:
 
   Player *getPlayer() const;
   NcursesView *getView() const;
+
   Position *getPosition() const;
   void setPosition(std::unique_ptr<Position> newPos);
   void setPosition(size_t y, size_t x);
+
+  Position *getActionablePosition() const;
+  void setActionablePosition(std::unique_ptr<Position> newPos);
+  void setActionablePosition(size_t y, size_t x);
+
   Map *getMap() const;
   Stats *getStats();
 

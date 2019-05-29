@@ -1,6 +1,8 @@
 #include "mode/handler/MovementModeHandler.h"
 #include "controller/Char.h"
+#include "event/CheckVicinityEvent.h"
 #include "event/Event.h"
+#include "event/MultipleEvent.h"
 #include "event/PlayerMoveDownEvent.h"
 #include "event/PlayerMoveLeftEvent.h"
 #include "event/PlayerMoveRightEvent.h"
@@ -10,25 +12,27 @@
 using namespace Pathos;
 
 std::unique_ptr<Event> MovementModeHandler::handle(const Char &c) {
-  std::unique_ptr<Event> event;
+  std::unique_ptr<MultipleEvent> events = std::make_unique<MultipleEvent>();
 
   switch (c.numValue()) {
   case Char::Arrow::Up:
-    event = std::make_unique<PlayerMoveUpEvent>();
+    events->addEvent(std::make_unique<PlayerMoveUpEvent>());
     break;
   case Char::Arrow::Down:
-    event = std::make_unique<PlayerMoveDownEvent>();
+    events->addEvent(std::make_unique<PlayerMoveDownEvent>());
     break;
   case Char::Arrow::Left:
-    event = std::make_unique<PlayerMoveLeftEvent>();
+    events->addEvent(std::make_unique<PlayerMoveLeftEvent>());
     break;
   case Char::Arrow::Right:
-    event = std::make_unique<PlayerMoveRightEvent>();
+    events->addEvent(std::make_unique<PlayerMoveRightEvent>());
     break;
   case Char::Ctrl::C:
-    event = std::make_unique<QuitEvent>();
-    break;
+    return std::make_unique<QuitEvent>();
   }
 
-  return event;
+  // Add event to check for interactables (NPC, hostiles) after movement.
+  events->addEvent(std::unique_ptr<CheckVicinityEvent>());
+
+  return events;
 }
