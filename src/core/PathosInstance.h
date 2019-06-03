@@ -21,6 +21,7 @@ class MapObject;
 class Player;
 class Stats;
 class Quest;
+class QuestManager;
 
 // An instance of the Pathos game.
 // Can have multiple instances (game saves)
@@ -36,9 +37,7 @@ class PathosInstance : public Observable<ViewRequest>, Observer<Event> {
   std::unique_ptr<Position> actionablePos;
 
   std::unique_ptr<Stats> stats;
-
-  // List of all quests.
-  std::vector<std::unique_ptr<Quest>> quests;
+  std::unique_ptr<QuestManager> questManager;
 
   // Flag to continue or halt game.
   bool continueGame;
@@ -60,9 +59,7 @@ public:
 
   Map *getMap() const;
   Stats *getStats();
-
-  void addQuest(std::unique_ptr<Quest> quest);
-  Quest *getQuest(size_t index);
+  QuestManager *getQuestManager();
 
   void process(Event *e) override;
   void run();

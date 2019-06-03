@@ -1,4 +1,6 @@
 #include "view/curses/StatusView.h"
+#include "quest/Quest.h"
+#include "request/QuestRequest.h"
 #include "request/StatusRequest.h"
 #include "request/TalkRequest.h"
 #include "state/Status.h"
@@ -40,11 +42,12 @@ void StatusView::draw(const TalkRequest &req) {
   // X starts on the edge of the width
   size_t x = width - STATUS_WIDTH;
   // Y starts 2/3 of the screen down. Most of the room left for Status.
-  size_t y = height * 2 / 3;
+  size_t y = height * 1 / 3;
   size_t dialoguePos = 0;
   size_t dialogueLength = width - 1;
 
-  while (y < height && dialoguePos < dialogue.length()) {
+  // Leave two lines for bottom lines changes (ie. quests ...)
+  while (y < height - 2 && dialoguePos < dialogue.length()) {
     // Take string that fits, print.
     std::string dialogueSubstr = dialogue.substr(dialoguePos, dialogueLength);
     NcursesView::getInstance()->movePrint(y, x, dialogueSubstr);
@@ -54,4 +57,27 @@ void StatusView::draw(const TalkRequest &req) {
   }
 
   NcursesViewDecorator::view->draw(req);
+}
+
+void StatusView::draw(const QuestRequest &req) {
+  std::string questOptions;
+
+  // TODO: put quest dialogue into a talkrequest and feed it through.
+
+  switch (req.status) {
+  case Quest::Status::NotStarted:
+    questOptions = "Accept (a) Decline (d)";
+    break;
+  case Quest::Status::InProgress:
+    questOptions = "Continue... (a)";
+    break;
+  default:
+    return;
+  }
+
+  // Prints on the last-ish line of the screen.
+  size_t x = width - STATUS_WIDTH;
+  size_t y = height - 2;
+
+  NcursesView::getInstance()->movePrint(y, x, questOptions);
 }

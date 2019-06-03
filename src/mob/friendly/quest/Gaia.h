@@ -9,6 +9,9 @@ namespace Pathos {
 
 class Player;
 class TalkRequest;
+class QuestManager;
+class QuestRequest;
+class PathosInstance;
 
 // Mother of all life and Earth itself
 class Gaia : public QuestGiver, public Friendly {
@@ -16,6 +19,8 @@ public:
   Gaia() : QuestGiver(), Friendly("Gaia") {}
 
   std::unique_ptr<TalkRequest> beTalkedToBy(Player &p) override;
+  std::unique_ptr<QuestRequest>
+  haveQuestRequestRetrievedBy(QuestManager *qm, PathosInstance *inst) override;
 };
 
 } // namespace Pathos

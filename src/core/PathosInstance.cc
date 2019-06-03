@@ -8,6 +8,7 @@
 #include "mode/MovementMode.h"
 #include "mode/handler/MovementModeHandler.h"
 #include "quest/Quest.h"
+#include "quest/QuestManager.h"
 #include "request/MapRequest.h"
 #include "request/StatusRequest.h"
 #include "request/ViewRequest.h"
@@ -27,7 +28,9 @@ PathosInstance::PathosInstance()
       map{std::make_unique<AthensMap>()}, player{std::make_unique<Player>()},
       playerPos{std::make_unique<Position>(1, 1)},
       actionablePos{std::make_unique<Position>(2, 1)},
-      stats{std::make_unique<Stats>()}, continueGame{true} {
+      stats{std::make_unique<Stats>()}, 
+      questManager{std::make_unique<QuestManager>()},
+      continueGame{true} {
   Observable<ViewRequest>::addObserver(view.get());
 }
 
@@ -63,11 +66,7 @@ Map *PathosInstance::getMap() const { return map.get(); }
 
 Stats *PathosInstance::getStats() { return stats.get(); }
 
-void PathosInstance::addQuest(std::unique_ptr<Quest> quest) {
-  quests.push_back(std::move(quest));
-}
-
-Quest *PathosInstance::getQuest(size_t index) { return quests[index].get(); }
+QuestManager *PathosInstance::getQuestManager() { return questManager.get(); }
 
 void PathosInstance::process(Event *e) { e->begin(this); }
 

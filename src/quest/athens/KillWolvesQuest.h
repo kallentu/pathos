@@ -1,11 +1,12 @@
 #ifndef PATHOS_KILL_WOLVES_QUEST
 #define PATHOS_KILL_WOLVES_QUEST
 
+#include "quest/Quest.h"
+
 namespace Pathos {
 
-#include "core/PathosInstance.h"
-#include "mob/friendly/quest/QuestGiver.h"
-#include "quest/Quest.h"
+class QuestGiver;
+class PathosInstance;
 
 // Kill 20 wolves in Athens (Level 1)
 class KillWolvesQuest : public Quest {
@@ -14,37 +15,8 @@ class KillWolvesQuest : public Quest {
   int initialTotalKills;
 
 public:
-  KillWolvesQuest(QuestGiver *questGiver) : Quest(questGiver) {
-    Quest::addDialogue(
-        Quest::Status::NotStarted,
-        "There's been a slight issue with the wolves around Athens.");
-    Quest::addDialogue(Quest::Status::NotStarted,
-                       "Try your hand at fighting 20 wolves. It would help "
-                       "cull the population some.");
-    Quest::addDialogue(Quest::Status::InProgress,
-                       "Remember, we need 20 killed in total.");
-    Quest::addDialogue(Quest::Status::Completed,
-                       "Thank you. The citizens of Athens now feel safer.");
-  }
-
-  Quest::Status checkConditions(PathosInstance *inst) override {
-    switch (Quest::getStatus()) {
-    case Quest::Status::NotStarted:
-      initialTotalKills = inst->stats->wolvesKilled;
-      Quest::setStatus(Quest::Status::InProgress);
-      break;
-    case Quest::Status::InProgress:
-      int wolvesKilled = inst->stats->wolvesKilled - initialTotalKills;
-      if (wolvesKilled >= 20)
-        Quest::setStatus(Quest::Status::Completed);
-      break;
-    case Quest::Status::Completed:
-    default:
-      break;
-    }
-
-    return Quest::getStatus();
-  }
+  KillWolvesQuest(QuestGiver *questGiver);
+  Quest::Status checkConditions(PathosInstance *inst) override;
 };
 
 } // namespace Pathos

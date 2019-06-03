@@ -32,7 +32,7 @@ std::unique_ptr<Event> MovementModeHandler::handle(const Char &c) {
   }
 
   // Add event to check for interactables (NPC, hostiles) after movement.
-  events->addEvent(std::unique_ptr<CheckVicinityEvent>());
+  events->addEvent(std::make_unique<CheckVicinityEvent>());
 
   return events;
 }

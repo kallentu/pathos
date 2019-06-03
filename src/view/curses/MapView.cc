@@ -4,9 +4,9 @@
 #include "request/MapRequest.h"
 #include "view/curses/NcursesInstance.h"
 #include "view/curses/NcursesView.h"
+#include <algorithm>
 #include <memory>
 #include <ncurses.h>
-#include <algorithm>
 
 using namespace Pathos;
 
@@ -31,6 +31,11 @@ void MapView::draw(const NotificationRequest &req) {
 }
 
 void MapView::draw(const TalkRequest &req) {
+  (void)req;
+  drawMap();
+}
+
+void MapView::draw(const QuestRequest &req) {
   (void)req;
   drawMap();
 }

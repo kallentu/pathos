@@ -10,6 +10,7 @@ class MapRequest;
 class StatusRequest;
 class NotificationRequest;
 class TalkRequest;
+class QuestRequest;
 
 class View : public Observer<ViewRequest> {
 public:
@@ -21,6 +22,7 @@ public:
   virtual void draw(const StatusRequest &req) = 0;
   virtual void draw(const NotificationRequest &req) = 0;
   virtual void draw(const TalkRequest &req) = 0;
+  virtual void draw(const QuestRequest &req) = 0;
 };
 
 } // namespace Pathos

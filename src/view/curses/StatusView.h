@@ -11,6 +11,7 @@ class MapRequest;
 class StatusRequest;
 class TalkRequest;
 class NotificationRequest;
+class QuestRequest;
 
 class StatusView : public NcursesViewDecorator {
 
@@ -47,6 +48,9 @@ public:
 
   // Print TalkRequest underneath the StatusRequest.
   void draw(const TalkRequest &req) override;
+
+  // Prints options at bottom of screen
+  void draw(const QuestRequest &req) override;
 };
 
 } // namespace Pathos

@@ -38,11 +38,12 @@ public:
   }
 
   // Updates Status if conditions changed the status of the quest.
-  void updateQuestStatus(PathosInstance *inst) {
+  Quest::Status updateQuestStatus(PathosInstance *inst) {
     Status newStatus = checkConditions(inst);
     if (status != newStatus) {
       setStatus(newStatus);
     }
+    return newStatus;
   }
 
 private:

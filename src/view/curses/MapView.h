@@ -13,6 +13,7 @@ class StatusRequest;
 class NotificationRequest;
 class TalkRequest;
 class NcursesInstance;
+class QuestRequest;
 
 class MapView : public NcursesView {
   // TODO: Make the MapManager own the map instead of the MapView
@@ -44,6 +45,9 @@ public:
 
   // Does not print anything for TalkRequest.
   void draw(const TalkRequest &req) override;
+
+  // Does not print anything for QuestRequest.
+  void draw(const QuestRequest &req) override;
 
 private:
   void drawMap();

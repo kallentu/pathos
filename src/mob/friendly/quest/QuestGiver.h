@@ -9,12 +9,17 @@
 
 namespace Pathos {
 
+class QuestManager;
+class PathosInstance;
+class QuestRequest;
+
 // An NPC that gives a quest/is reported back to when quest finished.
 // Quest logic is not processes here, but will be in the Quest itself.
 // Subclasses will need an override on beTalkedToBy(Player &p).
 class QuestGiver {
 public:
-  QuestGiver() {}
+  virtual std::unique_ptr<QuestRequest>
+  haveQuestRequestRetrievedBy(QuestManager *qm, PathosInstance *inst) = 0;
 
   std::vector<std::unique_ptr<Event>>
   callEventManagerForEventList(EventManager *em) {
