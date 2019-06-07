@@ -32,6 +32,11 @@ public:
   void moveAddChar(size_t y, size_t x, int c);
   void print(std::string s);
 
+  // Clearing methods
+  void clear();
+  void clearLine();
+  void clearLine(size_t y, size_t x);
+
   // Display methods
   void refresh();
 

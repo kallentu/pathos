@@ -40,6 +40,11 @@ void MapView::draw(const QuestRequest &req) {
   drawMap();
 }
 
+void MapView::draw(const ClearQuickStatusRequest &req) {
+  (void)req;
+  drawMap();
+}
+
 void MapView::drawMap() {
   // Initial starting positions, work off these to calculate which MapObject.
   size_t mapYStart = getMapYStart();

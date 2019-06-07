@@ -23,7 +23,9 @@ Quest::Status KillWolvesQuest::checkConditions(PathosInstance *inst) {
   switch (Quest::getStatus()) {
   case Quest::Status::NotStarted: {
     initialTotalKills = inst->getStats()->wolvesKilled;
-    Quest::setStatus(Quest::Status::InProgress);
+    
+    // TODO: Allow user to choose whether to progress quest.
+    //Quest::setStatus(Quest::Status::InProgress);
     break;
   }
   case Quest::Status::InProgress: {

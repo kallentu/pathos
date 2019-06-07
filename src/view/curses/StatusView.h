@@ -12,12 +12,17 @@ class StatusRequest;
 class TalkRequest;
 class NotificationRequest;
 class QuestRequest;
+class ClearQuickStatusRequest;
 
 class StatusView : public NcursesViewDecorator {
 
   // Required size of the status column.
   // The amount of characters it takes up
   size_t STATUS_WIDTH = 30;
+
+  // Coordinates for the quick status bar that has
+  // NPC interactions.
+  size_t QUICK_STATUS_Y, QUICK_STATUS_X;
 
   size_t playerMaxHealth, playerHealth;
   size_t height, width;
@@ -49,8 +54,11 @@ public:
   // Print TalkRequest underneath the StatusRequest.
   void draw(const TalkRequest &req) override;
 
-  // Prints options at bottom of screen
+  // Prints options at bottom of screen.
   void draw(const QuestRequest &req) override;
+
+  // Clears the quick status bar.
+  void draw(const ClearQuickStatusRequest &req) override;
 };
 
 } // namespace Pathos

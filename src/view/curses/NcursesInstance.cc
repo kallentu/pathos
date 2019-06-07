@@ -35,6 +35,15 @@ void NcursesInstance::moveAddChar(size_t y, size_t x, int c) {
 
 void NcursesInstance::print(std::string s) { printw("%s", s.c_str()); }
 
+void NcursesInstance::clear() { erase(); }
+
+void NcursesInstance::clearLine() { clrtoeol(); }
+
+void NcursesInstance::clearLine(size_t y, size_t x) {
+  move(y, x);
+  clearLine();
+}
+
 void NcursesInstance::refresh() { refresh(); }
 
 void NcursesInstance::updateBounds() { getmaxyx(stdscr, height, width); }

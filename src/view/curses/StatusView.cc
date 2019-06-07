@@ -1,5 +1,7 @@
 #include "view/curses/StatusView.h"
 #include "quest/Quest.h"
+#include "request/ClearQuickStatusRequest.h"
+#include "request/NotificationRequest.h"
 #include "request/QuestRequest.h"
 #include "request/StatusRequest.h"
 #include "request/TalkRequest.h"
@@ -16,6 +18,10 @@ StatusView::StatusView(std::unique_ptr<NcursesView> view)
   height = NcursesViewDecorator::view->getHeight();
   width = NcursesViewDecorator::view->getWidth();
   NcursesViewDecorator::view->setWidth(width - STATUS_WIDTH);
+
+  // Prints on the last-ish line of the screen.
+  QUICK_STATUS_X = width - STATUS_WIDTH;
+  QUICK_STATUS_Y = height - 2;
 }
 
 void StatusView::draw(const MapRequest &req) {
@@ -75,9 +81,11 @@ void StatusView::draw(const QuestRequest &req) {
     return;
   }
 
-  // Prints on the last-ish line of the screen.
-  size_t x = width - STATUS_WIDTH;
-  size_t y = height - 2;
+  NcursesView::getInstance()->movePrint(QUICK_STATUS_Y, QUICK_STATUS_X,
+                                        questOptions);
+}
 
-  NcursesView::getInstance()->movePrint(y, x, questOptions);
+void StatusView::draw(const ClearQuickStatusRequest &req) {
+  (void)req; // Don't actually use it
+  NcursesView::getInstance()->clearLine(QUICK_STATUS_Y, QUICK_STATUS_X);
 }
