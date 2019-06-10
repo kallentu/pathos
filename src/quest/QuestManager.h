@@ -23,7 +23,8 @@ public:
   std::unique_ptr<QuestRequest> getQuestRequest(Ariadne &ariadne,
                                                 PathosInstance *inst);
   std::unique_ptr<QuestRequest> getRequestFromStatus(Quest::Status status,
-                                                     Quest *quest);
+                                                     Quest *quest,
+                                                     PathosInstance *inst);
 
   // void startQuest();
   // void completeQuest();

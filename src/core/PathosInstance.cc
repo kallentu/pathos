@@ -5,8 +5,8 @@
 #include "event/Event.h"
 #include "map/AthensMap.h"
 #include "mob/player/Player.h"
-#include "mode/MovementMode.h"
-#include "mode/handler/MovementModeHandler.h"
+#include "mode/Mode.h"
+#include "mode/handler/ModeHandler.h"
 #include "quest/Quest.h"
 #include "quest/QuestManager.h"
 #include "request/MapRequest.h"
@@ -28,9 +28,9 @@ PathosInstance::PathosInstance()
       map{std::make_unique<AthensMap>()}, player{std::make_unique<Player>()},
       playerPos{std::make_unique<Position>(1, 1)},
       actionablePos{std::make_unique<Position>(2, 1)},
-      stats{std::make_unique<Stats>()}, 
-      questManager{std::make_unique<QuestManager>()},
-      continueGame{true} {
+      stats{std::make_unique<Stats>()},
+      questManager{std::make_unique<QuestManager>()}, continueGame{true},
+      leaveModeRequests{0} {
   Observable<ViewRequest>::addObserver(view.get());
 }
 
@@ -68,18 +68,18 @@ Stats *PathosInstance::getStats() { return stats.get(); }
 
 QuestManager *PathosInstance::getQuestManager() { return questManager.get(); }
 
+const Mode *PathosInstance::getActiveMode() { return modes.top().get(); }
+
 void PathosInstance::process(Event *e) { e->begin(this); }
 
 void PathosInstance::run() {
   std::unique_ptr<Event> event;
 
-  while (continueGame) {
+  while (!leaveModeRequests && continueGame) {
     MapRequest mreq = MapRequest(map.get(), getPosition());
     Observable<ViewRequest>::notify(&mreq);
 
-    // TODO: FIX THIS
-    // Temporary one session only
-    std::unique_ptr<MovementMode> mode = std::make_unique<MovementMode>(this);
+    Mode *mode = modes.top().get();
     event = mode->getHandler()->handle(controller->getInput());
 
     if (event)
@@ -97,4 +97,15 @@ void PathosInstance::run() {
   // curses->getChar();
 }
 
+void PathosInstance::runMode(std::unique_ptr<Mode> mode) {
+  modes.push(std::move(mode));
+  run();
+  while (leaveModeRequests > 0) {
+    modes.pop();
+    --leaveModeRequests;
+  }
+}
+
 void PathosInstance::stop() { continueGame = false; }
+
+void PathosInstance::leaveMode() { ++leaveModeRequests; }

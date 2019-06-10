@@ -17,6 +17,8 @@ public:
   QuestRequest(Quest::Status &status, Quest *quest)
       : status{status}, quest{quest} {}
   void beDrawnBy(View &view) const override;
+
+  Quest *getQuest();
 };
 
 } // namespace Pathos

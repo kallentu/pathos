@@ -4,3 +4,5 @@
 using namespace Pathos;
 
 void QuestRequest::beDrawnBy(View &view) const { view.draw(*this); }
+
+Quest *QuestRequest::getQuest() { return quest; }

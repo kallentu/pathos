@@ -20,9 +20,9 @@ QuestManager::getQuestRequest(Gaia &gaia, PathosInstance *inst) {
 
   // Check conditions of quest, return quest request accordingly.
   Quest *kwq = quests["killwolvesquest"].get();
-  Quest::Status status = kwq->updateQuestStatus(inst);
+  Quest::Status status = kwq->getStatus();
 
-  return getRequestFromStatus(status, kwq);
+  return getRequestFromStatus(status, kwq, inst);
 }
 
 // TODO: Ariadne's quest
@@ -32,6 +32,13 @@ QuestManager::getQuestRequest(Ariadne &ariadne, PathosInstance *inst) {
 }
 
 std::unique_ptr<QuestRequest>
-QuestManager::getRequestFromStatus(Quest::Status status, Quest *quest) {
-  return std::make_unique<QuestRequest>(status, quest);
+QuestManager::getRequestFromStatus(Quest::Status status, Quest *quest,
+                                   PathosInstance *inst) {
+  // Make sure we are updated with correct status.
+  Quest::Status currentStatus = status;
+  if (status == Quest::Status::InProgress) {
+    currentStatus = quest->updateQuestStatus(inst);
+  }
+
+  return std::make_unique<QuestRequest>(currentStatus, quest);
 }

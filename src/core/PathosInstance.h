@@ -2,6 +2,7 @@
 #define PATHOS_PATHOS_INSTANCE
 
 #include <memory>
+#include <stack>
 #include <vector>
 
 #include "abstract/Observable.h"
@@ -16,6 +17,7 @@ class NcursesInstance;
 class NcursesView;
 class NcursesController;
 class Map;
+class Mode;
 class Event;
 class MapObject;
 class Player;
@@ -42,6 +44,12 @@ class PathosInstance : public Observable<ViewRequest>, Observer<Event> {
   // Flag to continue or halt game.
   bool continueGame;
 
+  // The modes that the player is currently playing on.
+  std::stack<std::unique_ptr<Mode>> modes;
+
+  // Counter for removing in stack of Modes
+  int leaveModeRequests;
+
 public:
   PathosInstance();
   ~PathosInstance();
@@ -60,12 +68,17 @@ public:
   Map *getMap() const;
   Stats *getStats();
   QuestManager *getQuestManager();
+  const Mode *getActiveMode();
 
   void process(Event *e) override;
-  void run();
+  void runMode(std::unique_ptr<Mode> mode);
+  void leaveMode();
 
   // Stop game entirely and immediately.
   void stop();
+
+private:
+  void run();
 };
 
 } // namespace Pathos
