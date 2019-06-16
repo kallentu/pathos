@@ -50,15 +50,19 @@ void StatusView::draw(const TalkRequest &req) {
   // Y starts 2/3 of the screen down. Most of the room left for Status.
   size_t y = height * 1 / 3;
   size_t dialoguePos = 0;
-  size_t dialogueLength = width - 1;
+  size_t dialogueLength = STATUS_WIDTH - 1;
 
   // Leave two lines for bottom lines changes (ie. quests ...)
   while (y < height - 2 && dialoguePos < dialogue.length()) {
     // Take string that fits, print.
     std::string dialogueSubstr = dialogue.substr(dialoguePos, dialogueLength);
+
+    // TODO: clear the talk block before starting, possibly with
+    // ClearTalkRequest
+    NcursesView::getInstance()->clearLine(y, x);
     NcursesView::getInstance()->movePrint(y, x, dialogueSubstr);
-    dialoguePos += dialogueLength + 1;
-    dialogue = dialogue.substr(dialoguePos);
+
+    dialoguePos += dialogueLength;
     ++y;
   }
 
@@ -66,10 +70,8 @@ void StatusView::draw(const TalkRequest &req) {
 }
 
 void StatusView::draw(const QuestRequest &req) {
+  // Quick status change to quest options.
   std::string questOptions;
-
-  // TODO: put quest dialogue into a talkrequest and feed it through.
-
   switch (req.status) {
   case Quest::Status::NotStarted:
     questOptions = "Accept (a) Decline (d)";
@@ -83,6 +85,11 @@ void StatusView::draw(const QuestRequest &req) {
 
   NcursesView::getInstance()->movePrint(QUICK_STATUS_Y, QUICK_STATUS_X,
                                         questOptions);
+
+  // Change dialogue for quest status specifically.
+  TalkRequest dialogueReq =
+      TalkRequest(req.getQuest()->getDialogue(req.status));
+  draw(dialogueReq);
 }
 
 void StatusView::draw(const ClearQuickStatusRequest &req) {

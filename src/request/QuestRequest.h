@@ -18,7 +18,7 @@ public:
       : status{status}, quest{quest} {}
   void beDrawnBy(View &view) const override;
 
-  Quest *getQuest();
+  Quest *getQuest() const;
 };
 
 } // namespace Pathos

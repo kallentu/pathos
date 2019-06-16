@@ -9,10 +9,8 @@ using namespace Pathos;
 KillWolvesQuest::KillWolvesQuest(QuestGiver *questGiver) : Quest(questGiver) {
   Quest::addDialogue(
       Quest::Status::NotStarted,
-      "There's been a slight issue with the wolves around Athens.");
-  Quest::addDialogue(Quest::Status::NotStarted,
-                     "Try your hand at fighting 20 wolves. It would help "
-                     "cull the population some.");
+      "There's been a slight issue with the wolves around Athens. Try your "
+      "hand at fighting 20 wolves. It would help cull the population some.");
   Quest::addDialogue(Quest::Status::InProgress,
                      "Remember, we need 20 killed in total.");
   Quest::addDialogue(Quest::Status::Completed,

@@ -5,7 +5,6 @@
 #include "mob/friendly/quest/QuestRecipient.h"
 #include <map>
 #include <string>
-#include <vector>
 
 namespace Pathos {
 
@@ -31,11 +30,9 @@ public:
   QuestRecipient *getQuestRecipient() const { return questRecipient; }
 
   void addDialogue(Status status, std::string newDiag) {
-    dialogue[status].push_back(newDiag);
+    dialogue[status] = newDiag;
   }
-  std::vector<std::string> getDialogue(Status status) {
-    return dialogue[status];
-  }
+  std::string getDialogue(Status status) { return dialogue[status]; }
 
   // Updates Status if conditions changed the status of the quest.
   Quest::Status updateQuestStatus(PathosInstance *inst) {
@@ -58,7 +55,7 @@ private:
   // Dialogue based on the status of the quest and spoken by the QuestGiver.
   // Loophole is to make players send an additional letter to QuestRecipients if
   // needed.
-  std::map<Status, std::vector<std::string>> dialogue;
+  std::map<Status, std::string> dialogue;
 
   // Runs condition checker of quest (eg. update in certain mob kill count since
   // last)
