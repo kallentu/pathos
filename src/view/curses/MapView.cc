@@ -45,6 +45,11 @@ void MapView::draw(const ClearQuickStatusRequest &req) {
   drawMap();
 }
 
+void MapView::draw(const ClearTalkRequest &req) {
+  (void)req;
+  drawMap();
+}
+
 void MapView::drawMap() {
   // Initial starting positions, work off these to calculate which MapObject.
   size_t mapYStart = getMapYStart();

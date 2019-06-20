@@ -13,6 +13,7 @@ class TalkRequest;
 class NotificationRequest;
 class QuestRequest;
 class ClearQuickStatusRequest;
+class ClearTalkRequest;
 
 class StatusView : public NcursesViewDecorator {
 
@@ -59,6 +60,9 @@ public:
 
   // Clears the quick status bar.
   void draw(const ClearQuickStatusRequest &req) override;
+  
+  // Clears the talk dialogue.
+  void draw(const ClearTalkRequest &req) override;
 };
 
 } // namespace Pathos

@@ -1,6 +1,7 @@
 #include "view/curses/StatusView.h"
 #include "quest/Quest.h"
 #include "request/ClearQuickStatusRequest.h"
+#include "request/ClearTalkRequest.h"
 #include "request/NotificationRequest.h"
 #include "request/QuestRequest.h"
 #include "request/StatusRequest.h"
@@ -57,8 +58,6 @@ void StatusView::draw(const TalkRequest &req) {
     // Take string that fits, print.
     std::string dialogueSubstr = dialogue.substr(dialoguePos, dialogueLength);
 
-    // TODO: clear the talk block before starting, possibly with
-    // ClearTalkRequest
     NcursesView::getInstance()->clearLine(y, x);
     NcursesView::getInstance()->movePrint(y, x, dialogueSubstr);
 
@@ -95,4 +94,16 @@ void StatusView::draw(const QuestRequest &req) {
 void StatusView::draw(const ClearQuickStatusRequest &req) {
   (void)req; // Don't actually use it
   NcursesView::getInstance()->clearLine(QUICK_STATUS_Y, QUICK_STATUS_X);
+}
+
+void StatusView::draw(const ClearTalkRequest &req) {
+  (void)req; // Don't actually use it
+  
+  size_t x = width - STATUS_WIDTH;
+  size_t y = height * 1 / 3;
+
+  while (y < height - 2) {
+    NcursesView::getInstance()->clearLine(y, x);
+    ++y;
+  }
 }

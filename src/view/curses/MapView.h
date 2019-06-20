@@ -15,6 +15,7 @@ class TalkRequest;
 class NcursesInstance;
 class QuestRequest;
 class ClearQuickStatusRequest;
+class ClearTalkRequest;
 
 class MapView : public NcursesView {
   // TODO: Make the MapManager own the map instead of the MapView
@@ -52,6 +53,9 @@ public:
 
   // Does not print anything for ClearQuickStatusRequest.
   void draw(const ClearQuickStatusRequest &req) override;
+
+  // Does not print anything for ClearTalkRequest.
+  void draw(const ClearTalkRequest &req) override;
 
 private:
   void drawMap();
