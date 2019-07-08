@@ -22,7 +22,9 @@ public:
   };
 
   enum Ctrl { C = 0x03 };
-  
+
+  enum Special { Space = 0x20 };
+
   Char(int val) : val{val} {}
 
   int numValue() const { return val; }

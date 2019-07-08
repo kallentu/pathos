@@ -29,10 +29,13 @@ std::unique_ptr<Event> MovementModeHandler::handle(const Char &c) {
     break;
   case Char::Ctrl::C:
     return std::make_unique<QuitEvent>();
+  case Char::Special::Space:
+    // Add event to check for interactables (NPC, hostiles) when asked by
+    // player.
+    return std::make_unique<CheckVicinityEvent>();
   }
 
-  // Add event to check for interactables (NPC, hostiles) after movement.
-  events->addEvent(std::make_unique<CheckVicinityEvent>());
+  // TODO: multiple events saved for hostile engagement
 
   return events;
 }
