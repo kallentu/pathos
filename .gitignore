@@ -1,4 +1,5 @@
 pathos
+run-tests
 
 # Prerequisites
 *.d

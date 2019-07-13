@@ -1,11 +1,11 @@
 #ifndef PATHOS_INPUT
 #define PATHOS_INPUT
 
+#include <event/Event.h>
 #include <memory>
 
 namespace Pathos {
 
-class Event;
 class ModeHandler;
 
 class Input {
