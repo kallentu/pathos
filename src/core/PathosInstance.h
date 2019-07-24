@@ -57,6 +57,9 @@ public:
   Player *getPlayer() const;
   NcursesView *getView() const;
 
+  NcursesController *getController() const;
+  void setController(std::unique_ptr<NcursesController> contr);
+
   Position *getPosition() const;
   void setPosition(std::unique_ptr<Position> newPos);
   void setPosition(size_t y, size_t x);

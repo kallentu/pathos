@@ -40,6 +40,14 @@ Player *PathosInstance::getPlayer() const { return player.get(); }
 
 NcursesView *PathosInstance::getView() const { return view.get(); }
 
+NcursesController *PathosInstance::getController() const {
+  return controller.get();
+}
+
+void PathosInstance::setController(std::unique_ptr<NcursesController> contr) {
+  controller = std::move(contr);
+}
+
 Position *PathosInstance::getPosition() const { return playerPos.get(); }
 
 void PathosInstance::setPosition(std::unique_ptr<Position> newPos) {
@@ -68,19 +76,20 @@ Stats *PathosInstance::getStats() { return stats.get(); }
 
 QuestManager *PathosInstance::getQuestManager() { return questManager.get(); }
 
-const Mode *PathosInstance::getActiveMode() { return modes.top().get(); }
+const Mode *PathosInstance::getActiveMode() {
+  return modes.empty() ? nullptr : modes.top().get();
+}
 
 void PathosInstance::process(Event *e) { e->begin(this); }
 
 void PathosInstance::run() {
   std::unique_ptr<Event> event;
 
-  while (!leaveModeRequests && continueGame) {
+  while (!leaveModeRequests && continueGame && !modes.empty()) {
     MapRequest mreq = MapRequest(map.get(), getPosition());
     Observable<ViewRequest>::notify(&mreq);
 
-    Mode *mode = modes.top().get();
-    event = mode->getHandler()->handle(controller->getInput());
+    event = modes.top().get()->getHandler()->handle(controller->getInput());
 
     if (event)
       process(event.get());
