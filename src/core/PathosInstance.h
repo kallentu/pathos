@@ -73,12 +73,20 @@ public:
   QuestManager *getQuestManager();
   const Mode *getActiveMode();
 
+  // Available for testing purposes
+  bool willContinueGame() const;
+  int getLeaveModeRequests() const;
+
   void process(Event *e) override;
   void runMode(std::unique_ptr<Mode> mode);
   void leaveMode();
 
   // Stop game entirely and immediately.
   void stop();
+
+protected:
+  // Available for testing purposes
+  virtual void addObserver(NcursesView *view);
 
 private:
   void run();

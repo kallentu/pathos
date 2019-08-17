@@ -31,7 +31,7 @@ PathosInstance::PathosInstance()
       stats{std::make_unique<Stats>()},
       questManager{std::make_unique<QuestManager>()}, continueGame{true},
       leaveModeRequests{0} {
-  Observable<ViewRequest>::addObserver(view.get());
+  addObserver(view.get());
 }
 
 PathosInstance::~PathosInstance() {}
@@ -118,3 +118,11 @@ void PathosInstance::runMode(std::unique_ptr<Mode> mode) {
 void PathosInstance::stop() { continueGame = false; }
 
 void PathosInstance::leaveMode() { ++leaveModeRequests; }
+
+void PathosInstance::addObserver(NcursesView *view) {
+  Observable<ViewRequest>::addObserver(view);
+}
+
+bool PathosInstance::willContinueGame() const { return continueGame; }
+
+int PathosInstance::getLeaveModeRequests() const { return leaveModeRequests; }
