@@ -15,7 +15,8 @@ public:
   virtual ~Observable() {}
 
   void addObserver(Observer<Event> *o) { observers.insert(o); }
-  void removeObserver(Observer<Event> *o) { observers.erase(0); }
+  void removeObserver(Observer<Event> *o) { observers.erase(o); }
+  void clearObservers() { observers.clear(); }
   void notify(Event *e) {
     for (auto *o : observers)
       o->process(e);

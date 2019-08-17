@@ -52,7 +52,7 @@ class PathosInstance : public Observable<ViewRequest>, Observer<Event> {
 
 public:
   PathosInstance();
-  ~PathosInstance();
+  virtual ~PathosInstance();
 
   Player *getPlayer() const;
   NcursesView *getView() const;
@@ -77,19 +77,15 @@ public:
   bool willContinueGame() const;
   int getLeaveModeRequests() const;
 
-  void process(Event *e) override;
   void runMode(std::unique_ptr<Mode> mode);
+  void process(Event *e) override;
   void leaveMode();
 
   // Stop game entirely and immediately.
   void stop();
 
-protected:
-  // Available for testing purposes
-  virtual void addObserver(NcursesView *view);
-
 private:
-  void run();
+  virtual void run();
 };
 
 } // namespace Pathos

@@ -1,8 +1,10 @@
 #ifndef PATHOS_MOCK_MODE_HANDLER
 #define PATHOS_MOCK_MODE_HANDLER
 
+#include "controller/Char.h"
 #include "event/QuitEvent.h"
 #include "mode/handler/ModeHandler.h"
+#include <gmock/gmock.h>
 
 using ::testing::_;
 using ::testing::ByMove;

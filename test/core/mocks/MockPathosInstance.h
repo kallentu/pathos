@@ -5,7 +5,6 @@
 #include "view/curses/NcursesView.h"
 #include <gmock/gmock.h>
 
-using ::testing::_;
 using ::testing::Return;
 
 namespace Pathos {
@@ -13,13 +12,16 @@ namespace Pathos {
 class MockPathosInstance : public PathosInstance {
 public:
   MockPathosInstance() : PathosInstance() {
-    ON_CALL(*this, addObserver(_)).WillByDefault(Return());
+    // Don't want to use any views while testing
+    clearObservers();
+
+    // Also, don't want to actually run the game with a mock
+    ON_CALL(*this, run()).WillByDefault(Return());
   }
 
-  // Make sure we don't add anything to notify
-  MOCK_METHOD1(addObserver, void(NcursesView *));
+  MOCK_METHOD0(run, void());
 };
 
 } // namespace Pathos
 
-#endif // PATHOS_MOCK_MODE_HANDLER
+#endif // PATHOS_MOCK_PATHOS_INSTANCE
