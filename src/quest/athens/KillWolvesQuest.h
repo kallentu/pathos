@@ -16,6 +16,8 @@ class KillWolvesQuest : public Quest {
 
 public:
   KillWolvesQuest(QuestGiver *questGiver);
+
+  int getInitialKillCount() const { return initialTotalKills; }
   Quest::Status checkConditions(PathosInstance *inst) override;
 };
 
