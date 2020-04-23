@@ -1,6 +1,6 @@
 #include "view/curses/NcursesInstance.h"
 
-#include <ncurses.h>
+#include <curses.h>
 #include <string>
 
 using namespace Pathos;

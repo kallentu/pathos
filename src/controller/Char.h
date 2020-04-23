@@ -4,7 +4,7 @@
 #include "controller/Input.h"
 #include "mode/handler/ModeHandler.h"
 #include <memory>
-#include <ncurses.h>
+#include <curses.h>
 
 namespace Pathos {
 

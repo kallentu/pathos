@@ -6,7 +6,7 @@
 #include "view/curses/NcursesView.h"
 #include <algorithm>
 #include <memory>
-#include <ncurses.h>
+#include <curses.h>
 
 using namespace Pathos;
 

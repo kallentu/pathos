@@ -1,6 +1,13 @@
 pathos
 run-tests
 
+# IDE
+.idea
+
+# CMake Generated
+cmake-build-debug
+cmake-build-debug-cygwin
+
 # Prerequisites
 *.d
 
