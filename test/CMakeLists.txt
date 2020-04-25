@@ -1,8 +1,7 @@
 set(BINARY ${CMAKE_PROJECT_NAME})
 
-file(GLOB_RECURSE TEST_SOURCES LIST_DIRECTORIES false *.h *.cpp)
-set(SOURCES ${TEST_SOURCES})
-set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -std=c++11")
+include_directories(${CMAKE_SOURCE_DIR}/src)
+include_directories(${CMAKE_SOURCE_DIR}/test)
 
 # --------------------- GTest ---------------------
 
@@ -40,9 +39,29 @@ endif()
 
 # --------------------- GTest ---------------------
 
-add_executable(${BINARY}_tst ${TEST_SOURCES})
+add_executable(${BINARY}_tst controller/CharTest.cc
+        core/PathosInstanceTest.cc
+        event/CheckVicinityEventTest.cc
+        event/LeaveModeEventTest.cc
+        event/MultipleEventTest.cc
+        event/PlayerMoveDownEventTest.cc
+        event/PlayerMoveLeftEventTest.cc
+        event/PlayerMoveRightEventTest.cc
+        event/PlayerMoveUpEventTest.cc
+        event/QuitEventTest.cc
+        item/ItemTest.cc
+        map/MapObjectTest.cc
+        map/MapTest.cc
+        mode/handler/MovementModeHandlerTest.cc
+        mode/handler/QuestModeHandlerTest.cc
+        quest/athens/KillWolvesQuestTest.cc)
 
 add_test(NAME ${BINARY}_tst COMMAND ${BINARY})
 
-target_link_libraries(${BINARY}_tst PUBLIC gtest gtest_main)
+# Linking PDCurses
+target_link_libraries(${BINARY}_tst
+        PRIVATE
+        Curses)
+
+target_link_libraries(${BINARY}_tst PUBLIC gtest gtest_main Sources)
 target_link_libraries(${BINARY}_tst PUBLIC gmock gmock_main)

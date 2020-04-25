@@ -4,7 +4,7 @@
 #include "event/MultipleEvent.h"
 #include "event/QuitEvent.h"
 #include <gtest/gtest.h>
-#include <ncurses.h>
+#include <curses.h>
 
 using namespace Pathos;
 

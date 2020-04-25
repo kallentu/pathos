@@ -10,7 +10,7 @@ const size_t kHeight = 5;
 const size_t kWidth = 5;
 
 TEST(MapTest, ConstructorGetHeight) {
-  Map map = Map(kHeight, kWidth);
+  Map map{kHeight, kWidth};
 
   // Height is inside the walls
   // The height we get is the outter wall, same with 0
@@ -18,7 +18,7 @@ TEST(MapTest, ConstructorGetHeight) {
 }
 
 TEST(MapTest, ConstructorGetWidth) {
-  Map map = Map(kHeight, kWidth);
+  Map map{kHeight, kWidth};
 
   // Width is inside the walls
   // The width we get is the outter wall, same with 0
@@ -26,14 +26,14 @@ TEST(MapTest, ConstructorGetWidth) {
 }
 
 TEST(MapTest, GetObjectWall) {
-  Map map = Map(kHeight, kWidth);
+  Map map{kHeight, kWidth};
 
   // Found Wall object
   EXPECT_NE(dynamic_cast<Wall *>(map.get(0, 0)), nullptr);
 }
 
 TEST(MapTest, AddObjectToPositionReturnSameObject) {
-  Map map = Map(kHeight, kWidth);
+  Map map{kHeight, kWidth};
   std::unique_ptr<MockMapObject> mockMapObject =
       std::make_unique<MockMapObject>(MapObject::Char::Lantern);
   MockMapObject *mockMapObjectPtr = mockMapObject.get();
@@ -44,7 +44,7 @@ TEST(MapTest, AddObjectToPositionReturnSameObject) {
 }
 
 TEST(MapTest, AddObjectToPositionRemoveFromPositionSameObject) {
-  Map map = Map(kHeight, kWidth);
+  Map map{kHeight, kWidth};
 
   map.addObjectToPosition(
       std::make_unique<MockMapObject>(MapObject::Char::Lantern), 2, 2);

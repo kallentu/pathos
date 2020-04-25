@@ -4,7 +4,7 @@
 using namespace Pathos;
 
 TEST(MapObjectTest, GetCharTypeReturnsSameChar) {
-  MockMapObject mockMapObject = MockMapObject(MapObject::Char::Lantern);
+  MockMapObject mockMapObject(MapObject::Char::Lantern);
 
   EXPECT_EQ(mockMapObject.getCharType(), MapObject::Char::Lantern);
 }
