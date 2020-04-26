@@ -8,7 +8,7 @@ include_directories(${CMAKE_SOURCE_DIR}/src)
 # GTest Unit Tests
 add_subdirectory(test)
 
-add_executable(pathos
+add_library(Sources
         src/abstract/Observable.h
         src/abstract/Observer.h
         src/controller/Char.h
@@ -236,11 +236,14 @@ add_executable(pathos
         src/view/curses/StatusView.cc
         src/view/curses/StatusView.h
         src/view/View.cc
-        src/view/View.h
-        src/main.cc)
+        src/view/View.h)
+
+add_executable(pathos src/main.cc)
 
 # Linking PDCurses
 add_subdirectory(pdcurses)
-target_link_libraries(${CMAKE_PROJECT_NAME}
+target_link_libraries(Sources
         PRIVATE
         Curses)
+
+target_link_libraries(pathos Sources)
