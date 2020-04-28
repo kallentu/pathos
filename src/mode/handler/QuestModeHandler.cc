@@ -1,3 +1,5 @@
+#include <event/MultipleEvent.h>
+#include <event/UpdateQuestEvent.h>
 #include "mode/handler/QuestModeHandler.h"
 #include "controller/Char.h"
 #include "event/CheckVicinityEvent.h"
@@ -32,8 +34,10 @@ std::unique_ptr<Event> QuestModeHandler::parseEvent(int index) {
   case Quest::Status::NotStarted:
     if (c == 'a') {
       // Accept quest
-      quest->setStatus(Quest::Status::InProgress);
-      return std::make_unique<CheckVicinityEvent>();
+      std::unique_ptr<MultipleEvent> multipleEvent = std::make_unique<MultipleEvent>();
+      multipleEvent->addEvent(std::make_unique<UpdateQuestEvent>(quest));
+      multipleEvent->addEvent(std::make_unique<CheckVicinityEvent>());
+      return multipleEvent;
     } else if (c == 'd') {
       // Don't actually decline, but just quit the dialogue since there's
       // nothing more to say.

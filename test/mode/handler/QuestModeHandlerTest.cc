@@ -10,8 +10,9 @@ using namespace Pathos;
 TEST(QuestModeHandlerTest, NotStartedAcceptQuestCheckVicinityEvent) {
   MockQuest quest = MockQuest(nullptr);
   QuestModeHandler handler = QuestModeHandler(&quest);
+  PathosInstance inst;
 
-  quest.setStatus(Quest::Status::NotStarted);
+  quest.updateQuestStatus(&inst);
   std::unique_ptr<Event> event = handler.handle(Char(97));
 
   EXPECT_NE(dynamic_cast<CheckVicinityEvent *>(event.get()), nullptr);
@@ -21,8 +22,9 @@ TEST(QuestModeHandlerTest, NotStartedAcceptQuestCheckVicinityEvent) {
 TEST(QuestModeHandlerTest, NotStartedDeclineQuestLeaveModeEvent) {
   MockQuest quest = MockQuest(nullptr);
   QuestModeHandler handler = QuestModeHandler(&quest);
+  PathosInstance inst;
 
-  quest.setStatus(Quest::Status::NotStarted);
+  quest.updateQuestStatus(&inst);
   std::unique_ptr<Event> event = handler.handle(Char(100));
 
   EXPECT_NE(dynamic_cast<LeaveModeEvent *>(event.get()), nullptr);
@@ -32,8 +34,10 @@ TEST(QuestModeHandlerTest, NotStartedDeclineQuestLeaveModeEvent) {
 TEST(QuestModeHandlerTest, InProgressAcceptQuestLeaveModeEvent) {
   MockQuest quest = MockQuest(nullptr);
   QuestModeHandler handler = QuestModeHandler(&quest);
+  PathosInstance inst;
 
-  quest.setStatus(Quest::Status::InProgress);
+  quest.setCondition(Pathos::Quest::InProgress);
+  quest.updateQuestStatus(&inst);
   std::unique_ptr<Event> event = handler.handle(Char(97));
 
   EXPECT_NE(dynamic_cast<LeaveModeEvent *>(event.get()), nullptr);
@@ -43,8 +47,10 @@ TEST(QuestModeHandlerTest, InProgressAcceptQuestLeaveModeEvent) {
 TEST(QuestModeHandlerTest, CompletedAnyKeyLeaveModeEvent) {
   MockQuest quest = MockQuest(nullptr);
   QuestModeHandler handler = QuestModeHandler(&quest);
+  PathosInstance inst;
 
-  quest.setStatus(Quest::Status::Completed);
+  quest.setCondition(Pathos::Quest::Completed);
+  quest.updateQuestStatus(&inst);
   std::unique_ptr<Event> event = handler.handle(Char(97));
 
   EXPECT_NE(dynamic_cast<LeaveModeEvent *>(event.get()), nullptr);
@@ -54,11 +60,14 @@ TEST(QuestModeHandlerTest, CompletedAnyKeyLeaveModeEvent) {
 TEST(QuestModeHandlerTest, NotCompletedQuestBadInputNullPtr) {
   MockQuest quest = MockQuest(nullptr);
   QuestModeHandler handler = QuestModeHandler(&quest);
+  PathosInstance inst;
 
-  quest.setStatus(Quest::Status::NotStarted);
+  quest.setCondition(Pathos::Quest::NotStarted);
+  quest.updateQuestStatus(&inst);
   std::unique_ptr<Event> notStartedEvent = handler.handle(Char(98));
 
-  quest.setStatus(Quest::Status::InProgress);
+  quest.setCondition(Pathos::Quest::InProgress);
+  quest.updateQuestStatus(&inst);
   std::unique_ptr<Event> inProgressEvent = handler.handle(Char(98));
 
   EXPECT_EQ(notStartedEvent, nullptr);

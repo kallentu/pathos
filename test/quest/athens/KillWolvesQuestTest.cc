@@ -66,8 +66,12 @@ TEST(KillWolvesQuestTest, CheckConditionsCompletedNoStatusChange) {
   PathosInstance inst;
   KillWolvesQuest quest = KillWolvesQuest(&questGiver);
 
-  quest.setStatus(Quest::Status::Completed);
   inst.getStats()->wolvesKilled = 70;
+  Quest::Status status = quest.checkConditions(&inst);
+
+  EXPECT_EQ(status, Quest::Status::Completed);
+
+  inst.getStats()->wolvesKilled = 71;
   Quest::Status newStatus = quest.checkConditions(&inst);
 
   EXPECT_EQ(newStatus, Quest::Status::Completed);

@@ -34,11 +34,10 @@ QuestManager::getQuestRequest(Ariadne &ariadne, PathosInstance *inst) {
 std::unique_ptr<QuestRequest>
 QuestManager::getRequestFromStatus(Quest::Status status, Quest *quest,
                                    PathosInstance *inst) {
-  // Make sure we are updated with correct status.
-  Quest::Status currentStatus = status;
+  // Make sure we are updated with correct status before we print it to screen later.
   if (status == Quest::Status::InProgress) {
-    currentStatus = quest->updateQuestStatus(inst);
+    status = quest->updateQuestStatus(inst);
   }
 
-  return std::make_unique<QuestRequest>(currentStatus, quest);
+  return std::make_unique<QuestRequest>(status, quest);
 }

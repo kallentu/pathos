@@ -11,6 +11,9 @@ namespace Pathos {
 // TODO: Have function to check progress of the quest.
 class Quest {
 public:
+  // NotStarted   In initialization state, the player has no accepted the quest.
+  // InProgress   Player has accepted the quest, but quest conditions not satisfied.
+  // Completed    Quest conditions met, done and rewards given to player.
   enum Status { NotStarted, InProgress, Completed };
 
   // QuestGivers are always mandatory for the player to return to, while
@@ -20,7 +23,6 @@ public:
       : status{NotStarted}, questGiver{questGiver}, questRecipient{nullptr} {}
   virtual ~Quest() {}
 
-  void setStatus(Status s) { status = s; }
   Status getStatus() const { return status; }
 
   void setQuestGiver(QuestGiver *qg) { questGiver = qg; }
@@ -42,6 +44,10 @@ public:
     }
     return newStatus;
   }
+
+protected:
+  // See [updateQuestStatus] for public usage.
+  void setStatus(Status s) { status = s; }
 
 private:
   Status status;
