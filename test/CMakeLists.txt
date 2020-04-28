@@ -53,6 +53,7 @@ add_executable(${BINARY}_tst controller/CharTest.cc
         map/MapObjectTest.cc
         map/MapTest.cc
         mob/friendly/quest/GaiaTest.cc
+        mob/player/PlayerTest.cc
         mode/handler/MovementModeHandlerTest.cc
         mode/handler/QuestModeHandlerTest.cc
         quest/athens/KillWolvesQuestTest.cc)

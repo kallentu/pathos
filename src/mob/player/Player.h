@@ -33,7 +33,8 @@ class Player final : MapObject, public Mob, public Trader {
 
 public:
   Player()
-      : MapObject(MapObject::Char::At), Mob("Periphas", 5, 5, 5), Trader() {}
+      : MapObject(MapObject::Char::At), Mob("Periphas", 100, 5, 5), Trader(),
+      level{0}, experience{0} {}
   ~Player() {}
 
   size_t getLevel() const { return level; }
