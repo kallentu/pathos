@@ -22,7 +22,7 @@ StatusView::StatusView(std::unique_ptr<NcursesView> view)
 
   // Prints on the last-ish line of the screen.
   QUICK_STATUS_X = width - STATUS_WIDTH;
-  QUICK_STATUS_Y = height - 2;
+  QUICK_STATUS_Y = height - 3;
 }
 
 void StatusView::draw(const MapRequest &req) {
@@ -54,7 +54,7 @@ void StatusView::draw(const TalkRequest &req) {
   size_t dialogueLength = STATUS_WIDTH - 1;
 
   // Leave two lines for bottom lines changes (ie. quests ...)
-  while (y < height - 2 && dialoguePos < dialogue.length()) {
+  while (y < QUICK_STATUS_Y && dialoguePos < dialogue.length()) {
     // Take string that fits, print.
     std::string dialogueSubstr = dialogue.substr(dialoguePos, dialogueLength);
 
@@ -102,7 +102,7 @@ void StatusView::draw(const ClearTalkRequest &req) {
   size_t x = width - STATUS_WIDTH;
   size_t y = height * 1 / 3;
 
-  while (y < height - 2) {
+  while (y < QUICK_STATUS_Y) {
     NcursesView::getInstance()->clearLine(y, x);
     ++y;
   }

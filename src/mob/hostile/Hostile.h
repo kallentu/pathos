@@ -21,7 +21,7 @@ class Event;
 
 // Hostile mobs will attack the Player and other Friendly NPCs.
 // Will attack them within range of 1 square.
-class Hostile : MapObject, public Mob {
+class Hostile : public MapObject, public Mob {
 public:
   Hostile(std::string name, size_t health, size_t magicDamage,
           size_t physicalDamage)
