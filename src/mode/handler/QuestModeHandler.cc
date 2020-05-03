@@ -3,13 +3,9 @@
 #include "mode/handler/QuestModeHandler.h"
 #include "controller/Char.h"
 #include "event/CheckVicinityEvent.h"
-#include "event/Event.h"
 #include "event/LeaveModeEvent.h"
-#include "quest/Quest.h"
 
 using namespace Pathos;
-
-enum class ParseError { NoEvent };
 
 std::unique_ptr<Event> QuestModeHandler::handle(const Char &c) {
   // Add character to currently parsed string

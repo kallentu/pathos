@@ -1,15 +1,15 @@
 #include "event/CheckVicinityEvent.h"
 #include "core/PathosInstance.h"
-#include "core/Position.h"
-#include "event/Event.h"
 #include "map/Map.h"
 #include "mob/friendly/quest/QuestGiver.h"
+#include "mob/hostile/Hostile.h"
 #include "mode/QuestMode.h"
 #include "quest/QuestManager.h"
 #include "request/ClearQuickStatusRequest.h"
 #include "request/ClearTalkRequest.h"
 #include "request/QuestRequest.h"
 #include <memory>
+#include <mode/AttackMode.h>
 
 using namespace Pathos;
 
@@ -30,13 +30,25 @@ void CheckVicinityEvent::begin(PathosInstance *inst) {
       std::make_unique<ClearQuickStatusRequest>();
   inst->notify(clearStatusReq.get());
 
-  QuestGiver *questGiver =
+  // Check for hostile mobs before any other mob.
+  auto *hostile = dynamic_cast<Hostile *>(map->get(actionPos->y, actionPos->x));
+  if (hostile != nullptr) {
+    // TODO: View update.
+
+    // Input should be in attack mode.
+    inst->runMode(std::make_unique<AttackMode>(inst, hostile));
+  }
+
+  // Check for quest givers.
+  auto *questGiver =
       dynamic_cast<QuestGiver *>(map->get(actionPos->y, actionPos->x));
   if (questGiver != nullptr) {
+    // View update.
     std::unique_ptr<QuestRequest> questReq =
         questGiver->haveQuestRequestRetrievedBy(inst->getQuestManager(), inst);
     inst->notify(questReq.get());
 
+    // Input should be in quest mode.
     // If not already in quest mode, go into it.
     if (!dynamic_cast<const QuestMode *>(inst->getActiveMode())) {
       inst->runMode(std::make_unique<QuestMode>(inst, questReq->getQuest()));

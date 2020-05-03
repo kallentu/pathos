@@ -5,20 +5,28 @@
 
 namespace Pathos {
 
-class Input;
-class Event;
-class Char;
+  class Input;
 
-class ModeHandler {
-public:
-  ModeHandler() {}
-  virtual ~ModeHandler() {}
+  class Event;
 
-  std::unique_ptr<Event> handle(std::unique_ptr<Input> input);
+  class Char;
 
-  // Handles Char input and returns appropriate events to process.
-  virtual std::unique_ptr<Event> handle(const Char &c) = 0;
-};
+  class ModeHandler {
+  public:
+    ModeHandler() = default;
+
+    virtual ~ModeHandler() = default;
+
+    std::unique_ptr<Event> handle(std::unique_ptr<Input> input);
+
+    // Handles Char input and returns appropriate events to process.
+    virtual std::unique_ptr<Event> handle(const Char &c) = 0;
+
+  protected:
+    enum class ParseError {
+      NoEvent
+    };
+  };
 
 } // namespace Pathos
 

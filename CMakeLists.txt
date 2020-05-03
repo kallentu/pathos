@@ -193,10 +193,14 @@ add_library(Sources
         src/mob/Mob.h
         src/mode/handler/ModeHandler.cc
         src/mode/handler/ModeHandler.h
+        src/mode/handler/AttackModeHandler.cc
+        src/mode/handler/AttackModeHandler.h
         src/mode/handler/MovementModeHandler.cc
         src/mode/handler/MovementModeHandler.h
         src/mode/handler/QuestModeHandler.cc
         src/mode/handler/QuestModeHandler.h
+        src/mode/AttackMode.cc
+        src/mode/AttackMode.h
         src/mode/Mode.h
         src/mode/MovementMode.cc
         src/mode/MovementMode.h

@@ -8,27 +8,29 @@
 
 namespace Pathos {
 
-class Gaia;
-class Ariadne;
-class QuestRequest;
-class PathosInstance;
+  class Gaia;
 
-class QuestManager final {
-  // Store quest name and quest object
-  std::map<std::string, std::unique_ptr<Quest>> quests;
+  class Ariadne;
 
-public:
-  std::unique_ptr<QuestRequest> getQuestRequest(Gaia &gaia,
-                                                PathosInstance *inst);
-  std::unique_ptr<QuestRequest> getQuestRequest(Ariadne &ariadne,
-                                                PathosInstance *inst);
-  std::unique_ptr<QuestRequest> getRequestFromStatus(Quest::Status status,
-                                                     Quest *quest,
-                                                     PathosInstance *inst);
+  class QuestRequest;
 
-  // void startQuest();
-  // void completeQuest();
-};
+  class PathosInstance;
+
+  class QuestManager final {
+    // Store quest name and quest object
+    std::map<std::string, std::unique_ptr<Quest>> quests;
+
+  public:
+    std::unique_ptr<QuestRequest> getQuestRequest(Gaia &gaia,
+                                                  PathosInstance *inst);
+
+    std::unique_ptr<QuestRequest> getQuestRequest(Ariadne &ariadne,
+                                                  PathosInstance *inst);
+
+    std::unique_ptr<QuestRequest> getRequestFromStatus(Quest::Status status,
+                                                       Quest *quest,
+                                                       PathosInstance *inst);
+  };
 
 } // namespace Pathos
 

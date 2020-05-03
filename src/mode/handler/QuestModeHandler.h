@@ -8,22 +8,23 @@
 
 namespace Pathos {
 
-class Event;
-class Char;
+  class Event;
+
+  class Char;
 
 // Parses keys for updating and interacting with QuestGivers.
-class QuestModeHandler : public ModeHandler {
-  Quest *quest;
-  std::string input;
+  class QuestModeHandler : public ModeHandler {
+    Quest *quest;
+    std::string input;
 
-public:
-  QuestModeHandler(Quest *quest) : quest{quest} {}
+  public:
+    explicit QuestModeHandler(Quest *quest) : quest{quest} {}
 
-  std::unique_ptr<Event> handle(const Char &c) override;
+    std::unique_ptr<Event> handle(const Char &c) override;
 
-private:
-  std::unique_ptr<Event> parseEvent(int index);
-};
+  private:
+    std::unique_ptr<Event> parseEvent(int index);
+  };
 
 } // namespace Pathos
 
