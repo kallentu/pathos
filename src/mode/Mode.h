@@ -9,7 +9,7 @@ class ModeHandler;
 
 // A mode that the game is currently in.
 // Differentiates between different stages of the game.
-// Eg. MovementMode, AttackMode, MerchantMode
+// Eg. MovementMode, CombatMode, MerchantMode
 class Mode {
 public:
   Mode(PathosInstance *inst) : inst{inst} {}

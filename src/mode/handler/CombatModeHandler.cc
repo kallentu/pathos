@@ -1,10 +1,10 @@
 #include <event/LeaveModeEvent.h>
-#include "mode/handler/AttackModeHandler.h"
+#include "mode/handler/CombatModeHandler.h"
 #include "controller/Char.h"
 
 using namespace Pathos;
 
-std::unique_ptr<Event> Pathos::AttackModeHandler::handle(const Pathos::Char &c) {
+std::unique_ptr<Event> Pathos::CombatModeHandler::handle(const Pathos::Char &c) {
   // Add character to currently parsed string
   // Would be at different states.
   input.push_back(c.charValue());
@@ -20,7 +20,7 @@ std::unique_ptr<Event> Pathos::AttackModeHandler::handle(const Pathos::Char &c) 
   }
 }
 
-std::unique_ptr<Event> Pathos::AttackModeHandler::parseEvent(int index) {
+std::unique_ptr<Event> Pathos::CombatModeHandler::parseEvent(int index) {
   // Parses at particular index in case we are not always grabbing the most immediate value.
   // ie. previous choices of input matter.
   char c = input[index];

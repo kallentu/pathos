@@ -9,7 +9,7 @@
 #include "request/ClearTalkRequest.h"
 #include "request/QuestRequest.h"
 #include <memory>
-#include <mode/AttackMode.h>
+#include <mode/CombatMode.h>
 
 using namespace Pathos;
 
@@ -36,7 +36,7 @@ void CheckVicinityEvent::begin(PathosInstance *inst) {
     // TODO: View update.
 
     // Input should be in attack mode.
-    inst->runMode(std::make_unique<AttackMode>(inst, hostile));
+    inst->runMode(std::make_unique<CombatMode>(inst, hostile));
   }
 
   // Check for quest givers.

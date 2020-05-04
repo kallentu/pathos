@@ -1,5 +1,5 @@
-#ifndef PATHOS_ATTACK_MODE_HANDLER
-#define PATHOS_ATTACK_MODE_HANDLER
+#ifndef PATHOS_COMBAT_MODE_HANDLER
+#define PATHOS_COMBAT_MODE_HANDLER
 
 #include <mob/hostile/Hostile.h>
 #include "mode/handler/ModeHandler.h"
@@ -12,11 +12,11 @@ namespace Pathos {
 
   class Char;
 
-  class AttackModeHandler : public ModeHandler {
+  class CombatModeHandler : public ModeHandler {
     Hostile *hostile;
     std::string input;
   public:
-    explicit AttackModeHandler(Hostile *hostile) : hostile{hostile} {}
+    explicit CombatModeHandler(Hostile *hostile) : hostile{hostile} {}
 
     std::unique_ptr<Event> handle(const Char &c) override;
 
@@ -26,4 +26,4 @@ namespace Pathos {
 
 } // namespace Pathos
 
-#endif // PATHOS_ATTACK_MODE_HANDLER
+#endif // PATHOS_COMBAT_MODE_HANDLER
