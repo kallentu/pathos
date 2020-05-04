@@ -72,14 +72,14 @@ void StatusView::draw(const QuestRequest &req) {
   // Quick status change to quest options.
   std::string questOptions;
   switch (req.status) {
-  case Quest::Status::NotStarted:
-    questOptions = "Accept (a) Decline (d)";
-    break;
-  case Quest::Status::InProgress:
-    questOptions = "Continue... (a)";
-    break;
-  default:
-    return;
+    case Quest::Status::NotStarted:
+      questOptions = "Accept (a) Decline (d)";
+      break;
+    case Quest::Status::InProgress:
+      questOptions = "Continue... (a)";
+      break;
+    default:
+      return;
   }
 
   NcursesView::getInstance()->movePrint(QUICK_STATUS_Y, QUICK_STATUS_X,
@@ -91,14 +91,20 @@ void StatusView::draw(const QuestRequest &req) {
   draw(dialogueReq);
 }
 
+void StatusView::draw(const CombatRequest &req) {
+  (void) req;
+  // TODO: Health, attack, mob health, mob attack
+  // TODO: Display all attacks and options based on state.
+}
+
 void StatusView::draw(const ClearQuickStatusRequest &req) {
-  (void)req; // Don't actually use it
+  (void) req; // Don't actually use it
   NcursesView::getInstance()->clearLine(QUICK_STATUS_Y, QUICK_STATUS_X);
 }
 
 void StatusView::draw(const ClearTalkRequest &req) {
-  (void)req; // Don't actually use it
-  
+  (void) req; // Don't actually use it
+
   size_t x = width - STATUS_WIDTH;
   size_t y = height * 1 / 3;
 

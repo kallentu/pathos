@@ -8,66 +8,82 @@
 
 namespace Pathos {
 
-class MapRequest;
-class StatusRequest;
-class NotificationRequest;
-class TalkRequest;
-class NcursesInstance;
-class QuestRequest;
-class ClearQuickStatusRequest;
-class ClearTalkRequest;
+  class MapRequest;
 
-class MapView : public NcursesView {
-  // TODO: Make the MapManager own the map instead of the MapView
-  size_t height, width;
-  Map *map;
+  class StatusRequest;
 
-  // Location on the map that the player is located.
-  Position *playerPos;
+  class NotificationRequest;
 
-public:
-  MapView(NcursesInstance *curses);
+  class TalkRequest;
 
-  Map *getMap() const { return map; }
-  Position *getPlayerPosition() const { return playerPos; }
-  size_t getHeight() const { return height; }
-  size_t getWidth() const { return width; }
+  class NcursesInstance;
 
-  void setHeight(size_t h) { height = h; }
-  void setWidth(size_t w) { width = w; }
+  class QuestRequest;
 
-  // Prints the Map from the MapRequest using ncurses.
-  void draw(const MapRequest &req) override;
+  class ClearQuickStatusRequest;
 
-  // Does not print anything for StatusRequest.
-  void draw(const StatusRequest &req) override;
+  class ClearTalkRequest;
 
-  // Does not print anything for NotificationRequest.
-  void draw(const NotificationRequest &req) override;
+  class MapView : public NcursesView {
+    // TODO: Make the MapManager own the map instead of the MapView
+    size_t height, width;
+    Map *map;
 
-  // Does not print anything for TalkRequest.
-  void draw(const TalkRequest &req) override;
+    // Location on the map that the player is located.
+    Position *playerPos;
 
-  // Does not print anything for QuestRequest.
-  void draw(const QuestRequest &req) override;
+  public:
+    explicit MapView(NcursesInstance *curses);
 
-  // Does not print anything for ClearQuickStatusRequest.
-  void draw(const ClearQuickStatusRequest &req) override;
+    Map *getMap() const { return map; }
 
-  // Does not print anything for ClearTalkRequest.
-  void draw(const ClearTalkRequest &req) override;
+    Position *getPlayerPosition() const { return playerPos; }
 
-private:
-  void drawMap();
+    size_t getHeight() const override { return height; }
 
-  // Draws Player and used only after drawMap()
-  void drawPlayer();
-  void drawPlayer(size_t mapYStart, size_t mapXStart);
+    size_t getWidth() const override { return width; }
 
-  // Map starting positions for printing. Scrolling in effect.
-  size_t getMapYStart() const;
-  size_t getMapXStart() const;
-};
+    void setHeight(size_t h) override { height = h; }
+
+    void setWidth(size_t w) override { width = w; }
+
+    // Prints the Map from the MapRequest using ncurses.
+    void draw(const MapRequest &req) override;
+
+    // Does not print anything for StatusRequest.
+    void draw(const StatusRequest &req) override;
+
+    // Does not print anything for NotificationRequest.
+    void draw(const NotificationRequest &req) override;
+
+    // Does not print anything for TalkRequest.
+    void draw(const TalkRequest &req) override;
+
+    // Does not print anything for QuestRequest.
+    void draw(const QuestRequest &req) override;
+
+    // Updates map based on state of combat.
+    void draw(const CombatRequest &req) override;
+
+    // Does not print anything for ClearQuickStatusRequest.
+    void draw(const ClearQuickStatusRequest &req) override;
+
+    // Does not print anything for ClearTalkRequest.
+    void draw(const ClearTalkRequest &req) override;
+
+  private:
+    void drawMap();
+
+    // Draws Player and used only after drawMap()
+    void drawPlayer();
+
+    void drawPlayer(size_t mapYStart, size_t mapXStart);
+
+    // Map starting positions for printing. Scrolling in effect.
+    size_t getMapYStart() const;
+
+    size_t getMapXStart() const;
+  };
 
 } // namespace Pathos
 

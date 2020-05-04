@@ -215,6 +215,8 @@ add_library(Sources
         src/request/ClearQuickStatusRequest.h
         src/request/ClearTalkRequest.cc
         src/request/ClearTalkRequest.h
+        src/request/CombatRequest.cc
+        src/request/CombatRequest.h
         src/request/MapRequest.cc
         src/request/MapRequest.h
         src/request/MultipleRequest.cc

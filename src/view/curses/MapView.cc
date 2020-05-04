@@ -21,32 +21,40 @@ void MapView::draw(const MapRequest &req) {
 }
 
 void MapView::draw(const StatusRequest &req) {
-  (void)req;
+  (void) req;
   drawMap();
 }
 
 void MapView::draw(const NotificationRequest &req) {
-  (void)req;
+  (void) req;
   drawMap();
 }
 
 void MapView::draw(const TalkRequest &req) {
-  (void)req;
+  (void) req;
   drawMap();
 }
 
 void MapView::draw(const QuestRequest &req) {
-  (void)req;
+  (void) req;
   drawMap();
 }
 
+void MapView::draw(const CombatRequest &req) {
+  // TODO: Check status and remove mob from map if dead.
+  // TODO: If player dead, move to start of map.
+  (void) req;
+  drawMap();
+}
+
+
 void MapView::draw(const ClearQuickStatusRequest &req) {
-  (void)req;
+  (void) req;
   drawMap();
 }
 
 void MapView::draw(const ClearTalkRequest &req) {
-  (void)req;
+  (void) req;
   drawMap();
 }
 
@@ -69,43 +77,43 @@ void MapView::drawMap() {
 
       // Convert Char to correctly printed symbol
       switch (m->getCharType()) {
-      case MapObject::Char::Lantern:
-        // Hostile
-        NcursesView::getInstance()->moveAddChar(i, j, ACS_LANTERN);
-        break;
-      case MapObject::Char::Sterling:
-        // Friendly
-        NcursesView::getInstance()->moveAddChar(i, j, ACS_STERLING);
-        break;
-      case MapObject::Char::Bound:
-        // Wall
-        if (i == 0 && j == 0) {
-          // Upper left corner
-          NcursesView::getInstance()->moveAddChar(i, j, ACS_ULCORNER);
-        } else if (i == screenHeight - 1 && j == 0) {
-          // Lower left corner
-          NcursesView::getInstance()->moveAddChar(i, j, ACS_LLCORNER);
-        } else if (i == 0 && j == screenWidth - 1) {
-          // Upper right corner
-          NcursesView::getInstance()->moveAddChar(i, j, ACS_URCORNER);
-        } else if (i == screenHeight - 1 && j == screenWidth - 1) {
-          // Lower right corner
-          NcursesView::getInstance()->moveAddChar(i, j, ACS_LRCORNER);
-        } else if (i == 0 || i == screenHeight - 1) {
-          // Top/bottom bounds
-          NcursesView::getInstance()->moveAddChar(i, j, ACS_HLINE);
-        } else if (j == 0 || j == screenWidth - 1) {
-          // Left/right bounds
-          NcursesView::getInstance()->moveAddChar(i, j, ACS_VLINE);
-        }
-        break;
-      case MapObject::Char::Empty:
-        // Ground
-        NcursesView::getInstance()->movePrint(i, j, " ");
-        break;
-      default:
-        // Unrecognized Char type.
-        break;
+        case MapObject::Char::Lantern:
+          // Hostile
+          NcursesView::getInstance()->moveAddChar(i, j, ACS_LANTERN);
+          break;
+        case MapObject::Char::Sterling:
+          // Friendly
+          NcursesView::getInstance()->moveAddChar(i, j, ACS_STERLING);
+          break;
+        case MapObject::Char::Bound:
+          // Wall
+          if (i == 0 && j == 0) {
+            // Upper left corner
+            NcursesView::getInstance()->moveAddChar(i, j, ACS_ULCORNER);
+          } else if (i == screenHeight - 1 && j == 0) {
+            // Lower left corner
+            NcursesView::getInstance()->moveAddChar(i, j, ACS_LLCORNER);
+          } else if (i == 0 && j == screenWidth - 1) {
+            // Upper right corner
+            NcursesView::getInstance()->moveAddChar(i, j, ACS_URCORNER);
+          } else if (i == screenHeight - 1 && j == screenWidth - 1) {
+            // Lower right corner
+            NcursesView::getInstance()->moveAddChar(i, j, ACS_LRCORNER);
+          } else if (i == 0 || i == screenHeight - 1) {
+            // Top/bottom bounds
+            NcursesView::getInstance()->moveAddChar(i, j, ACS_HLINE);
+          } else if (j == 0 || j == screenWidth - 1) {
+            // Left/right bounds
+            NcursesView::getInstance()->moveAddChar(i, j, ACS_VLINE);
+          }
+          break;
+        case MapObject::Char::Empty:
+          // Ground
+          NcursesView::getInstance()->movePrint(i, j, " ");
+          break;
+        default:
+          // Unrecognized Char type.
+          break;
       }
     }
   }
