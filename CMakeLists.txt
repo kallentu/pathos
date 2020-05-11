@@ -11,6 +11,9 @@ add_subdirectory(test)
 add_library(Sources
         src/abstract/Observable.h
         src/abstract/Observer.h
+        src/combat/CombatManager.cc
+        src/combat/CombatManager.h
+        src/combat/CombatLog.h
         src/controller/Char.h
         src/controller/Controller.h
         src/controller/Input.h

@@ -14,9 +14,11 @@ namespace Pathos {
 
   class CombatModeHandler : public ModeHandler {
     Hostile *hostile;
+    Player *player;
     std::string input;
+
   public:
-    explicit CombatModeHandler(Hostile *hostile) : hostile{hostile} {}
+    explicit CombatModeHandler(Hostile *hostile, Player *player) : hostile{hostile}, player{player} {}
 
     std::unique_ptr<Event> handle(const Char &c) override;
 

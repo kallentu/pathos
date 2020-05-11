@@ -27,6 +27,7 @@ namespace Pathos {
     std::unique_ptr<QuestRequest> getQuestRequest(Ariadne &ariadne,
                                                   PathosInstance *inst);
 
+  private:
     std::unique_ptr<QuestRequest> getRequestFromStatus(Quest::Status status,
                                                        Quest *quest,
                                                        PathosInstance *inst);

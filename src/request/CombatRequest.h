@@ -2,6 +2,7 @@
 #define PATHOS_COMBAT_REQUEST
 
 #include <mob/hostile/Hostile.h>
+#include <combat/CombatLog.h>
 #include "request/ViewRequest.h"
 
 namespace Pathos {
@@ -9,29 +10,17 @@ namespace Pathos {
   class View;
 
   struct CombatRequest : public ViewRequest {
-    // Mob that the player is attacking.
+    // Mob that the player is attacking. Values in these mobs used for view changes.
     Hostile *hostile;
+    Player *player;
+
+    // State that the player currently needs to see in their view.
+    CombatLog *log;
 
   public:
-    enum class Status {
-      PlayerChooseAttack,
-      PlayerAttacked,
-      HostileAttacked,
-      HostileDead,
-      PlayerDead
-    };
-
-    explicit CombatRequest(Hostile *hostile, CombatRequest::Status status) : hostile{hostile}, status{status} {}
+    explicit CombatRequest(Hostile *hostile, Player *player, CombatLog *log) : hostile{hostile}, player{player}, log{log} {}
 
     void beDrawnBy(View &view) const override;
-
-    CombatRequest::Status getStatus() const { return status; }
-
-    Hostile *getHostile() const { return hostile; }
-
-  private:
-    // State that the player currently needs to see in their view.
-    CombatRequest::Status status;
   };
 }
 

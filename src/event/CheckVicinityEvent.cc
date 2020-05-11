@@ -10,6 +10,7 @@
 #include "request/QuestRequest.h"
 #include <memory>
 #include <mode/CombatMode.h>
+#include <request/CombatRequest.h>
 
 using namespace Pathos;
 
@@ -33,7 +34,8 @@ void CheckVicinityEvent::begin(PathosInstance *inst) {
   // Check for hostile mobs before any other mob.
   auto *hostile = dynamic_cast<Hostile *>(map->get(actionPos->y, actionPos->x));
   if (hostile != nullptr) {
-    // TODO: View update.
+    // TODO: Have combat manager that keeps track of combat logs.
+    // std::unique_ptr<CombatRequest> combatReq = inst->getCombatManager()->
 
     // Input should be in attack mode.
     inst->runMode(std::make_unique<CombatMode>(inst, hostile));

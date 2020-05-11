@@ -1,3 +1,4 @@
+#include <combat/CombatManager.h>
 #include "core/PathosInstance.h"
 #include "abstract/Observable.h"
 #include "controller/NcursesController.h"
@@ -29,7 +30,9 @@ PathosInstance::PathosInstance()
       playerPos{std::make_unique<Position>(1, 1)},
       actionablePos{std::make_unique<Position>(2, 1)},
       stats{std::make_unique<Stats>()},
-      questManager{std::make_unique<QuestManager>()}, continueGame{true},
+      questManager{std::make_unique<QuestManager>()},
+      combatManager{std::make_unique<CombatManager>()},
+      continueGame{true},
       leaveModeRequests{0} {
   Observable<ViewRequest>::addObserver(view.get());
 }
@@ -75,6 +78,8 @@ Map *PathosInstance::getMap() const { return map.get(); }
 Stats *PathosInstance::getStats() { return stats.get(); }
 
 QuestManager *PathosInstance::getQuestManager() { return questManager.get(); }
+
+CombatManager *PathosInstance::getCombatManager() { return combatManager.get(); }
 
 const Mode *PathosInstance::getActiveMode() {
   return modes.empty() ? nullptr : modes.top().get();

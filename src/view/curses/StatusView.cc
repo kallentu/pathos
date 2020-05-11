@@ -1,7 +1,9 @@
 #include "view/curses/StatusView.h"
 #include "quest/Quest.h"
+#include "mob/player/Player.h"
 #include "request/ClearQuickStatusRequest.h"
 #include "request/ClearTalkRequest.h"
+#include "request/CombatRequest.h"
 #include "request/NotificationRequest.h"
 #include "request/QuestRequest.h"
 #include "request/StatusRequest.h"
@@ -95,6 +97,17 @@ void StatusView::draw(const CombatRequest &req) {
   (void) req;
   // TODO: Health, attack, mob health, mob attack
   // TODO: Display all attacks and options based on state.
+
+  // X starts on the edge of the width
+  size_t x = width - STATUS_WIDTH;
+  // Y starts 2/3 of the screen down. Most of the room left for Status.
+  size_t y = height * 1 / 3;
+
+  // Player Health
+  NcursesView::getInstance()->clearLine(y, x);
+  NcursesView::getInstance()->movePrint(y++, x, "Health: " + std::to_string(req.player->getHealth()));
+
+  NcursesViewDecorator::view->draw(req);
 }
 
 void StatusView::draw(const ClearQuickStatusRequest &req) {
