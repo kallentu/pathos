@@ -14,11 +14,15 @@ namespace Pathos {
 
   class CombatModeHandler : public ModeHandler {
     Hostile *hostile;
-    Player *player;
+
+    // Input from the user so far in the mode.
     std::string input;
 
+    // Instance required to change player values and to check the combat manager.
+    PathosInstance *inst;
+
   public:
-    explicit CombatModeHandler(Hostile *hostile, Player *player) : hostile{hostile}, player{player} {}
+    explicit CombatModeHandler(Hostile *hostile, PathosInstance *inst) : hostile{hostile}, inst{inst} {}
 
     std::unique_ptr<Event> handle(const Char &c) override;
 

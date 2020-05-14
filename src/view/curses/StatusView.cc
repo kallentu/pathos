@@ -100,12 +100,11 @@ void StatusView::draw(const CombatRequest &req) {
 
   // X starts on the edge of the width
   size_t x = width - STATUS_WIDTH;
-  // Y starts 2/3 of the screen down. Most of the room left for Status.
-  size_t y = height * 1 / 3;
+  size_t y = height * 1 / 10;
 
-  // Player Health
+  // TODO: Change the draw to use StatusRequest, temporarily displays player Health
   NcursesView::getInstance()->clearLine(y, x);
-  NcursesView::getInstance()->movePrint(y++, x, "Health: " + std::to_string(req.player->getHealth()));
+  NcursesView::getInstance()->movePrint(y, x, "Health: " + std::to_string(req.player->getHealth()));
 
   NcursesViewDecorator::view->draw(req);
 }

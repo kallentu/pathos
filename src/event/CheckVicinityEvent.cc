@@ -1,4 +1,5 @@
 #include "event/CheckVicinityEvent.h"
+#include <combat/CombatManager.h>
 #include "core/PathosInstance.h"
 #include "map/Map.h"
 #include "mob/friendly/quest/QuestGiver.h"
@@ -34,8 +35,9 @@ void CheckVicinityEvent::begin(PathosInstance *inst) {
   // Check for hostile mobs before any other mob.
   auto *hostile = dynamic_cast<Hostile *>(map->get(actionPos->y, actionPos->x));
   if (hostile != nullptr) {
-    // TODO: Have combat manager that keeps track of combat logs.
-    // std::unique_ptr<CombatRequest> combatReq = inst->getCombatManager()->
+    // View request based on status of the battle.
+    std::unique_ptr<CombatRequest> combatReq = inst->getCombatManager()->getCombatRequest(hostile, inst);
+    inst->notify(combatReq.get());
 
     // Input should be in attack mode.
     inst->runMode(std::make_unique<CombatMode>(inst, hostile));

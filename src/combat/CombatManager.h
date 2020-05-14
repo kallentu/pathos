@@ -11,8 +11,6 @@ namespace Pathos {
 
   class CombatRequest;
 
-  class QuestRequest;
-
   class PathosInstance;
 
   class CombatManager final {
