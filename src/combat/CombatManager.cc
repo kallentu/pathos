@@ -10,6 +10,8 @@ std::unique_ptr<CombatRequest> CombatManager::getCombatRequest(Hostile *hostile,
   if (req != nullptr) return req;
 
   // TODO: Otherwise, hostile gets to roll an attack always, and we show it to player as finished for them to take a move.
+  // visitor pattern on hostile and the combat manager to auto allow the hostile to make a move based on percentages.
+
 
   // Check if hostile had previous combat log, otherwise initiate.
   if (combatLogs.count(hostile) == 0) {

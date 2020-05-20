@@ -1,7 +1,6 @@
 #ifndef PATHOS_QUEST_GIVER
 #define PATHOS_QUEST_GIVER
 
-#include "event/EventManager.h"
 #include "quest/Quest.h"
 #include <memory>
 #include <string>
@@ -20,11 +19,6 @@ class QuestGiver {
 public:
   virtual std::unique_ptr<QuestRequest>
   haveQuestRequestRetrievedBy(QuestManager *qm, PathosInstance *inst) = 0;
-
-  std::vector<std::unique_ptr<Event>>
-  callEventManagerForEventList(EventManager *em) {
-    return em->getEventList(*this);
-  }
 };
 
 } // namespace Pathos

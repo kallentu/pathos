@@ -24,8 +24,6 @@ add_library(Sources
         src/event/CheckVicinityEvent.cc
         src/event/CheckVicinityEvent.h
         src/event/Event.h
-        src/event/EventManager.cc
-        src/event/EventManager.h
         src/event/LeaveModeEvent.h
         src/event/MultipleEvent.cc
         src/event/MultipleEvent.h

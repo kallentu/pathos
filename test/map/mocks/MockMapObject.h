@@ -12,9 +12,6 @@ namespace Pathos {
 class MockMapObject : public MapObject {
 public:
   MockMapObject(MapObject::Char c) : MapObject(c) {}
-
-  MOCK_METHOD1(callEventManagerForEventList,
-               std::vector<std::unique_ptr<Event>>(EventManager *));
 };
 
 } // namespace Pathos

@@ -1,7 +1,6 @@
 #ifndef PATHOS_PLAYER
 #define PATHOS_PLAYER
 
-#include "event/EventManager.h"
 #include "item/Item.h"
 #include "item/consume/Chicken.h"
 #include "item/consume/SmallPotion.h"
@@ -35,7 +34,7 @@ public:
   Player()
       : MapObject(MapObject::Char::At), Mob("Periphas", 100, 5, 5), Trader(),
       level{0}, experience{0} {}
-  ~Player() {}
+  ~Player() override = default;
 
   size_t getLevel() const { return level; }
   void setLevel(size_t l) { level = l; }
@@ -47,11 +46,6 @@ public:
   void attack(Hostile *h) { h->beAttackedBy(*this); }
   std::unique_ptr<TalkRequest> talkTo(Friendly *f) {
     return f->beTalkedToBy(*this);
-  }
-
-  std::vector<std::unique_ptr<Event>>
-  callEventManagerForEventList(EventManager *em) override {
-    return em->getEventList(*this);
   }
 
   void consume(Chicken &c) override { health += c.getHealthChange(); }

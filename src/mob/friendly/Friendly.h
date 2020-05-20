@@ -1,7 +1,6 @@
 #ifndef PATHOS_FRIENDLY
 #define PATHOS_FRIENDLY
 
-#include "event/EventManager.h"
 #include "item/consume/Chicken.h"
 #include "item/consume/SmallPotion.h"
 #include "item/equip/bow/Bow.h"
@@ -12,7 +11,7 @@
 #include <cstddef>
 #include <memory>
 #include <string>
-#include <vector>
+#include <utility>
 
 namespace Pathos {
 
@@ -24,29 +23,24 @@ class TalkRequest;
 // Can interact within range of 1 square
 class Friendly : public  MapObject, public Mob {
 public:
-  Friendly(std::string name)
-      : MapObject(MapObject::Char::Sterling), Mob(name, 500, 500, 500) {}
+  explicit Friendly(std::string name)
+      : MapObject(MapObject::Char::Sterling), Mob(std::move(name), 500, 500, 500) {}
 
-  virtual std::vector<std::unique_ptr<Event>>
-  callEventManagerForEventList(EventManager *em) override {
-    return em->getEventList(*this);
-  }
-
-  virtual void consume(Chicken &c) override { health += c.getHealthChange(); }
-  virtual void consume(SmallPotion &sp) override {
+  void consume(Chicken &c) override { health += c.getHealthChange(); }
+  void consume(SmallPotion &sp) override {
     health += sp.getHealthChange();
   }
 
-  virtual void equip(Bow &b) override {
+  void equip(Bow &b) override {
     magicDamage = b.getDamage() / 10;
     physicalDamage = b.getDamage() * 9 / 10;
   }
-  virtual void equip(Greatsword &gs) override {
+  void equip(Greatsword &gs) override {
     physicalDamage = gs.getDamage();
   }
-  virtual void equip(Staff &s) override { magicDamage = s.getDamage(); }
+  void equip(Staff &s) override { magicDamage = s.getDamage(); }
 
-  // Must be overrided by concrete subclasses.
+  // Must be overridden by concrete subclasses.
   virtual std::unique_ptr<TalkRequest> beTalkedToBy(Player &p) = 0;
 };
 

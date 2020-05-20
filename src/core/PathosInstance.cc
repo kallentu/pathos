@@ -99,16 +99,6 @@ void PathosInstance::run() {
     if (event)
       process(event.get());
   }
-
-  // TODO: Remove getChar below. Replace with controller.
-  // Only there for testing purposes.
-  // curses->getChar();
-
-  // std::unique_ptr<Status> status = std::make_unique<Status>(Status{20, 10});
-  // StatusRequest sreq = StatusRequest(status.get());
-  // Observable<ViewRequest>::notify(&sreq);
-
-  // curses->getChar();
 }
 
 void PathosInstance::runMode(std::unique_ptr<Mode> mode) {

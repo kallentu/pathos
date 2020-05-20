@@ -104,7 +104,10 @@ void StatusView::draw(const CombatRequest &req) {
 
   // TODO: Change the draw to use StatusRequest, temporarily displays player Health
   NcursesView::getInstance()->clearLine(y, x);
-  NcursesView::getInstance()->movePrint(y, x, "Health: " + std::to_string(req.player->getHealth()));
+  NcursesView::getInstance()->movePrint(y++, x, "Health: " + std::to_string(req.player->getHealth()));
+
+  NcursesView::getInstance()->clearLine(y, x);
+  NcursesView::getInstance()->movePrint(y, x, req.log->description);
 
   NcursesViewDecorator::view->draw(req);
 }

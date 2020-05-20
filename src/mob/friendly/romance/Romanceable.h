@@ -1,11 +1,10 @@
 #ifndef PATHOS_ROMANCEABLE
 #define PATHOS_ROMANCEABLE
 
-#include "event/EventManager.h"
 #include "mob/friendly/Friendly.h"
 #include <memory>
 #include <string>
-#include <vector>
+#include <utility>
 
 namespace Pathos {
 
@@ -18,7 +17,7 @@ class Romanceable : public Friendly {
   size_t romanceExp;
 
 public:
-  Romanceable(std::string name) : Friendly(name), romanceExp{0} {}
+  explicit Romanceable(std::string name) : Friendly(std::move(name)), romanceExp{0} {}
 
   size_t getRomanceExp() const { return romanceExp; }
   void setRomanceExp(size_t exp) { romanceExp = exp; }
@@ -33,11 +32,6 @@ public:
 
   // Subclass override for custom speech options.
   virtual std::unique_ptr<TalkRequest> talkedToBy(Player &p) = 0;
-
-  std::vector<std::unique_ptr<Event>>
-  callEventManagerForEventList(EventManager *em) override {
-    return em->getEventList(*this);
-  }
 };
 
 } // namespace Pathos
