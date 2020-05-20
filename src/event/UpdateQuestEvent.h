@@ -12,8 +12,7 @@ class UpdateQuestEvent : public Event {
   Quest *quest;
 
 public:
-  UpdateQuestEvent(Quest *quest) : Event(), quest{quest} {}
-
+  explicit UpdateQuestEvent(Quest *quest) : Event(), quest{quest} {}
   void begin(PathosInstance *inst) override;
 };
 

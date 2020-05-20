@@ -1,7 +1,6 @@
 #ifndef PATHOS_QUEST_GIVER
 #define PATHOS_QUEST_GIVER
 
-#include "quest/Quest.h"
 #include <memory>
 #include <string>
 #include <vector>

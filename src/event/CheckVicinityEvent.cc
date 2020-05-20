@@ -3,11 +3,9 @@
 #include "core/PathosInstance.h"
 #include "map/Map.h"
 #include "mob/friendly/quest/QuestGiver.h"
-#include "mob/hostile/Hostile.h"
 #include "mode/QuestMode.h"
 #include "quest/QuestManager.h"
-#include "request/ClearQuickStatusRequest.h"
-#include "request/ClearTalkRequest.h"
+#include "request/ClearEntireStatus.h"
 #include "request/QuestRequest.h"
 #include <memory>
 #include <mode/CombatMode.h>
@@ -21,21 +19,18 @@ void CheckVicinityEvent::begin(PathosInstance *inst) {
   Map *map = inst->getMap();
   Position *actionPos = inst->getActionablePosition();
 
-  // Clear prior NPC dialogue since we moved.
-  std::unique_ptr<ClearTalkRequest> clearTalkReq =
-      std::make_unique<ClearTalkRequest>();
-  inst->notify(clearTalkReq.get());
-
-  // Clear the line for future usage or just makes sense
-  // when player walks away.
-  std::unique_ptr<ClearQuickStatusRequest> clearStatusReq =
-      std::make_unique<ClearQuickStatusRequest>();
-  inst->notify(clearStatusReq.get());
+  // Clear prior main and quick status since we moved.
+  std::unique_ptr<ClearEntireStatus> clearReq =
+      std::make_unique<ClearEntireStatus>();
+  inst->notify(clearReq.get());
 
   // Check for hostile mobs before any other mob.
   auto *hostile = dynamic_cast<Hostile *>(map->get(actionPos->y, actionPos->x));
   if (hostile != nullptr) {
     // View request based on status of the battle.
+    // TODO remove this and put in init of CombatModeHandler
+    // TODO then make the handler output more specific events
+    // TODO these events change the logic + view when 'begin'
     std::unique_ptr<CombatRequest> combatReq = inst->getCombatManager()->getCombatRequest(hostile, inst);
     inst->notify(combatReq.get());
 
@@ -47,15 +42,6 @@ void CheckVicinityEvent::begin(PathosInstance *inst) {
   auto *questGiver =
       dynamic_cast<QuestGiver *>(map->get(actionPos->y, actionPos->x));
   if (questGiver != nullptr) {
-    // View update.
-    std::unique_ptr<QuestRequest> questReq =
-        questGiver->haveQuestRequestRetrievedBy(inst->getQuestManager(), inst);
-    inst->notify(questReq.get());
-
-    // Input should be in quest mode.
-    // If not already in quest mode, go into it.
-    if (!dynamic_cast<const QuestMode *>(inst->getActiveMode())) {
-      inst->runMode(std::make_unique<QuestMode>(inst, questReq->getQuest()));
-    }
+    inst->runMode(std::make_unique<QuestMode>(inst, questGiver));
   }
 }

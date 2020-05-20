@@ -20,7 +20,7 @@ namespace Pathos {
 
   class ClearQuickStatusRequest;
 
-  class ClearTalkRequest;
+  class ClearMainStatusRequest;
 
   class View : public Observer<ViewRequest> {
   public:
@@ -42,7 +42,7 @@ namespace Pathos {
 
     virtual void draw(const ClearQuickStatusRequest &req) = 0;
 
-    virtual void draw(const ClearTalkRequest &req) = 0;
+    virtual void draw(const ClearMainStatusRequest &req) = 0;
   };
 
 } // namespace Pathos

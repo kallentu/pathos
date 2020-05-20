@@ -9,18 +9,15 @@ namespace Pathos {
 
 class PathosInstance;
 class ModeHandler;
-class Quest;
+class QuestGiver;
 
 // Mode where the player needs to do quest acceptance/interaction.
 class QuestMode : public Mode {
-  Quest *quest;
   std::unique_ptr<QuestModeHandler> handler;
 
 public:
-  QuestMode(PathosInstance *inst, Quest *quest);
-
+  QuestMode(PathosInstance *inst, QuestGiver *questGiver);
   ModeHandler *getHandler() const override;
-  Quest *getQuest();
 };
 
 } // namespace Pathos

@@ -53,7 +53,7 @@ void MapView::draw(const ClearQuickStatusRequest &req) {
   drawMap();
 }
 
-void MapView::draw(const ClearTalkRequest &req) {
+void MapView::draw(const ClearMainStatusRequest &req) {
   (void) req;
   drawMap();
 }

@@ -13,8 +13,10 @@ class View;
 struct MultipleRequest : public ViewRequest {
   std::vector<std::unique_ptr<ViewRequest>> requests;
 
-  MultipleRequest(std::vector<std::unique_ptr<ViewRequest>> &&requests)
-      : ViewRequest(), requests{std::move(requests)} {}
+  MultipleRequest() : ViewRequest() {}
+  void addRequest(std::unique_ptr<ViewRequest> req) {
+    requests.push_back(std::move(req));
+  }
   void beDrawnBy(View &view) const override;
 };
 

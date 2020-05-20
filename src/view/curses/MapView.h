@@ -22,7 +22,7 @@ namespace Pathos {
 
   class ClearQuickStatusRequest;
 
-  class ClearTalkRequest;
+  class ClearMainStatusRequest;
 
   class MapView : public NcursesView {
     // TODO: Make the MapManager own the map instead of the MapView
@@ -68,8 +68,8 @@ namespace Pathos {
     // Does not print anything for ClearQuickStatusRequest.
     void draw(const ClearQuickStatusRequest &req) override;
 
-    // Does not print anything for ClearTalkRequest.
-    void draw(const ClearTalkRequest &req) override;
+    // Does not print anything for ClearMainStatusRequest.
+    void draw(const ClearMainStatusRequest &req) override;
 
   private:
     void drawMap();

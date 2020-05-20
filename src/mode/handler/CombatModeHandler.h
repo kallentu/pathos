@@ -12,6 +12,8 @@ namespace Pathos {
 
   class Char;
 
+  class PathosInstance;
+
   class CombatModeHandler : public ModeHandler {
     Hostile *hostile;
 

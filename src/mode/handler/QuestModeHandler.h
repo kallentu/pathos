@@ -15,10 +15,11 @@ namespace Pathos {
 // Parses keys for updating and interacting with QuestGivers.
   class QuestModeHandler : public ModeHandler {
     Quest *quest;
+    QuestGiver *questGiver;
     std::string input;
 
   public:
-    explicit QuestModeHandler(Quest *quest) : quest{quest} {}
+    QuestModeHandler(PathosInstance *inst, QuestGiver *questGiver);
 
     std::unique_ptr<Event> handle(const Char &c) override;
 

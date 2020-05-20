@@ -22,7 +22,7 @@ namespace Pathos {
 
   class ClearQuickStatusRequest;
 
-  class ClearTalkRequest;
+  class ClearMainStatusRequest;
 
   class StatusView : public NcursesViewDecorator {
 
@@ -80,7 +80,7 @@ namespace Pathos {
     void draw(const ClearQuickStatusRequest &req) override;
 
     // Clears the talk dialogue.
-    void draw(const ClearTalkRequest &req) override;
+    void draw(const ClearMainStatusRequest &req) override;
   };
 
 } // namespace Pathos

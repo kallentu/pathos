@@ -212,10 +212,12 @@ add_library(Sources
         src/quest/Quest.h
         src/quest/QuestManager.cc
         src/quest/QuestManager.h
+        src/request/ClearEntireStatus.cc
+        src/request/ClearEntireStatus.h
         src/request/ClearQuickStatusRequest.cc
         src/request/ClearQuickStatusRequest.h
-        src/request/ClearTalkRequest.cc
-        src/request/ClearTalkRequest.h
+        src/request/ClearMainStatusRequest.cc
+        src/request/ClearMainStatusRequest.h
         src/request/CombatRequest.cc
         src/request/CombatRequest.h
         src/request/MapRequest.cc

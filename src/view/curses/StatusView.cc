@@ -2,7 +2,7 @@
 #include "quest/Quest.h"
 #include "mob/player/Player.h"
 #include "request/ClearQuickStatusRequest.h"
-#include "request/ClearTalkRequest.h"
+#include "request/ClearMainStatusRequest.h"
 #include "request/CombatRequest.h"
 #include "request/NotificationRequest.h"
 #include "request/QuestRequest.h"
@@ -117,7 +117,7 @@ void StatusView::draw(const ClearQuickStatusRequest &req) {
   NcursesView::getInstance()->clearLine(QUICK_STATUS_Y, QUICK_STATUS_X);
 }
 
-void StatusView::draw(const ClearTalkRequest &req) {
+void StatusView::draw(const ClearMainStatusRequest &req) {
   (void) req; // Don't actually use it
 
   size_t x = width - STATUS_WIDTH;

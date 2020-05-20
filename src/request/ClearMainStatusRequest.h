@@ -7,8 +7,8 @@ namespace Pathos {
 
 class View;
 
-// A request for clearing the NPC dialogue on the StatusView.
-struct ClearTalkRequest : public ViewRequest {
+// A request for clearing the NPC dialogue, player info on the StatusView.
+struct ClearMainStatusRequest : public ViewRequest {
 public:
   void beDrawnBy(View &view) const override;
 };

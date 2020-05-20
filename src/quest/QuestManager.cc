@@ -1,13 +1,9 @@
 #include "quest/QuestManager.h"
 #include "mob/friendly/quest/Ariadne.h"
 #include "mob/friendly/quest/Gaia.h"
-#include "mob/friendly/quest/QuestGiver.h"
-#include "quest/Quest.h"
 #include "quest/athens/KillWolvesQuest.h"
 #include "request/QuestRequest.h"
-#include <map>
 #include <memory>
-#include <string>
 
 using namespace Pathos;
 
