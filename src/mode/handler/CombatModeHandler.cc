@@ -1,8 +1,15 @@
-#include <event/LeaveModeEvent.h>
 #include "mode/handler/CombatModeHandler.h"
+#include <event/LeaveModeEvent.h>
+#include <request/CombatRequest.h>
+#include "combat/CombatManager.h"
 #include "controller/Char.h"
 
 using namespace Pathos;
+
+Pathos::CombatModeHandler::CombatModeHandler(Hostile *hostile, PathosInstance *inst) : hostile{hostile}, inst{inst} {
+  std::unique_ptr<CombatRequest> combatReq = inst->getCombatManager()->getCombatRequest(hostile, inst);
+  inst->notify(combatReq.get());
+}
 
 std::unique_ptr<Event> Pathos::CombatModeHandler::handle(const Pathos::Char &c) {
   // Add character to currently parsed string

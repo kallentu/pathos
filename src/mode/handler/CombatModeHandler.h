@@ -1,16 +1,17 @@
 #ifndef PATHOS_COMBAT_MODE_HANDLER
 #define PATHOS_COMBAT_MODE_HANDLER
 
-#include <mob/hostile/Hostile.h>
 #include "mode/handler/ModeHandler.h"
 #include <memory>
 #include <string>
 
 namespace Pathos {
 
+  class Char;
+
   class Event;
 
-  class Char;
+  class Hostile;
 
   class PathosInstance;
 
@@ -24,7 +25,7 @@ namespace Pathos {
     PathosInstance *inst;
 
   public:
-    explicit CombatModeHandler(Hostile *hostile, PathosInstance *inst) : hostile{hostile}, inst{inst} {}
+    CombatModeHandler(Hostile *hostile, PathosInstance *inst);
 
     std::unique_ptr<Event> handle(const Char &c) override;
 
