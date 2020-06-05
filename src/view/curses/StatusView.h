@@ -34,27 +34,18 @@ namespace Pathos {
     // NPC interactions.
     size_t QUICK_STATUS_Y, QUICK_STATUS_X;
 
-    size_t playerMaxHealth, playerHealth;
     size_t height, width;
 
   public:
-    StatusView(std::unique_ptr<NcursesView> view);
+    explicit StatusView(std::unique_ptr<NcursesView> view);
 
     size_t getHeight() const override { return height; }
 
     size_t getWidth() const override { return width; }
 
-    size_t getPlayerMaxHealth() const { return playerMaxHealth; }
-
-    size_t getPlayerHealth() const { return playerHealth; }
-
     void setHeight(size_t h) override { height = h; }
 
     void setWidth(size_t w) override { width = w; }
-
-    void setPlayerMaxHealth(size_t max) { playerMaxHealth = max; }
-
-    void setPlayerHealth(size_t h) { playerHealth = h; }
 
     // Does not print anything for MapRequest.
     // Transfers drawing to its window.
