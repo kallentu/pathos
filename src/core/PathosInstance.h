@@ -13,83 +13,113 @@
 
 namespace Pathos {
 
-class NcursesInstance;
-class NcursesView;
-class NcursesController;
-class Map;
-class Mode;
-class Event;
-class MapObject;
-class Player;
-class Stats;
-class Quest;
-class QuestManager;
-class CombatManager;
+  class NcursesInstance;
+
+  class NcursesView;
+
+  class NcursesController;
+
+  class Map;
+
+  class Mode;
+
+  class Event;
+
+  class MapObject;
+
+  class Player;
+
+  class Stats;
+
+  class Status;
+
+  class Quest;
+
+  class QuestManager;
+
+  class CombatManager;
 
 // An instance of the Pathos game.
 // Can have multiple instances (game saves)
-class PathosInstance : public Observable<ViewRequest>, Observer<Event> {
-  std::unique_ptr<NcursesInstance> curses;
-  std::unique_ptr<NcursesView> view;
-  std::unique_ptr<NcursesController> controller;
-  std::unique_ptr<Map> map;
-  std::unique_ptr<Player> player;
+  class PathosInstance : public Observable<ViewRequest>, Observer<Event> {
+    std::unique_ptr<NcursesInstance> curses;
+    std::unique_ptr<NcursesView> view;
+    std::unique_ptr<NcursesController> controller;
+    std::unique_ptr<Map> map;
+    std::unique_ptr<Player> player;
 
-  // Keep track of actionable position to indicate where the player is facing
-  std::unique_ptr<Position> playerPos;
-  std::unique_ptr<Position> actionablePos;
+    // Keep track of actionable position to indicate where the player is facing
+    std::unique_ptr<Position> playerPos;
+    std::unique_ptr<Position> actionablePos;
 
-  std::unique_ptr<Stats> stats;
-  std::unique_ptr<QuestManager> questManager;
-  std::unique_ptr<CombatManager> combatManager;
+    std::unique_ptr<Stats> stats;
+    std::unique_ptr<QuestManager> questManager;
+    std::unique_ptr<CombatManager> combatManager;
 
-  // Flag to continue or halt game.
-  bool continueGame;
+    // Flag to continue or halt game.
+    bool continueGame;
 
-  // The modes that the player is currently playing on.
-  std::stack<std::unique_ptr<Mode>> modes;
+    // The modes that the player is currently playing on.
+    std::stack<std::unique_ptr<Mode>> modes;
 
-  // Counter for removing in stack of Modes
-  int leaveModeRequests;
+    // Counter for removing in stack of Modes
+    int leaveModeRequests;
 
-public:
-  PathosInstance();
-  virtual ~PathosInstance();
+  public:
+    PathosInstance();
 
-  Player *getPlayer() const;
-  NcursesView *getView() const;
+    virtual ~PathosInstance();
 
-  NcursesController *getController() const;
-  void setController(std::unique_ptr<NcursesController> contr);
+    Player *getPlayer() const;
 
-  Position *getPosition() const;
-  void setPosition(std::unique_ptr<Position> newPos);
-  void setPosition(size_t y, size_t x);
+    NcursesView *getView() const;
 
-  Position *getActionablePosition() const;
-  void setActionablePosition(std::unique_ptr<Position> newPos);
-  void setActionablePosition(size_t y, size_t x);
+    NcursesController *getController() const;
 
-  Map *getMap() const;
-  Stats *getStats();
-  QuestManager *getQuestManager();
-  CombatManager *getCombatManager();
-  const Mode *getActiveMode();
+    void setController(std::unique_ptr<NcursesController> contr);
 
-  // Available for testing purposes
-  bool willContinueGame() const;
-  int getLeaveModeRequests() const;
+    Position *getPosition() const;
 
-  void runMode(std::unique_ptr<Mode> mode);
-  void process(Event *e) override;
-  void leaveMode();
+    void setPosition(std::unique_ptr<Position> newPos);
 
-  // Stop game entirely and immediately.
-  void stop();
+    void setPosition(size_t y, size_t x);
 
-private:
-  virtual void run();
-};
+    Position *getActionablePosition() const;
+
+    void setActionablePosition(std::unique_ptr<Position> newPos);
+
+    void setActionablePosition(size_t y, size_t x);
+
+    Map *getMap() const;
+
+    Stats *getStats();
+
+    QuestManager *getQuestManager();
+
+    CombatManager *getCombatManager();
+
+    const Mode *getActiveMode();
+
+    // Available for testing purposes
+    bool willContinueGame() const;
+
+    int getLeaveModeRequests() const;
+
+    void runMode(std::unique_ptr<Mode> mode);
+
+    void process(Event *e) override;
+
+    void leaveMode();
+
+    // Stop game entirely and immediately.
+    void stop();
+
+  private:
+    virtual void run();
+
+    // Generates the information needed for the top status in the view.
+    Status generateStatus();
+  };
 
 } // namespace Pathos
 

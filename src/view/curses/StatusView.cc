@@ -7,11 +7,8 @@
 #include "request/NotificationRequest.h"
 #include "request/QuestRequest.h"
 #include "request/StatusRequest.h"
-#include "request/TalkRequest.h"
 #include "state/Status.h"
 #include "view/curses/NcursesInstance.h"
-#include "view/curses/NcursesView.h"
-#include "view/curses/NcursesViewDecorator.h"
 #include <string>
 
 using namespace Pathos;
@@ -31,14 +28,11 @@ void StatusView::draw(const MapRequest &req) {
   NcursesViewDecorator::view->draw(req);
 }
 
-// TODO: deal with status line wrapping
 void StatusView::draw(const StatusRequest &req) {
   size_t marginLeft = width - STATUS_WIDTH;
   NcursesView::getInstance()->movePrint(
-      0, marginLeft + 1, std::to_string(req.status->playerMaxHealth));
-  NcursesView::getInstance()->movePrint(
-      1, marginLeft + 1, std::to_string(req.status->playerHealth));
-  NcursesViewDecorator::view->draw(req);
+      0, marginLeft,
+      "Health: " + std::to_string(req.status->playerHealth) + "/" + std::to_string(req.status->playerMaxHealth));
 }
 
 void StatusView::draw(const NotificationRequest &req) {
@@ -94,17 +88,12 @@ void StatusView::draw(const QuestRequest &req) {
 }
 
 void StatusView::draw(const CombatRequest &req) {
-  (void) req;
   // TODO: Health, attack, mob health, mob attack
   // TODO: Display all attacks and options based on state.
 
   // X starts on the edge of the width
   size_t x = width - STATUS_WIDTH;
   size_t y = height * 1 / 10;
-
-  // TODO: Change the draw to use StatusRequest, temporarily displays player Health
-  NcursesView::getInstance()->clearLine(y, x);
-  NcursesView::getInstance()->movePrint(y++, x, "Health: " + std::to_string(req.player->getHealth()));
 
   NcursesView::getInstance()->clearLine(y, x);
   NcursesView::getInstance()->movePrint(y, x, req.log->description);

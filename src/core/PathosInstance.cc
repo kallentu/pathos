@@ -1,22 +1,16 @@
 #include <combat/CombatManager.h>
 #include "core/PathosInstance.h"
-#include "abstract/Observable.h"
 #include "controller/NcursesController.h"
-#include "core/Position.h"
-#include "event/Event.h"
 #include "map/AthensMap.h"
 #include "mob/player/Player.h"
 #include "mode/Mode.h"
-#include "mode/handler/ModeHandler.h"
 #include "quest/Quest.h"
 #include "quest/QuestManager.h"
 #include "request/MapRequest.h"
 #include "request/StatusRequest.h"
-#include "request/ViewRequest.h"
 #include "state/Stats.h"
 #include "state/Status.h"
 #include "view/curses/MapView.h"
-#include "view/curses/NcursesInstance.h"
 #include "view/curses/StatusView.h"
 
 using namespace Pathos;
@@ -91,14 +85,25 @@ void PathosInstance::run() {
   std::unique_ptr<Event> event;
 
   while (!leaveModeRequests && continueGame && !modes.empty()) {
-    MapRequest mreq = MapRequest(map.get(), getPosition());
-    Observable<ViewRequest>::notify(&mreq);
+    MapRequest mReq = MapRequest(map.get(), getPosition());
+    Observable<ViewRequest>::notify(&mReq);
+
+    Status status = generateStatus();
+    StatusRequest sReq = StatusRequest(&status);
+    Observable<ViewRequest>::notify(&sReq);
 
     event = modes.top().get()->getHandler()->handle(controller->getInput());
 
     if (event)
       process(event.get());
   }
+}
+
+Status PathosInstance::generateStatus() {
+  Status status{};
+  status.playerHealth = player->getHealth();
+  status.playerMaxHealth = player->getMaxHealth();
+  return status;
 }
 
 void PathosInstance::runMode(std::unique_ptr<Mode> mode) {

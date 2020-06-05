@@ -2,6 +2,7 @@
 #include "core/PathosInstance.h"
 #include "map/Map.h"
 #include "mob/friendly/quest/QuestGiver.h"
+#include "mob/hostile/Hostile.h"
 #include "mode/QuestMode.h"
 #include "request/ClearEntireStatus.h"
 #include "request/QuestRequest.h"
