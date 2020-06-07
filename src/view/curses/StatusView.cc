@@ -30,9 +30,15 @@ void StatusView::draw(const MapRequest &req) {
 
 void StatusView::draw(const StatusRequest &req) {
   size_t marginLeft = width - STATUS_WIDTH;
+  NcursesView::getInstance()->movePrint(0, marginLeft, req.status->playerName);
+  NcursesView::getInstance()->movePrint(1, marginLeft, "Level: " + std::to_string(req.status->playerLevel));
   NcursesView::getInstance()->movePrint(
-      0, marginLeft,
+      2, marginLeft,
       "Health: " + std::to_string(req.status->playerHealth) + "/" + std::to_string(req.status->playerMaxHealth));
+  NcursesView::getInstance()->movePrint(
+      3, marginLeft, "Physical Damage: " + std::to_string(req.status->playerPhysicalDamage));
+  NcursesView::getInstance()->movePrint(
+      4, marginLeft, "Magic Damage: " + std::to_string(req.status->playerMagicDamage));
 }
 
 void StatusView::draw(const NotificationRequest &req) {
@@ -88,12 +94,12 @@ void StatusView::draw(const QuestRequest &req) {
 }
 
 void StatusView::draw(const CombatRequest &req) {
-  // TODO: Health, attack, mob health, mob attack
+  // TODO: Mob health, mob attack
   // TODO: Display all attacks and options based on state.
 
   // X starts on the edge of the width
   size_t x = width - STATUS_WIDTH;
-  size_t y = height * 1 / 10;
+  size_t y = height * 1 / 4;
 
   NcursesView::getInstance()->clearLine(y, x);
   NcursesView::getInstance()->movePrint(y, x, req.log->description);

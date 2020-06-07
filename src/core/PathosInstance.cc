@@ -101,8 +101,12 @@ void PathosInstance::run() {
 
 Status PathosInstance::generateStatus() {
   Status status{};
+  status.playerName = player->getName();
+  status.playerLevel = player->getLevel();
   status.playerHealth = player->getHealth();
   status.playerMaxHealth = player->getMaxHealth();
+  status.playerMagicDamage = player->getMagicDamage();
+  status.playerPhysicalDamage = player->getPhysicalDamage();
   return status;
 }
 
