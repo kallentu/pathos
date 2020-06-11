@@ -32,13 +32,16 @@ void StatusView::draw(const StatusRequest &req) {
   size_t marginLeft = width - STATUS_WIDTH;
   NcursesView::getInstance()->movePrint(0, marginLeft, req.status->playerName);
   NcursesView::getInstance()->movePrint(1, marginLeft, "Level: " + std::to_string(req.status->playerLevel));
+  NcursesView::getInstance()->movePrint(2, marginLeft,
+                                        "Experience: " + std::to_string(req.status->playerExperience) + "/" +
+                                        std::to_string(req.status->playerExperienceThreshold));
   NcursesView::getInstance()->movePrint(
-      2, marginLeft,
+      3, marginLeft,
       "Health: " + std::to_string(req.status->playerHealth) + "/" + std::to_string(req.status->playerMaxHealth));
   NcursesView::getInstance()->movePrint(
-      3, marginLeft, "Physical Damage: " + std::to_string(req.status->playerPhysicalDamage));
+      4, marginLeft, "Physical Damage: " + std::to_string(req.status->playerPhysicalDamage));
   NcursesView::getInstance()->movePrint(
-      4, marginLeft, "Magic Damage: " + std::to_string(req.status->playerMagicDamage));
+      5, marginLeft, "Magic Damage: " + std::to_string(req.status->playerMagicDamage));
 }
 
 void StatusView::draw(const NotificationRequest &req) {

@@ -103,6 +103,8 @@ Status PathosInstance::generateStatus() {
   Status status{};
   status.playerName = player->getName();
   status.playerLevel = player->getLevel();
+  status.playerExperience = player->getExperience();
+  status.playerExperienceThreshold = player->getExperienceThreshold();
   status.playerHealth = player->getHealth();
   status.playerMaxHealth = player->getMaxHealth();
   status.playerMagicDamage = player->getMagicDamage();

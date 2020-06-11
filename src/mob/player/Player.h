@@ -18,6 +18,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <state/Level.h>
 
 namespace Pathos {
 
@@ -27,21 +28,22 @@ class Event;
 // Has customization options.
 // Can speak to Friendly, attack Hostile, and romance Romanceable.
 class Player final : MapObject, public Mob, public Trader {
-  size_t level;
-  size_t experience;
+  Level level;
 
 public:
   Player()
-      : MapObject(MapObject::Char::At), Mob("Periphas", 100, 5, 5), Trader(),
-      level{0}, experience{0} {}
+      : MapObject(MapObject::Char::At), Mob("Periphas", 100, 5, 5), Trader() {}
   ~Player() override = default;
 
-  size_t getLevel() const { return level; }
-  void setLevel(size_t l) { level = l; }
+  // Level in numerical value.
+  size_t getLevel() const { return level.getLevel(); }
 
-  size_t getExperience() const { return experience; }
-  void setExperience(size_t ex) { experience = ex; }
-  void addExperience(size_t ex) { experience += ex; }
+  // The amount of experience at the current level, needed to level up.
+  size_t getExperienceThreshold() const { return level.getExperienceThreshold(); }
+
+  size_t getExperience() const { return level.getExperience(); }
+  void setExperience(size_t ex) { level.setExperience(ex); }
+  void addExperience(size_t ex) { level.setExperience(level.getExperience() + ex); }
 
   void attack(Hostile *h) { h->beAttackedBy(*this); }
   std::unique_ptr<TalkRequest> talkTo(Friendly *f) {

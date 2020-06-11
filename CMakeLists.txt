@@ -233,6 +233,7 @@ add_library(Sources
         src/request/TalkRequest.cc
         src/request/TalkRequest.h
         src/request/ViewRequest.h
+        src/state/Level.h
         src/state/Stats.h
         src/state/Status.h
         src/view/curses/MapView.cc
