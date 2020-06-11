@@ -42,8 +42,7 @@ public:
   size_t getExperienceThreshold() const { return level.getExperienceThreshold(); }
 
   size_t getExperience() const { return level.getExperience(); }
-  void setExperience(size_t ex) { level.setExperience(ex); }
-  void addExperience(size_t ex) { level.setExperience(level.getExperience() + ex); }
+  void addExperience(size_t ex) { level.addExperience(ex); }
 
   void attack(Hostile *h) { h->beAttackedBy(*this); }
   std::unique_ptr<TalkRequest> talkTo(Friendly *f) {
