@@ -32,14 +32,16 @@ std::unique_ptr<Event> Pathos::CombatModeHandler::parseEvent(int index) {
   // ie. previous choices of input matter.
   char c = input[index];
 
-  if (c == 'a') {
-    // TODO (a) for basic attack.
-  } else if (c == 's') {
-    // TODO (s) for basic attack 2.
-  } else if (c == 'd') {
-    // TODO (d) for basic attack 3.
-  } else if (c == 'c') {
-    // (c) for run away.
+  if (c == '1') {
+    // TODO (1) for basic attack.
+  } else if (c == '2') {
+    // TODO (2) for basic attack 2.
+  } else if (c == '3') {
+    // TODO (3) for basic attack 3.
+  } else if (c == '4') {
+    // TODO (3) for basic attack 4.
+  } else if (c == 'r') {
+    // (r) for run away.
     return std::make_unique<LeaveModeEvent>();
   }
 

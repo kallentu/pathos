@@ -14,6 +14,7 @@ add_library(Sources
         src/combat/CombatManager.cc
         src/combat/CombatManager.h
         src/combat/CombatLog.h
+        src/combat/skill/Skill.h
         src/controller/Char.h
         src/controller/Controller.h
         src/controller/Input.h

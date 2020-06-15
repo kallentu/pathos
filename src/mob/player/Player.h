@@ -19,6 +19,7 @@
 #include <string>
 #include <vector>
 #include <state/Level.h>
+#include <combat/skill/Skill.h>
 
 namespace Pathos {
 
@@ -29,6 +30,12 @@ class Event;
 // Can speak to Friendly, attack Hostile, and romance Romanceable.
 class Player final : MapObject, public Mob, public Trader {
   Level level;
+
+  // List of all possible skills, unlocked by the player.
+  std::vector<std::unique_ptr<Skill>> allSkills;
+
+  // List of active skills equipped by the player.
+  std::vector<Skill *> activeSkills;
 
 public:
   Player()
@@ -44,6 +51,7 @@ public:
   size_t getExperience() const { return level.getExperience(); }
   void addExperience(size_t ex) { level.addExperience(ex); }
 
+  // TODO: Change the attack to take skills into account.
   void attack(Hostile *h) { h->beAttackedBy(*this); }
   std::unique_ptr<TalkRequest> talkTo(Friendly *f) {
     return f->beTalkedToBy(*this);
