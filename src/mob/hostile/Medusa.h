@@ -12,7 +12,7 @@ class Medusa : public Hostile {
 public:
   Medusa() : Hostile("Medusa", 10000000, 90000, 10000) {}
 
-  void beAttackedBy(Player &p) override;
+private:
   void beKilledBy(Player &p) override;
 };
 

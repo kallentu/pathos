@@ -172,6 +172,7 @@ add_library(Sources
         src/mob/hostile/Harpy.h
         src/mob/hostile/Hekatonkheires.cc
         src/mob/hostile/Hekatonkheires.h
+        src/mob/hostile/Hostile.cc
         src/mob/hostile/Hostile.h
         src/mob/hostile/Hydra.cc
         src/mob/hostile/Hydra.h

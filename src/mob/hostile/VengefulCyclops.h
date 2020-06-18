@@ -12,7 +12,7 @@ class VengefulCyclops : public Hostile {
 public:
   VengefulCyclops() : Hostile("Vengeful Cyclops", 750000, 5000, 6500) {}
 
-  void beAttackedBy(Player &p) override;
+private:
   void beKilledBy(Player &p) override;
 };
 

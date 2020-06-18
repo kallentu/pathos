@@ -12,7 +12,7 @@ class Cronus : public Hostile {
 public:
   Cronus() : Hostile("Cronus", 5000000, 20000, 30000) {}
 
-  void beAttackedBy(Player &p) override;
+private:
   void beKilledBy(Player &p) override;
 };
 

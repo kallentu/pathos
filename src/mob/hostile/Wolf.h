@@ -12,7 +12,7 @@ class Wolf : public Hostile {
 public:
   Wolf() : Hostile("Wolf", 100, 0, 20) {}
 
-  void beAttackedBy(Player &p) override;
+private:
   void beKilledBy(Player &p) override;
 };
 

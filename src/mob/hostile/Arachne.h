@@ -12,7 +12,7 @@ class Arachne : public Hostile {
 public:
   Arachne() : Hostile("Arachne", 7000000, 70000, 5000) {}
 
-  void beAttackedBy(Player &p) override;
+private:
   void beKilledBy(Player &p) override;
 };
 

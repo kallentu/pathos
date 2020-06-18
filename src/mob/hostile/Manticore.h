@@ -12,7 +12,7 @@ class Manticore : public Hostile {
 public:
   Manticore() : Hostile("Manticore", 6000000, 30000, 30000) {}
 
-  void beAttackedBy(Player &p) override;
+private:
   void beKilledBy(Player &p) override;
 };
 

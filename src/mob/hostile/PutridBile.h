@@ -12,7 +12,7 @@ class PutridBile : public Hostile {
 public:
   PutridBile() : Hostile("Putrid Bile", 150000, 7000, 500) {}
 
-  void beAttackedBy(Player &p) override;
+private:
   void beKilledBy(Player &p) override;
 };
 

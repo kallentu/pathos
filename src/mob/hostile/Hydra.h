@@ -12,7 +12,7 @@ class Hydra : public Hostile {
 public:
   Hydra() : Hostile("Hydra", 10000, 800, 0) {}
 
-  void beAttackedBy(Player &p) override;
+private:
   void beKilledBy(Player &p) override;
 };
 

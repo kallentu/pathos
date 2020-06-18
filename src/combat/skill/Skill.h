@@ -8,9 +8,10 @@ namespace Pathos {
     // Name of the skill, used for view.
     std::string name;
 
-    // Damage before weapon multiplier.
-    size_t damage;
+    // Multiplier on top of damage types from weapons.
+    size_t physicalDamage;
+    size_t magicDamage;
   };
 }
 
-#endif //PATHOS_SKILL
+#endif // PATHOS_SKILL

@@ -34,7 +34,7 @@ class Player final : MapObject, public Mob, public Trader {
   // List of all possible skills, unlocked by the player.
   std::vector<std::unique_ptr<Skill>> allSkills;
 
-  // List of active skills equipped by the player.
+  // List of active skills equipped by the player, max 4.
   std::vector<Skill *> activeSkills;
 
 public:
@@ -51,8 +51,14 @@ public:
   size_t getExperience() const { return level.getExperience(); }
   void addExperience(size_t ex) { level.addExperience(ex); }
 
-  // TODO: Change the attack to take skills into account.
-  void attack(Hostile *h) { h->beAttackedBy(*this); }
+  // Attack hostile using skill number [skillIndex] in [activeSkills].
+  void attack(Hostile *h, int skillIndex) {
+    // See [activeSkills]. Must have only 4 skills active at a time.
+    if (skillIndex >= 4) return;
+
+    h->beAttackedBy(*this, *activeSkills.at(skillIndex));
+  }
+
   std::unique_ptr<TalkRequest> talkTo(Friendly *f) {
     return f->beTalkedToBy(*this);
   }

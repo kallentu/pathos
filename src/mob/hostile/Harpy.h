@@ -12,7 +12,7 @@ class Harpy : public Hostile {
 public:
   Harpy() : Hostile("Harpy", 2000000, 5000, 35000) {}
 
-  void beAttackedBy(Player &p) override;
+private:
   void beKilledBy(Player &p) override;
 };
 

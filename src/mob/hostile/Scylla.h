@@ -12,7 +12,7 @@ class Scylla : public Hostile {
 public:
   Scylla() : Hostile("Scylla", 5000, 300, 100) {}
 
-  void beAttackedBy(Player &p) override;
+private:
   void beKilledBy(Player &p) override;
 };
 

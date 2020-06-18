@@ -12,7 +12,7 @@ class Chimera : public Hostile {
 public:
   Chimera() : Hostile("Chimera", 25000, 100, 700) {}
 
-  void beAttackedBy(Player &p) override;
+private:
   void beKilledBy(Player &p) override;
 };
 

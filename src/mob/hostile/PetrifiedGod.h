@@ -12,7 +12,7 @@ class PetrifiedGod : public Hostile {
 public:
   PetrifiedGod() : Hostile("Petrified God", 1250000, 10000, 10000) {}
 
-  void beAttackedBy(Player &p) override;
+private:
   void beKilledBy(Player &p) override;
 };
 
