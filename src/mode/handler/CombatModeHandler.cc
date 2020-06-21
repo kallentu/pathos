@@ -1,6 +1,7 @@
 #include "mode/handler/CombatModeHandler.h"
 #include <event/LeaveModeEvent.h>
 #include <request/CombatRequest.h>
+#include <event/PlayerAttackHostileEvent.h>
 #include "combat/CombatManager.h"
 #include "controller/Char.h"
 
@@ -32,17 +33,25 @@ std::unique_ptr<Event> Pathos::CombatModeHandler::parseEvent(int index) {
   // ie. previous choices of input matter.
   char c = input[index];
 
-  if (c == '1') {
-    // TODO (1) for basic attack.
-  } else if (c == '2') {
-    // TODO (2) for basic attack 2.
-  } else if (c == '3') {
-    // TODO (3) for basic attack 3.
-  } else if (c == '4') {
-    // TODO (3) for basic attack 4.
-  } else if (c == 'r') {
-    // (r) for run away.
+  // Death exits combat.
+  if (hostile->isDeceased() || inst->getPlayer()->isDeceased()) {
+    // TODO: Need to remove mob from map if dead.
     return std::make_unique<LeaveModeEvent>();
+  }
+
+  // We are always attacking. Hostile will attack on its own, no prompt needed.
+  switch(c) {
+    case '1':
+      return std::make_unique<PlayerAttackHostileEvent>(hostile, 1);
+    case '2':
+      return std::make_unique<PlayerAttackHostileEvent>(hostile, 2);
+    case '3':
+      return std::make_unique<PlayerAttackHostileEvent>(hostile, 3);
+    case '4':
+      return std::make_unique<PlayerAttackHostileEvent>(hostile, 4);
+    case 'r':
+      // (r) for run away.
+      return std::make_unique<LeaveModeEvent>();
   }
 
   throw ParseError::NoEvent;

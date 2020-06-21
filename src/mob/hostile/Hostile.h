@@ -14,6 +14,8 @@
 
 namespace Pathos {
 
+  class CombatManager;
+
   class Event;
 
   class Player;
@@ -46,11 +48,12 @@ namespace Pathos {
 
     void equip(Staff &s) override { magicDamage = s.getDamage(); }
 
-    void beAttackedBy(Player &p, Skill &s);
+    void beAttackedBy(Player &p, CombatManager &cm, Skill &s);
 
   private:
-    // Override this method if we want to have special on attack abilities, otherwise, it will do nothing.
-    virtual void retaliate(Player &p) { (void) p; }
+    // TODO: Override this method to attack back or use special attack abilities, but should make completely virtual.
+    // Adds to logs for CombatManager.
+    virtual void retaliate(Player &p, CombatManager &cm) { (void)p; (void)cm; }
 
     // Override method to set the amount of experience and rewards gained (loot).
     virtual void beKilledBy(Player &p) = 0;

@@ -20,6 +20,9 @@
 #include <vector>
 #include <state/Level.h>
 #include <combat/skill/Skill.h>
+#include <request/CombatRequest.h>
+#include <combat/CombatManager.h>
+#include <core/PathosInstance.h>
 
 namespace Pathos {
 
@@ -52,11 +55,13 @@ public:
   void addExperience(size_t ex) { level.addExperience(ex); }
 
   // Attack hostile using skill number [skillIndex] in [activeSkills].
-  void attack(Hostile *h, int skillIndex) {
+  std::unique_ptr<CombatRequest> attack(Hostile *h, PathosInstance *inst, int skillIndex) {
     // See [activeSkills]. Must have only 4 skills active at a time.
-    if (skillIndex >= 4) return;
+    if (skillIndex >= 4) return nullptr;
 
-    h->beAttackedBy(*this, *activeSkills.at(skillIndex));
+    // Attack the hostile, allow it to retaliate and get the request.
+    h->beAttackedBy(*this, *inst->getCombatManager(), *activeSkills.at(skillIndex));
+    return inst->getCombatManager()->getCombatRequest(h, inst);
   }
 
   std::unique_ptr<TalkRequest> talkTo(Friendly *f) {

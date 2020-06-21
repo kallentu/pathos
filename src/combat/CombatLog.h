@@ -9,6 +9,7 @@ namespace Pathos {
   struct CombatLog {
     enum class Status {
       PlayerChooseAttack,
+      HostileAttack,
       HostileDead,
       PlayerDead
     };

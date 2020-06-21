@@ -20,11 +20,16 @@ namespace Pathos {
   public:
     std::unique_ptr<CombatRequest> getCombatRequest(Hostile *hostile, PathosInstance *inst);
 
-  private:
-    // Certain statuses such as death take priority over whatever is currently in the combat log.
-    // Return these combat requests immediately.
-    std::unique_ptr<CombatRequest> getPriorityStatusRequest(PathosInstance *inst, Hostile *hostile);
+    // Returns [true] if the last event in combat was the hostile attacking.
+    bool hostileLastAttacked(Hostile *hostile) {
+      if (combatLogs.count(hostile) == 0) {
+        return false;
+      }
 
+      return combatLogs[hostile].back().get()->status == CombatLog::Status::HostileAttack;
+    }
+
+  private:
     CombatLog *addLogForHostile(Hostile *hostile, CombatLog::Status status);
 
     static std::string getDescriptionWithStatus(CombatLog::Status status, Hostile *hostile);

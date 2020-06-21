@@ -97,12 +97,27 @@ void StatusView::draw(const QuestRequest &req) {
 }
 
 void StatusView::draw(const CombatRequest &req) {
-  // TODO: Mob health, mob attack
   // TODO: Display all attacks and options based on state.
 
   // X starts on the edge of the width
   size_t x = width - STATUS_WIDTH;
   size_t y = height * 1 / 4;
+
+
+  if (!req.hostile->isDeceased()) {
+    NcursesView::getInstance()->clearLine(y, x);
+    NcursesView::getInstance()->movePrint(y++, x,
+                                          req.hostile->getName() + " " + std::to_string(req.hostile->getHealth()) +
+                                          "/" + std::to_string(req.hostile->getMaxHealth()));
+    NcursesView::getInstance()->clearLine(y, x);
+    NcursesView::getInstance()->movePrint(y++, x,
+                                          "PA: " + std::to_string(req.hostile->getPhysicalDamage()) + " MA:" +
+                                          std::to_string(req.hostile->getMagicDamage()));
+  } else {
+    // Simply clear the hostile status lines when they die.
+    NcursesView::getInstance()->clearLine(y++, x);
+    NcursesView::getInstance()->clearLine(y++, x);
+  }
 
   NcursesView::getInstance()->clearLine(y, x);
   NcursesView::getInstance()->movePrint(y, x, req.log->description);
@@ -119,7 +134,7 @@ void StatusView::draw(const ClearMainStatusRequest &req) {
   (void) req; // Don't actually use it
 
   size_t x = width - STATUS_WIDTH;
-  size_t y = height * 1 / 3;
+  size_t y = height * 1 / 4;
 
   while (y < QUICK_STATUS_Y) {
     NcursesView::getInstance()->clearLine(y, x);
