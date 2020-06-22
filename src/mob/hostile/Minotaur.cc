@@ -4,7 +4,6 @@
 using namespace Pathos;
 
 void Minotaur::beKilledBy(Player &p) {
-  // TODO: Send KillRequest
   p.addExperience(50000);
   p.addDrachma(10000);
 }

@@ -8,7 +8,6 @@
 
 namespace Pathos {
 
-// TODO: Have function to check progress of the quest.
 class Quest {
 public:
   // NotStarted   In initialization state, the player has no accepted the quest.

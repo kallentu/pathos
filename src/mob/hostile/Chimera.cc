@@ -4,7 +4,6 @@
 using namespace Pathos;
 
 void Chimera::beKilledBy(Player &p) {
-  // TODO: Send KillRequest
   p.addExperience(5000);
   p.addDrachma(1250);
 }

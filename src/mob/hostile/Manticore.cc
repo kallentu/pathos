@@ -4,7 +4,6 @@
 using namespace Pathos;
 
 void Manticore::beKilledBy(Player &p) {
-  // TODO: Send KillRequest
   p.addExperience(750000);
   p.addDrachma(50000);
 }

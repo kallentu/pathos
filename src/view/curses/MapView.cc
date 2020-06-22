@@ -41,7 +41,6 @@ void MapView::draw(const QuestRequest &req) {
 }
 
 void MapView::draw(const CombatRequest &req) {
-  // TODO: Check status and remove mob from map if dead.
   // TODO: If player dead, move to start of map.
   (void) req;
   drawMap();

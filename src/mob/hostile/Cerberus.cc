@@ -4,7 +4,6 @@
 using namespace Pathos;
 
 void Cerberus::beKilledBy(Player &p) {
-  // TODO: Send KillRequest
   p.addExperience(25000);
   p.addDrachma(3000);
 }

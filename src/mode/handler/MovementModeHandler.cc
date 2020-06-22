@@ -35,7 +35,5 @@ std::unique_ptr<Event> MovementModeHandler::handle(const Char &c) {
     return std::make_unique<CheckVicinityEvent>();
   }
 
-  // TODO: multiple events saved for hostile engagement
-
   return events;
 }
