@@ -81,6 +81,7 @@ void StatusView::draw(const QuestRequest &req) {
       questOptions = "Accept (a) Decline (d)";
       break;
     case Quest::Status::InProgress:
+    case Quest::Status::Completed:
       questOptions = "Continue... (a)";
       break;
     default:

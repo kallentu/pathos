@@ -31,7 +31,8 @@ std::unique_ptr<QuestRequest>
 QuestManager::getRequestFromStatus(Quest::Status status, Quest *quest,
                                    PathosInstance *inst) {
   // Make sure we are updated with correct status before we print it to screen later.
-  if (status == Quest::Status::InProgress) {
+  // Avoids check if we haven't started the quest because there is no state we want to check for.
+  if (status == Quest::Status::InProgress || status == Quest::Status::Completed) {
     status = quest->updateQuestStatus(inst);
   }
 

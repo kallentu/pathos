@@ -52,6 +52,11 @@ std::unique_ptr<Event> QuestModeHandler::parseEvent(int index) {
       }
       break;
     case Quest::Status::Completed:
+      if (c == 'a') {
+        // Quest complete, show completed and leave.
+        return std::make_unique<LeaveModeEvent>();
+      }
+      break;
     default:
       return std::make_unique<LeaveModeEvent>();
   }

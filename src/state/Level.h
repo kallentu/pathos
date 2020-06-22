@@ -29,8 +29,8 @@ namespace Pathos {
       currentExperience += ex;
 
       while (experienceThresholds.at(currentLevel) <= currentExperience) {
-        currentLevel++;
-        currentExperience -= experienceThresholds.at(currentLevel);
+        // Subtract the whole level threshold if current experience is larger, also increment level.
+        currentExperience -= experienceThresholds.at(currentLevel++);
       }
     }
 

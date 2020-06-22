@@ -1,7 +1,6 @@
 #include "quest/athens/KillWolvesQuest.h"
 #include "core/PathosInstance.h"
-#include "mob/friendly/quest/QuestGiver.h"
-#include "quest/Quest.h"
+#include "mob/player/Player.h"
 #include "state/Stats.h"
 
 using namespace Pathos;
@@ -28,8 +27,13 @@ Quest::Status KillWolvesQuest::checkConditions(PathosInstance *inst) {
       Quest::setDialogue(Quest::Status::InProgress,
                          "Remember, you need to cull 20 of them. You have only killed " + std::to_string(killed) +
                          " wolves.");
-      if (killed >= 20)
+      if (killed >= 20) {
+        // Change status and give rewards.
+        inst->getPlayer()->addExperience(1000);
+        inst->getPlayer()->addDrachma(1000);
         Quest::setStatus(Quest::Status::Completed);
+      }
+
       break;
     }
     case Quest::Status::Completed:

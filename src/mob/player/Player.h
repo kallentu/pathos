@@ -68,7 +68,7 @@ namespace Pathos {
       Skill s = Skill{"t", 1,2};
 
       // Attack the hostile, allow it to retaliate and get the request.
-      h->beAttackedBy(*this, *inst->getCombatManager(), *activeSkills.at(skillIndex));
+      h->beAttackedBy(*this, *inst->getCombatManager(), s);
       return inst->getCombatManager()->getCombatRequest(h, inst);
     }
 
