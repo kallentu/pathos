@@ -2,7 +2,8 @@
 #include <event/LeaveModeEvent.h>
 #include <request/CombatRequest.h>
 #include <event/PlayerAttackHostileEvent.h>
-#include "combat/CombatManager.h"
+#include <event/MultipleEvent.h>
+#include <event/MobKilledEvent.h>
 #include "controller/Char.h"
 
 using namespace Pathos;
@@ -33,14 +34,16 @@ std::unique_ptr<Event> Pathos::CombatModeHandler::parseEvent(int index) {
   // ie. previous choices of input matter.
   char c = input[index];
 
-  // Death exits combat.
-  if (hostile->isDeceased() || inst->getPlayer()->isDeceased()) {
-    // TODO: Need to remove mob from map if dead.
-    return std::make_unique<LeaveModeEvent>();
+  // Hostile death exits combat, removes the hostile from the map.
+  if (hostile->isDeceased()) {
+    std::unique_ptr<MultipleEvent> events = std::make_unique<MultipleEvent>();
+    events->addEvent(std::make_unique<MobKilledEvent>());
+    events->addEvent(std::make_unique<LeaveModeEvent>());
+    return events;
   }
 
   // We are always attacking. Hostile will attack on its own, no prompt needed.
-  switch(c) {
+  switch (c) {
     case '1':
       return std::make_unique<PlayerAttackHostileEvent>(hostile, 1);
     case '2':

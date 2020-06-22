@@ -26,6 +26,8 @@ add_library(Sources
         src/event/CheckVicinityEvent.h
         src/event/Event.h
         src/event/LeaveModeEvent.h
+        src/event/MobKilledEvent.cc
+        src/event/MobKilledEvent.h
         src/event/MultipleEvent.cc
         src/event/MultipleEvent.h
         src/event/PlayerAttackHostileEvent.h
