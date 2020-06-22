@@ -16,7 +16,6 @@ void Hostile::beAttackedBy(Player &p, CombatManager &cm, Skill &s) {
       setHealth(0);
       setDeceased(true);
       beKilledBy(p);
-      return;
     } else {
       setHealth(getHealth() - (magicDamage + physicalDamage));
 

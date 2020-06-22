@@ -46,7 +46,6 @@ namespace Pathos {
     std::unique_ptr<NcursesView> view;
     std::unique_ptr<NcursesController> controller;
     std::unique_ptr<Map> map;
-    std::unique_ptr<Player> player;
 
     // Keep track of actionable position to indicate where the player is facing
     std::unique_ptr<Position> playerPos;
@@ -55,6 +54,8 @@ namespace Pathos {
     std::unique_ptr<Stats> stats;
     std::unique_ptr<QuestManager> questManager;
     std::unique_ptr<CombatManager> combatManager;
+
+    std::unique_ptr<Player> player;
 
     // Flag to continue or halt game.
     bool continueGame;

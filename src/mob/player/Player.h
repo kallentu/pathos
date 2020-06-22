@@ -26,58 +26,69 @@
 
 namespace Pathos {
 
-class Event;
-
 // The main player.
 // Has customization options.
 // Can speak to Friendly, attack Hostile, and romance Romanceable.
-class Player final : MapObject, public Mob, public Trader {
-  Level level;
+  class Player final : MapObject, public Mob, public Trader {
+    // Pointer to stats that can be changed according to what the player does.
+    Stats *stats;
 
-  // List of all possible skills, unlocked by the player.
-  std::vector<std::unique_ptr<Skill>> allSkills;
+    Level level;
 
-  // List of active skills equipped by the player, max 4.
-  std::vector<Skill *> activeSkills;
+    // List of all possible skills, unlocked by the player.
+    std::vector<std::unique_ptr<Skill>> allSkills;
 
-public:
-  Player()
-      : MapObject(MapObject::Char::At), Mob("Periphas", 100, 5, 5), Trader() {}
-  ~Player() override = default;
+    // List of active skills equipped by the player, max 4.
+    std::vector<Skill *> activeSkills;
 
-  // Level in numerical value.
-  size_t getLevel() const { return level.getLevel(); }
+  public:
+    explicit Player(Stats *stats)
+        : MapObject(MapObject::Char::At), Mob("Periphas", 100, 5, 5), Trader(), stats{stats} {}
 
-  // The amount of experience at the current level, needed to level up.
-  size_t getExperienceThreshold() const { return level.getExperienceThreshold(); }
+    ~Player() override = default;
 
-  size_t getExperience() const { return level.getExperience(); }
-  void addExperience(size_t ex) { level.addExperience(ex); }
+    Stats *getStats() { return stats; }
 
-  // Attack hostile using skill number [skillIndex] in [activeSkills].
-  std::unique_ptr<CombatRequest> attack(Hostile *h, PathosInstance *inst, int skillIndex) {
-    // See [activeSkills]. Must have only 4 skills active at a time.
-    if (skillIndex >= 4) return nullptr;
+    // Level in numerical value.
+    size_t getLevel() const { return level.getLevel(); }
 
-    // Attack the hostile, allow it to retaliate and get the request.
-    h->beAttackedBy(*this, *inst->getCombatManager(), *activeSkills.at(skillIndex));
-    return inst->getCombatManager()->getCombatRequest(h, inst);
-  }
+    // The amount of experience at the current level, needed to level up.
+    size_t getExperienceThreshold() const { return level.getExperienceThreshold(); }
 
-  std::unique_ptr<TalkRequest> talkTo(Friendly *f) {
-    return f->beTalkedToBy(*this);
-  }
+    size_t getExperience() const { return level.getExperience(); }
 
-  void consume(Chicken &c) override { health += c.getHealthChange(); }
-  void consume(SmallPotion &sp) override { health += sp.getHealthChange(); }
+    void addExperience(size_t ex) { level.addExperience(ex); }
 
-  void equip(Bow &b) override {
-    magicDamage = b.getDamage() / 10;
-    physicalDamage = b.getDamage() * 9 / 10;
-  }
-  void equip(Greatsword &gs) override { physicalDamage = gs.getDamage(); }
-  void equip(Staff &s) override { magicDamage = s.getDamage(); }
-};
+    // Attack hostile using skill number [skillIndex] in [activeSkills].
+    std::unique_ptr<CombatRequest> attack(Hostile *h, PathosInstance *inst, int skillIndex) {
+      // See [activeSkills]. Must have only 4 skills active at a time.
+      if (skillIndex >= 4) return nullptr;
+
+      // TODO: Remove once we have skills set up
+      Skill s = Skill{"t", 1,2};
+
+      // Attack the hostile, allow it to retaliate and get the request.
+      h->beAttackedBy(*this, *inst->getCombatManager(), *activeSkills.at(skillIndex));
+      return inst->getCombatManager()->getCombatRequest(h, inst);
+    }
+
+    std::unique_ptr<TalkRequest> talkTo(Friendly *f) {
+      return f->beTalkedToBy(*this);
+    }
+
+    void consume(Chicken &c) override { health += c.getHealthChange(); }
+
+    void consume(SmallPotion &sp) override { health += sp.getHealthChange(); }
+
+    void equip(Bow &b) override {
+      magicDamage = b.getDamage() / 10;
+      physicalDamage = b.getDamage() * 9 / 10;
+    }
+
+    void equip(Greatsword &gs) override { physicalDamage = gs.getDamage(); }
+
+    void equip(Staff &s) override { magicDamage = s.getDamage(); }
+  };
 
 } // namespace Pathos
 

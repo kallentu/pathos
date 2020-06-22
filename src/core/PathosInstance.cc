@@ -20,12 +20,13 @@ PathosInstance::PathosInstance()
       view{std::make_unique<StatusView>(
           std::make_unique<MapView>(curses.get()))},
       controller{std::make_unique<NcursesController>(curses.get())},
-      map{std::make_unique<AthensMap>()}, player{std::make_unique<Player>()},
+      map{std::make_unique<AthensMap>()},
       playerPos{std::make_unique<Position>(1, 1)},
       actionablePos{std::make_unique<Position>(2, 1)},
       stats{std::make_unique<Stats>()},
       questManager{std::make_unique<QuestManager>()},
       combatManager{std::make_unique<CombatManager>()},
+      player{std::make_unique<Player>(stats.get())},
       continueGame{true},
       leaveModeRequests{0} {
   Observable<ViewRequest>::addObserver(view.get());

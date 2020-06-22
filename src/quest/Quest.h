@@ -31,7 +31,7 @@ public:
   void setQuestRecipient(QuestRecipient *qp) { questRecipient = qp; }
   QuestRecipient *getQuestRecipient() const { return questRecipient; }
 
-  void addDialogue(Status status, std::string newDiag) {
+  void setDialogue(Status status, std::string newDiag) {
     dialogue[status] = newDiag;
   }
   std::string getDialogue(Status status) { return dialogue[status]; }
