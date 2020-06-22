@@ -31,7 +31,8 @@ void StatusView::draw(const MapRequest &req) {
 void StatusView::draw(const StatusRequest &req) {
   size_t marginLeft = width - STATUS_WIDTH;
   NcursesView::getInstance()->movePrint(0, marginLeft, req.status->playerName);
-  NcursesView::getInstance()->movePrint(1, marginLeft, "Level: " + std::to_string(req.status->playerLevel));
+  NcursesView::getInstance()->movePrint(1, marginLeft, "Level: " + std::to_string(req.status->playerLevel) + "  " +
+                                                       std::to_string(req.status->playerDrachma) + "d");
   NcursesView::getInstance()->movePrint(2, marginLeft,
                                         "Experience: " + std::to_string(req.status->playerExperience) + "/" +
                                         std::to_string(req.status->playerExperienceThreshold));

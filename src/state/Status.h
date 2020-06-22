@@ -12,6 +12,7 @@ namespace Pathos {
     size_t playerLevel, playerExperience, playerExperienceThreshold;
     size_t playerMaxHealth, playerHealth;
     size_t playerMagicDamage, playerPhysicalDamage;
+    size_t playerDrachma;
   };
 
 } // namespace Pathos

@@ -110,6 +110,7 @@ Status PathosInstance::generateStatus() {
   status.playerMaxHealth = player->getMaxHealth();
   status.playerMagicDamage = player->getMagicDamage();
   status.playerPhysicalDamage = player->getPhysicalDamage();
+  status.playerDrachma = player->getDrachma();
   return status;
 }
 
