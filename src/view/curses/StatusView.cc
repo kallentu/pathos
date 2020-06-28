@@ -30,18 +30,18 @@ void StatusView::draw(const MapRequest &req) {
 
 void StatusView::draw(const StatusRequest &req) {
   size_t marginLeft = width - STATUS_WIDTH;
-  NcursesView::getInstance()->movePrint(0, marginLeft, req.status->playerName);
-  NcursesView::getInstance()->movePrint(1, marginLeft, "Level: " + std::to_string(req.status->playerLevel) + "  " +
+  NcursesView::getInstance()->clearMovePrint(0, marginLeft, req.status->playerName);
+  NcursesView::getInstance()->clearMovePrint(1, marginLeft, "Level: " + std::to_string(req.status->playerLevel) + "  " +
                                                        std::to_string(req.status->playerDrachma) + "d");
-  NcursesView::getInstance()->movePrint(2, marginLeft,
+  NcursesView::getInstance()->clearMovePrint(2, marginLeft,
                                         "Experience: " + std::to_string(req.status->playerExperience) + "/" +
                                         std::to_string(req.status->playerExperienceThreshold));
-  NcursesView::getInstance()->movePrint(
+  NcursesView::getInstance()->clearMovePrint(
       3, marginLeft,
       "Health: " + std::to_string(req.status->playerHealth) + "/" + std::to_string(req.status->playerMaxHealth));
-  NcursesView::getInstance()->movePrint(
+  NcursesView::getInstance()->clearMovePrint(
       4, marginLeft, "Physical Damage: " + std::to_string(req.status->playerPhysicalDamage));
-  NcursesView::getInstance()->movePrint(
+  NcursesView::getInstance()->clearMovePrint(
       5, marginLeft, "Magic Damage: " + std::to_string(req.status->playerMagicDamage));
 }
 
@@ -63,9 +63,7 @@ void StatusView::draw(const TalkRequest &req) {
   while (y < QUICK_STATUS_Y && dialoguePos < dialogue.length()) {
     // Take string that fits, print.
     std::string dialogueSubstr = dialogue.substr(dialoguePos, dialogueLength);
-
-    NcursesView::getInstance()->clearLine(y, x);
-    NcursesView::getInstance()->movePrint(y, x, dialogueSubstr);
+    NcursesView::getInstance()->clearMovePrint(y, x, dialogueSubstr);
 
     dialoguePos += dialogueLength;
     ++y;
@@ -89,7 +87,7 @@ void StatusView::draw(const QuestRequest &req) {
       return;
   }
 
-  NcursesView::getInstance()->movePrint(QUICK_STATUS_Y, QUICK_STATUS_X,
+  NcursesView::getInstance()->clearMovePrint(QUICK_STATUS_Y, QUICK_STATUS_X,
                                         questOptions);
 
   // Change dialogue for quest status specifically.
@@ -107,12 +105,10 @@ void StatusView::draw(const CombatRequest &req) {
 
 
   if (!req.hostile->isDeceased()) {
-    NcursesView::getInstance()->clearLine(y, x);
-    NcursesView::getInstance()->movePrint(y++, x,
+    NcursesView::getInstance()->clearMovePrint(y++, x,
                                           req.hostile->getName() + " " + std::to_string(req.hostile->getHealth()) +
                                           "/" + std::to_string(req.hostile->getMaxHealth()));
-    NcursesView::getInstance()->clearLine(y, x);
-    NcursesView::getInstance()->movePrint(y++, x,
+    NcursesView::getInstance()->clearMovePrint(y++, x,
                                           "PA: " + std::to_string(req.hostile->getPhysicalDamage()) + " MA:" +
                                           std::to_string(req.hostile->getMagicDamage()));
   } else {
@@ -121,8 +117,7 @@ void StatusView::draw(const CombatRequest &req) {
     NcursesView::getInstance()->clearLine(y++, x);
   }
 
-  NcursesView::getInstance()->clearLine(y, x);
-  NcursesView::getInstance()->movePrint(y, x, req.log->description);
+  NcursesView::getInstance()->clearMovePrint(y, x, req.log->description);
 
   NcursesViewDecorator::view->draw(req);
 }
