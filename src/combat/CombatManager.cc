@@ -21,8 +21,11 @@ std::unique_ptr<CombatRequest> CombatManager::getCombatRequest(Hostile *hostile,
   return std::make_unique<CombatRequest>(hostile, inst->getPlayer(), addLogForHostile(hostile, CombatLog::Status::PlayerChooseAttack));
 }
 
+void CombatManager::addHostileAttackLog(Hostile *hostile, std::string description) {
+  combatLogs[hostile].push_back(std::make_unique<CombatLog>(CombatLog::Status::HostileAttack, description));
+}
+
 CombatLog *CombatManager::addLogForHostile(Hostile *hostile, CombatLog::Status status) {
-  // TODO: Visitor pattern with Mob to get list of descriptions.
   combatLogs[hostile].push_back(std::make_unique<CombatLog>(status, getDescriptionWithStatus(status, hostile)));
   return combatLogs[hostile].back().get();
 }

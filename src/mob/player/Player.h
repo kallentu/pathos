@@ -19,10 +19,10 @@
 #include <string>
 #include <vector>
 #include <state/Level.h>
-#include <combat/skill/Skill.h>
 #include <request/CombatRequest.h>
 #include <combat/CombatManager.h>
 #include <core/PathosInstance.h>
+#include <combat/skill/Bite.h>
 
 namespace Pathos {
 
@@ -64,11 +64,13 @@ namespace Pathos {
       // See [activeSkills]. Must have only 4 skills active at a time.
       if (skillIndex >= 4) return nullptr;
 
-      // TODO: Remove once we have skills set up
-      Skill s = Skill{"t", 1,2};
+      // TODO: Change to actual skills by hostiles.
+      Bite bite = Bite();
 
       // Attack the hostile, allow it to retaliate and get the request.
-      h->beAttackedBy(*this, *inst->getCombatManager(), s);
+      h->beAttackedBy(*this, *inst->getCombatManager(), bite);
+      
+      inst->getCombatManager()->addHostileAttackLog(h, Bite().useSkillString(dynamic_cast<Mob *>(h), this));
       return inst->getCombatManager()->getCombatRequest(h, inst);
     }
 

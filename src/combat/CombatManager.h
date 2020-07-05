@@ -20,6 +20,8 @@ namespace Pathos {
   public:
     std::unique_ptr<CombatRequest> getCombatRequest(Hostile *hostile, PathosInstance *inst);
 
+    void addHostileAttackLog(Hostile *hostile, std::string description);
+
     // Returns [true] if the last event in combat was the hostile attacking.
     bool hostileLastAttacked(Hostile *hostile) {
       if (combatLogs.count(hostile) == 0) {
