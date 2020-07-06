@@ -25,14 +25,13 @@ PathosInstance::PathosInstance()
       actionablePos{std::make_unique<Position>(2, 1)},
       stats{std::make_unique<Stats>()},
       questManager{std::make_unique<QuestManager>()},
-      combatManager{std::make_unique<CombatManager>()},
       player{std::make_unique<Player>(stats.get())},
       continueGame{true},
       leaveModeRequests{0} {
   Observable<ViewRequest>::addObserver(view.get());
 }
 
-PathosInstance::~PathosInstance() {}
+PathosInstance::~PathosInstance() = default;
 
 Player *PathosInstance::getPlayer() const { return player.get(); }
 
@@ -74,7 +73,7 @@ Stats *PathosInstance::getStats() { return stats.get(); }
 
 QuestManager *PathosInstance::getQuestManager() { return questManager.get(); }
 
-CombatManager *PathosInstance::getCombatManager() { return combatManager.get(); }
+CombatManager *PathosInstance::getCombatManager() { return CombatManager::instance(); }
 
 const Mode *PathosInstance::getActiveMode() {
   return modes.empty() ? nullptr : modes.top().get();

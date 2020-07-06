@@ -14,10 +14,20 @@ namespace Pathos {
   class PathosInstance;
 
   class CombatManager final {
+    static CombatManager *_instance;
+
     // Store hostile mob and the related combat logs until we leave combat mode.
     std::map<Hostile *, std::vector<std::unique_ptr<CombatLog>>> combatLogs;
 
+    // Private constructor due to singleton.
+    CombatManager() = default;
+
   public:
+    static CombatManager *instance() {
+      if (_instance == nullptr) _instance = new CombatManager();
+      return _instance;
+    }
+
     std::unique_ptr<CombatRequest> getCombatRequest(Hostile *hostile, PathosInstance *inst);
 
     void addHostileAttackLog(Hostile *hostile, std::string description);

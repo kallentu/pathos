@@ -53,7 +53,6 @@ namespace Pathos {
 
     std::unique_ptr<Stats> stats;
     std::unique_ptr<QuestManager> questManager;
-    std::unique_ptr<CombatManager> combatManager;
 
     std::unique_ptr<Player> player;
 
@@ -69,7 +68,7 @@ namespace Pathos {
   public:
     PathosInstance();
 
-    virtual ~PathosInstance();
+    ~PathosInstance() override;
 
     Player *getPlayer() const;
 
@@ -97,7 +96,7 @@ namespace Pathos {
 
     QuestManager *getQuestManager();
 
-    CombatManager *getCombatManager();
+    static CombatManager *getCombatManager();
 
     const Mode *getActiveMode();
 

@@ -13,7 +13,7 @@ public:
   Wolf() : Hostile("Wolf", 100, 0, 20) {}
 
 private:
-  void retaliate(Player &p, CombatManager &cm) override;
+  void retaliate(Player &p) override;
   void beKilledBy(Player &p) override;
 };
 

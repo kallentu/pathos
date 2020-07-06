@@ -5,6 +5,8 @@
 
 using namespace Pathos;
 
+CombatManager *CombatManager::_instance;
+
 std::unique_ptr<CombatRequest> CombatManager::getCombatRequest(Hostile *hostile, PathosInstance *inst) {
   // Check if hostile had previous combat log, otherwise initiate.
   if (combatLogs.count(hostile) == 0) {

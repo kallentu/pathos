@@ -68,10 +68,8 @@ namespace Pathos {
       Bite bite = Bite();
 
       // Attack the hostile, allow it to retaliate and get the request.
-      h->beAttackedBy(*this, *inst->getCombatManager(), bite);
-      
-      inst->getCombatManager()->addHostileAttackLog(h, Bite().useSkillString(dynamic_cast<Mob *>(h), this));
-      return inst->getCombatManager()->getCombatRequest(h, inst);
+      h->beAttackedBy(*this, bite);
+      return CombatManager::instance()->getCombatRequest(h, inst);
     }
 
     std::unique_ptr<TalkRequest> talkTo(Friendly *f) {

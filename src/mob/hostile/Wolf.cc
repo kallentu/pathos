@@ -5,9 +5,10 @@
 
 using namespace Pathos;
 
-void Wolf::retaliate(Player &p, CombatManager &cm) {
-  // TODO: Remove once we have basic combat finished (ie. add skills to all mobs)
+void Wolf::retaliate(Player &p) {
+  // TODO: Generate actual skills for Wolf.
   p.setHealth(p.getHealth() - 10);
+  CombatManager::instance()->addHostileAttackLog(this, Bite().useSkillString(dynamic_cast<Mob *>(this), &p));
 }
 
 void Wolf::beKilledBy(Player &p) {

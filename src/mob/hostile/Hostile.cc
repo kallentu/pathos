@@ -3,7 +3,7 @@
 
 using namespace Pathos;
 
-void Hostile::beAttackedBy(Player &p, CombatManager &cm, Skill &s) {
+void Hostile::beAttackedBy(Player &p, Skill &s) {
   if (!isDeceased()) {
     // Calculate the damage the mob will take.
     size_t physicalDamage = p.getPhysicalDamage() * s.physicalDamage;
@@ -20,7 +20,7 @@ void Hostile::beAttackedBy(Player &p, CombatManager &cm, Skill &s) {
       setHealth(getHealth() - (magicDamage + physicalDamage));
 
       // Always retaliate with another attack.
-      retaliate(p, cm);
+      retaliate(p);
     }
   }
 }
