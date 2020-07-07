@@ -7,6 +7,8 @@
 
 using namespace Pathos;
 
+QuestManager *QuestManager::_instance;
+
 std::unique_ptr<QuestRequest>
 QuestManager::getQuestRequest(Gaia &gaia, PathosInstance *inst) {
   // Check if quest exists, otherwise initiate.

@@ -17,10 +17,20 @@ namespace Pathos {
   class PathosInstance;
 
   class QuestManager final {
+    static QuestManager *_instance;
+
     // Store quest name and quest object
     std::map<std::string, std::unique_ptr<Quest>> quests;
 
+    // Private constructor for singleton.
+    QuestManager() = default;
+
   public:
+    static QuestManager *instance() {
+      if (_instance == nullptr) _instance = new QuestManager();
+      return _instance;
+    }
+
     std::unique_ptr<QuestRequest> getQuestRequest(Gaia &gaia,
                                                   PathosInstance *inst);
 

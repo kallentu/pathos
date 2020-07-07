@@ -94,7 +94,7 @@ namespace Pathos {
 
     Stats *getStats();
 
-    QuestManager *getQuestManager();
+    static QuestManager *getQuestManager();
 
     static CombatManager *getCombatManager();
 

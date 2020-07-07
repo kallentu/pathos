@@ -24,7 +24,6 @@ PathosInstance::PathosInstance()
       playerPos{std::make_unique<Position>(1, 1)},
       actionablePos{std::make_unique<Position>(2, 1)},
       stats{std::make_unique<Stats>()},
-      questManager{std::make_unique<QuestManager>()},
       player{std::make_unique<Player>(stats.get())},
       continueGame{true},
       leaveModeRequests{0} {
@@ -71,7 +70,7 @@ Map *PathosInstance::getMap() const { return map.get(); }
 
 Stats *PathosInstance::getStats() { return stats.get(); }
 
-QuestManager *PathosInstance::getQuestManager() { return questManager.get(); }
+QuestManager *PathosInstance::getQuestManager() { return QuestManager::instance(); }
 
 CombatManager *PathosInstance::getCombatManager() { return CombatManager::instance(); }
 
