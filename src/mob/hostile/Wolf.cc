@@ -16,5 +16,5 @@ void Wolf::beKilledBy(Player &p) {
   p.addDrachma(20);
 
   // Update the stat for wolves killed. See Gaia's quest.
-  p.getStats()->wolvesKilled++;
+  Stats::instance()->incrementWolvesKilled();
 }

@@ -240,6 +240,7 @@ add_library(Sources
         src/request/ViewRequest.h
         src/state/Level.h
         src/state/Stats.h
+        src/state/Stats.cc
         src/state/Status.h
         src/view/curses/MapView.cc
         src/view/curses/MapView.h

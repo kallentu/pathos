@@ -42,7 +42,7 @@ TEST(GaiaTest, haveQuestRequestRetrievedByInProgressStatusMultiple) {
   EXPECT_EQ(questRequest->status, Quest::Status::NotStarted);
 
   // Quest not complete, wolves < 20.
-  inst.getStats()->wolvesKilled = 2;
+  Stats::instance()->setWolvesKilled(2);
   questRequest->quest->updateQuestStatus(&inst);
 
   questRequest = gaia.haveQuestRequestRetrievedBy(&qm, &inst);
@@ -62,7 +62,7 @@ TEST(GaiaTest, haveQuestRequestRetrievedByCompletedStatus) {
   EXPECT_EQ(questRequest->status, Quest::Status::NotStarted);
 
   // Quest not complete, wolves < 20.
-  inst.getStats()->wolvesKilled = 2;
+  Stats::instance()->setWolvesKilled(2);
   questRequest->quest->updateQuestStatus(&inst);
 
   questRequest = gaia.haveQuestRequestRetrievedBy(&qm, &inst);
@@ -71,7 +71,7 @@ TEST(GaiaTest, haveQuestRequestRetrievedByCompletedStatus) {
   EXPECT_EQ(questRequest->status, Quest::Status::InProgress);
 
   // >= 20 wolves killed.
-  inst.getStats()->wolvesKilled = 23;
+  Stats::instance()->setWolvesKilled(23);
   questRequest->quest->updateQuestStatus(&inst);
 
   questRequest = gaia.haveQuestRequestRetrievedBy(&qm, &inst);

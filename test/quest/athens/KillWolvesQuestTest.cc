@@ -21,7 +21,7 @@ TEST(KillWolvesQuestTest,
   KillWolvesQuest quest = KillWolvesQuest(&questGiver);
 
   // Set initial kill count to 2
-  inst.getStats()->wolvesKilled = 2;
+  Stats::instance()->setWolvesKilled(2);
   Quest::Status oldStatus = quest.getStatus();
   Quest::Status newStatus = quest.checkConditions(&inst);
 
@@ -35,10 +35,10 @@ TEST(KillWolvesQuestTest, CheckConditionsInProgressNotEnoughKills) {
   PathosInstance inst;
   KillWolvesQuest quest = KillWolvesQuest(&questGiver);
 
-  inst.getStats()->wolvesKilled = 2;
+  Stats::instance()->setWolvesKilled(2);
   Quest::Status oldStatus = quest.checkConditions(&inst);
 
-  inst.getStats()->wolvesKilled = 12;
+  Stats::instance()->setWolvesKilled(12);
   Quest::Status newStatus = quest.checkConditions(&inst);
 
   EXPECT_EQ(oldStatus, Quest::Status::InProgress);
@@ -51,10 +51,10 @@ TEST(KillWolvesQuestTest, CheckConditionsInProgress20KillsChangeStatus) {
   PathosInstance inst;
   KillWolvesQuest quest = KillWolvesQuest(&questGiver);
 
-  inst.getStats()->wolvesKilled = 2;
+  Stats::instance()->setWolvesKilled(2);
   Quest::Status oldStatus = quest.checkConditions(&inst);
 
-  inst.getStats()->wolvesKilled = 24;
+  Stats::instance()->setWolvesKilled(24);
   Quest::Status newStatus = quest.checkConditions(&inst);
 
   EXPECT_EQ(oldStatus, Quest::Status::InProgress);
@@ -66,12 +66,12 @@ TEST(KillWolvesQuestTest, CheckConditionsCompletedNoStatusChange) {
   PathosInstance inst;
   KillWolvesQuest quest = KillWolvesQuest(&questGiver);
 
-  inst.getStats()->wolvesKilled = 70;
+  Stats::instance()->setWolvesKilled(70);
   Quest::Status status = quest.checkConditions(&inst);
 
   EXPECT_EQ(status, Quest::Status::Completed);
 
-  inst.getStats()->wolvesKilled = 71;
+  Stats::instance()->setWolvesKilled(71);
   Quest::Status newStatus = quest.checkConditions(&inst);
 
   EXPECT_EQ(newStatus, Quest::Status::Completed);

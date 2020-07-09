@@ -30,9 +30,6 @@ namespace Pathos {
 // Has customization options.
 // Can speak to Friendly, attack Hostile, and romance Romanceable.
   class Player final : MapObject, public Mob, public Trader {
-    // Pointer to stats that can be changed according to what the player does.
-    Stats *stats;
-
     Level level;
 
     // List of all possible skills, unlocked by the player.
@@ -42,12 +39,9 @@ namespace Pathos {
     std::vector<Skill *> activeSkills;
 
   public:
-    explicit Player(Stats *stats)
-        : MapObject(MapObject::Char::At), Mob("Periphas", 100, 5, 5), Trader(), stats{stats} {}
+    explicit Player() : MapObject(MapObject::Char::At), Mob("Periphas", 100, 5, 5), Trader() {}
 
     ~Player() override = default;
-
-    Stats *getStats() { return stats; }
 
     // Level in numerical value.
     size_t getLevel() const { return level.getLevel(); }

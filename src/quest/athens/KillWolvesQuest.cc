@@ -18,12 +18,12 @@ KillWolvesQuest::KillWolvesQuest(QuestGiver *questGiver) : Quest(questGiver) {
 Quest::Status KillWolvesQuest::checkConditions(PathosInstance *inst) {
   switch (Quest::getStatus()) {
     case Quest::Status::NotStarted: {
-      initialTotalKills = inst->getStats()->wolvesKilled;
+      initialTotalKills = Stats::instance()->getWolvesKilled();
       Quest::setStatus(Quest::Status::InProgress);
       break;
     }
     case Quest::Status::InProgress: {
-      int killed = inst->getStats()->wolvesKilled - initialTotalKills;
+      int killed = Stats::instance()->getWolvesKilled() - initialTotalKills;
       Quest::setDialogue(Quest::Status::InProgress,
                          "Remember, you need to cull 20 of them. You have only killed " + std::to_string(killed) +
                          " wolves.");

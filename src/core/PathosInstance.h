@@ -51,9 +51,6 @@ namespace Pathos {
     std::unique_ptr<Position> playerPos;
     std::unique_ptr<Position> actionablePos;
 
-    std::unique_ptr<Stats> stats;
-    std::unique_ptr<QuestManager> questManager;
-
     std::unique_ptr<Player> player;
 
     // Flag to continue or halt game.
@@ -92,7 +89,7 @@ namespace Pathos {
 
     Map *getMap() const;
 
-    Stats *getStats();
+    static Stats *getStats();
 
     static QuestManager *getQuestManager();
 

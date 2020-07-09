@@ -123,20 +123,6 @@ TEST(PathosInstanceTest, GetMapNotNull) {
   ASSERT_NE(map, nullptr);
 }
 
-TEST(PathosInstanceTest, GetStatsNotNull) {
-  PathosInstance inst;
-  Stats *stats = inst.getStats();
-
-  ASSERT_NE(stats, nullptr);
-}
-
-TEST(PathosInstanceTest, GetQuestManagerNotNull) {
-  PathosInstance inst;
-  QuestManager *qm = inst.getQuestManager();
-
-  ASSERT_NE(qm, nullptr);
-}
-
 TEST(PathosInstanceTest, getActiveModeNull) {
   PathosInstance inst;
   const Mode *mode = inst.getActiveMode();

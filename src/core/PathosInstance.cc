@@ -23,8 +23,7 @@ PathosInstance::PathosInstance()
       map{std::make_unique<AthensMap>()},
       playerPos{std::make_unique<Position>(1, 1)},
       actionablePos{std::make_unique<Position>(2, 1)},
-      stats{std::make_unique<Stats>()},
-      player{std::make_unique<Player>(stats.get())},
+      player{std::make_unique<Player>()},
       continueGame{true},
       leaveModeRequests{0} {
   Observable<ViewRequest>::addObserver(view.get());
@@ -68,7 +67,7 @@ void PathosInstance::setActionablePosition(size_t y, size_t x) {
 
 Map *PathosInstance::getMap() const { return map.get(); }
 
-Stats *PathosInstance::getStats() { return stats.get(); }
+Stats *PathosInstance::getStats() { return Stats::instance(); }
 
 QuestManager *PathosInstance::getQuestManager() { return QuestManager::instance(); }
 
