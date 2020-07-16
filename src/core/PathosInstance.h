@@ -89,11 +89,7 @@ namespace Pathos {
 
     Map *getMap() const;
 
-    static Stats *getStats();
-
     static QuestManager *getQuestManager();
-
-    static CombatManager *getCombatManager();
 
     const Mode *getActiveMode();
 

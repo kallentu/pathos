@@ -25,7 +25,7 @@ TEST(GaiaTest, haveQuestRequestRetrievedByInProgressStatus) {
   QuestManager qm;
   PathosInstance inst;
 
-  std::unique_ptr<QuestRequest> questRequest = gaia.haveQuestRequestRetrievedBy(&qm, &inst);
+  std::unique_ptr<QuestRequest> questRequest = gaia.retrieveQuestRequestWithInstance(&inst);
   EXPECT_NE(questRequest, nullptr);
   EXPECT_NE(dynamic_cast<KillWolvesQuest*>(questRequest->quest), nullptr);
   EXPECT_EQ(questRequest->status, Quest::Status::NotStarted);
@@ -36,7 +36,7 @@ TEST(GaiaTest, haveQuestRequestRetrievedByInProgressStatusMultiple) {
   QuestManager qm;
   PathosInstance inst;
 
-  std::unique_ptr<QuestRequest> questRequest = gaia.haveQuestRequestRetrievedBy(&qm, &inst);
+  std::unique_ptr<QuestRequest> questRequest = gaia.retrieveQuestRequestWithInstance(&inst);
   EXPECT_NE(questRequest, nullptr);
   EXPECT_NE(dynamic_cast<KillWolvesQuest*>(questRequest->quest), nullptr);
   EXPECT_EQ(questRequest->status, Quest::Status::NotStarted);
@@ -45,7 +45,7 @@ TEST(GaiaTest, haveQuestRequestRetrievedByInProgressStatusMultiple) {
   Stats::instance()->setWolvesKilled(2);
   questRequest->quest->updateQuestStatus(&inst);
 
-  questRequest = gaia.haveQuestRequestRetrievedBy(&qm, &inst);
+  questRequest = gaia.retrieveQuestRequestWithInstance(&inst);
   EXPECT_NE(questRequest, nullptr);
   EXPECT_NE(dynamic_cast<KillWolvesQuest*>(questRequest->quest), nullptr);
   EXPECT_EQ(questRequest->status, Quest::Status::InProgress);
@@ -56,7 +56,7 @@ TEST(GaiaTest, haveQuestRequestRetrievedByCompletedStatus) {
   QuestManager qm;
   PathosInstance inst;
 
-  std::unique_ptr<QuestRequest> questRequest = gaia.haveQuestRequestRetrievedBy(&qm, &inst);
+  std::unique_ptr<QuestRequest> questRequest = gaia.retrieveQuestRequestWithInstance(&inst);
   EXPECT_NE(questRequest, nullptr);
   EXPECT_NE(dynamic_cast<KillWolvesQuest*>(questRequest->quest), nullptr);
   EXPECT_EQ(questRequest->status, Quest::Status::NotStarted);
@@ -65,7 +65,7 @@ TEST(GaiaTest, haveQuestRequestRetrievedByCompletedStatus) {
   Stats::instance()->setWolvesKilled(2);
   questRequest->quest->updateQuestStatus(&inst);
 
-  questRequest = gaia.haveQuestRequestRetrievedBy(&qm, &inst);
+  questRequest = gaia.retrieveQuestRequestWithInstance(&inst);
   EXPECT_NE(questRequest, nullptr);
   EXPECT_NE(dynamic_cast<KillWolvesQuest*>(questRequest->quest), nullptr);
   EXPECT_EQ(questRequest->status, Quest::Status::InProgress);
@@ -74,7 +74,7 @@ TEST(GaiaTest, haveQuestRequestRetrievedByCompletedStatus) {
   Stats::instance()->setWolvesKilled(23);
   questRequest->quest->updateQuestStatus(&inst);
 
-  questRequest = gaia.haveQuestRequestRetrievedBy(&qm, &inst);
+  questRequest = gaia.retrieveQuestRequestWithInstance(&inst);
   EXPECT_NE(questRequest, nullptr);
   EXPECT_NE(dynamic_cast<KillWolvesQuest*>(questRequest->quest), nullptr);
   EXPECT_EQ(questRequest->status, Quest::Status::Completed);

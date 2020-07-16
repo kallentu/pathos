@@ -14,6 +14,6 @@ std::unique_ptr<TalkRequest> Ariadne::beTalkedToBy(Player &p) {
 }
 
 std::unique_ptr<QuestRequest>
-Ariadne::haveQuestRequestRetrievedBy(QuestManager *qm, PathosInstance *inst) {
-  return qm->getQuestRequest(*this, inst);
+Ariadne::retrieveQuestRequestWithInstance(PathosInstance *inst) {
+  return QuestManager::instance()->getQuestRequest(*this, inst);
 }

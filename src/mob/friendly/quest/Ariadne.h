@@ -20,7 +20,7 @@ public:
 
   std::unique_ptr<TalkRequest> beTalkedToBy(Player &p) override;
   std::unique_ptr<QuestRequest>
-  haveQuestRequestRetrievedBy(QuestManager *qm, PathosInstance *inst) override;
+  retrieveQuestRequestWithInstance(PathosInstance *inst) override;
 };
 
 } // namespace Pathos

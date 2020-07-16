@@ -16,6 +16,6 @@ void UpdateQuestEvent::begin(PathosInstance *inst) {
   // Update view depending on quest progress.
   std::unique_ptr<MultipleRequest> request = std::make_unique<MultipleRequest>();
   request->addRequest(std::make_unique<ClearEntireStatus>());
-  request->addRequest(quest->getQuestGiver()->haveQuestRequestRetrievedBy(QuestManager::instance(), inst));
+  request->addRequest(quest->getQuestGiver()->retrieveQuestRequestWithInstance(inst));
   inst->notify(request.get());
 }

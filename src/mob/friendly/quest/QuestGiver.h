@@ -16,8 +16,7 @@ class QuestRequest;
 // Subclasses will need an override on beTalkedToBy(Player &p).
 class QuestGiver {
 public:
-  virtual std::unique_ptr<QuestRequest>
-  haveQuestRequestRetrievedBy(QuestManager *qm, PathosInstance *inst) = 0;
+  virtual std::unique_ptr<QuestRequest> retrieveQuestRequestWithInstance(PathosInstance *inst) = 0;
 };
 
 } // namespace Pathos

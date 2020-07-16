@@ -9,7 +9,7 @@ using namespace Pathos;
 
 QuestModeHandler::QuestModeHandler(PathosInstance *inst, QuestGiver *questGiver) : questGiver{questGiver} {
   // Initial work before first event, may change view as well.
-  std::unique_ptr<QuestRequest> questReq = questGiver->haveQuestRequestRetrievedBy(inst->getQuestManager(), inst);
+  std::unique_ptr<QuestRequest> questReq = questGiver->retrieveQuestRequestWithInstance(inst);
   inst->notify(questReq.get());
 
   quest = questReq->getQuest();

@@ -16,8 +16,7 @@ public:
   MockQuestGiver() : QuestGiver() {}
 
   std::unique_ptr<QuestRequest>
-  haveQuestRequestRetrievedBy(QuestManager *qm, PathosInstance *inst) override {
-    (void)qm;
+  retrieveQuestRequestWithInstance(PathosInstance *inst) override {
     (void)inst;
     return nullptr; // TODO: Perhaps a mock quest request if needed
   }

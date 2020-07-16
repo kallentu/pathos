@@ -9,7 +9,7 @@
 using namespace Pathos;
 
 Pathos::CombatModeHandler::CombatModeHandler(Hostile *hostile, PathosInstance *inst) : hostile{hostile}, inst{inst} {
-  std::unique_ptr<CombatRequest> combatReq = inst->getCombatManager()->getCombatRequest(hostile, inst);
+  std::unique_ptr<CombatRequest> combatReq = CombatManager::instance()->getCombatRequest(hostile, inst);
   inst->notify(combatReq.get());
 }
 

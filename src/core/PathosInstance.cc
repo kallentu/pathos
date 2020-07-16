@@ -67,12 +67,6 @@ void PathosInstance::setActionablePosition(size_t y, size_t x) {
 
 Map *PathosInstance::getMap() const { return map.get(); }
 
-Stats *PathosInstance::getStats() { return Stats::instance(); }
-
-QuestManager *PathosInstance::getQuestManager() { return QuestManager::instance(); }
-
-CombatManager *PathosInstance::getCombatManager() { return CombatManager::instance(); }
-
 const Mode *PathosInstance::getActiveMode() {
   return modes.empty() ? nullptr : modes.top().get();
 }

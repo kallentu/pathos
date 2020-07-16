@@ -15,6 +15,6 @@ std::unique_ptr<TalkRequest> Gaia::beTalkedToBy(Player &p) {
 }
 
 std::unique_ptr<QuestRequest>
-Gaia::haveQuestRequestRetrievedBy(QuestManager *qm, PathosInstance *inst) {
-  return qm->getQuestRequest(*this, inst);
+Gaia::retrieveQuestRequestWithInstance(PathosInstance *inst) {
+  return QuestManager::instance()->getQuestRequest(*this, inst);
 }
